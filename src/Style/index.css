@@ -29,7 +29,34 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 761px;
+  height: 100vh;
   border-radius: 0px 0px 100px 100px;
   color: #3b3735;
+}
+
+.c-app__nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .c-header__homepage {
+    background-image: linear-gradient(
+        rgba(59, 55, 53, 0.5),
+        rgba(59, 55, 53, 0.5)
+      ),
+      url("Images/Headers/header_tablet.png");
+  }
+}
+@media (min-width: 992px) {
+  .c-header__homepage {
+    background-image: linear-gradient(
+        rgba(59, 55, 53, 0.5),
+        rgba(59, 55, 53, 0.5)
+      ),
+      url("Images/Headers/header_desk.png");
+    height: 100vh;
+    border-radius: 0px 0px 200px 200px;
+  }
+}
+@media (min-width: 1200px) {
 }

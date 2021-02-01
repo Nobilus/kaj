@@ -13,7 +13,7 @@ import KernEnergie from "Pages/Kernenergie";
 
 export function Routes() {
   return (
-    <div>
+    <div className="c-app">
       <Navbar />
       <Switch>
         <Route exact path={"/home"} component={App} />

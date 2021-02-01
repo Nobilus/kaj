@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "Images/Svg/logo.svg";
 
 function App() {
   return (
