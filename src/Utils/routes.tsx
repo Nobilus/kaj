@@ -10,13 +10,19 @@ import Praktisch from "Pages/Praktisch";
 import Shop from "Pages/Shop";
 import Themas from "Pages/Themas";
 import KernEnergie from "Pages/Kernenergie";
+import Burger from "Components/HamburgerMenu";
+import { possibleRoutes } from "./possibleRoutes";
 
 export function Routes() {
   return (
     <div className="c-app">
       <Navbar />
+      <Burger />
       <Switch>
-        <Route exact path={"/home"} component={App} />
+        {Object.entries(possibleRoutes).map((route, index) => {
+          return <Route exact path={"/" + route[0]} component={route[1]} />;
+        })}
+        {/* <Route exact path={"/home"} component={App} />
         <Route exact path={"/praktisch"} component={Praktisch} />
         <Route exact path={"/themas"} component={Themas} />
         <Route exact path={"/kernenergie"} component={KernEnergie} />
@@ -26,7 +32,7 @@ export function Routes() {
         <Route exact path={"/ons-team"} component={OnsTeam} />
         <Route exact path="/">
           <Redirect to="/home" />
-        </Route>
+        </Route> */}
       </Switch>
     </div>
   );

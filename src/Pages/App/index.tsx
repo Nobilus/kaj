@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "Images/Png/logo.png";
 import MenuCard from "Components/MenuCard";
 
 // Menucard icons
@@ -28,16 +27,15 @@ import placeholder from "Images/Jpg/placeholder.jpg";
 function App() {
   return (
     <>
-      <div className="c-header">
+      <>
         <div className="c-header__homepage">
-          <img className="c-header__logo" src={logo} alt="logo-kaj" />
           <div className="c-header__moto">
             <h1>ZIEN</h1>
             <h1>OORDELEN</h1>
             <h1>HANDELEN</h1>
           </div>
         </div>
-      </div>
+      </>
       <div className="c-menu-card__row">
         <MenuCard iconSource={overons} title={"Over ons"} />
         <MenuCard iconSource={shop} title={"Shop"} />

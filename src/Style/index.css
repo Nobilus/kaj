@@ -312,6 +312,61 @@ code {
   color: var(--global-cta);
 }
 
+/* mobile nav */
+
+.c-mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.c-mobile-nav__body {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--global-cta);
+}
+
+.c-mobile-nav__header {
+  padding: 16px;
+  text-align: right;
+}
+
+.c-nav-trigger {
+  width: 50px;
+  height: 50px;
+  color: white;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: var(--global-background-color-dark);
+}
+.c-nav {
+  font-size: 14px;
+  line-height: 24px;
+}
+.o-list {
+  list-style: none;
+  padding: 0;
+}
+.c-nav__list {
+  display: block;
+  text-align: center;
+}
+
+.has-mobile-nav .c-mobile-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.c-header {
+  background-color: #fff;
+}
+
 @media (min-width: 768px) {
   .c-header__homepage {
     background-image: linear-gradient(
