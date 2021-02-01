@@ -48,6 +48,12 @@ h4 {
   font-family: atten-medium;
 }
 
+p {
+  color: var(--global-text-color);
+  font-family: atten-regular;
+  font-size: 1.2rem;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -142,7 +148,7 @@ code {
 }
 
 .c-homepage-divider {
-  margin-top: 7rem;
+  margin-top: 5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -165,6 +171,59 @@ code {
 .c-kijker__icon {
   max-height: 3rem;
   max-width: 3rem;
+}
+
+.o-row__footer {
+  padding-bottom: 24px;
+  background-color: var(--global-background-color-dark);
+  padding: 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 100px 100px 0px 0px;
+}
+.c-footer-title {
+  text-align: center;
+}
+.c-footer-row {
+  display: flex;
+  width: 100%;
+}
+
+.c-footer-row__item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+.c-footer-row__item > p {
+  margin: 0;
+  margin-bottom: 0.75rem;
+}
+
+.c-footer-social {
+  height: 48px;
+  width: 48px;
+}
+
+.c-footer-social-row {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  justify-content: space-evenly;
+}
+
+.c-footer-row__sponsor {
+  /* max-height: 80px; */
+  height: auto;
+  width: 50%;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c-footer-row--sponsors {
+  max-height: 25%;
 }
 
 @media (min-width: 768px) {
