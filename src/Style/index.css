@@ -2,6 +2,15 @@
 
 :root {
   --global-background-color: #fada73;
+  --global-background-color-dark: #ffb63b;
+  --global-text-color: #3b3735;
+
+  --global-dark: #3b3735;
+  --global-cta: #e76f51;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
@@ -36,6 +45,14 @@ code {
 
 .c-app__nav {
   display: none;
+}
+
+.c-header__logo {
+  width: 2rem;
+  height: 50px;
+  position: absolute;
+  top: 40px;
+  left: 29px;
 }
 
 @media (min-width: 768px) {
