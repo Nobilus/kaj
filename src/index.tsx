@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "Style/index.css";
 import App from "Pages/App/App";
 import reportWebVitals from "./reportWebVitals";
-import { Routes } from "Pages/App/routes";
+import { Routes } from "Utils/routes";
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
