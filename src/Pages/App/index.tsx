@@ -7,6 +7,11 @@ function App() {
       <div className="c-header">
         <div className="c-header__homepage"></div>
         <img className="c-header__logo" src={logo} alt="logo-kaj" />
+        <div className="c-header__moto">
+          <h1>ZIEN</h1>
+          <h1>OORDELEN</h1>
+          <h1>HANDELEN</h1>
+        </div>
       </div>
     </div>
   );
