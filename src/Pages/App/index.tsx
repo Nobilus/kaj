@@ -8,9 +8,12 @@ import locatie from "Images/Png/MenuCard/location_on-24px.png";
 import praktisch from "Images/Png/MenuCard/praktisch_icon.png";
 import overons from "Images/Png/MenuCard/over_ons_icon.png";
 
+// In de kijker icon
+import kijker from "Images/Png/in_de_kijker_icon.png";
+
 function App() {
   return (
-    <div className="App">
+    <>
       <div className="c-header">
         <div className="c-header__homepage">
           <img className="c-header__logo" src={logo} alt="logo-kaj" />
@@ -27,8 +30,13 @@ function App() {
         <MenuCard iconSource={locatie} title={"KAJ\nin de buurt"} />
         <MenuCard iconSource={praktisch} title={"Praktisch"} />
       </div>
-      <div></div>
-    </div>
+      <div className="c-homepage-divider">
+        <div className="c-kijker">
+          <img className="c-kijker__icon" src={kijker} alt="In De Kijker" />
+        </div>
+        <h4>In de kijker</h4>
+      </div>
+    </>
   );
 }
 

@@ -42,6 +42,11 @@ h3 {
   font-size: 2rem;
   font-family: atten-medium;
 }
+h4 {
+  color: var(--global-text-color);
+  font-size: 1.75rem;
+  font-family: atten-medium;
+}
 
 body {
   margin: 0;
@@ -134,6 +139,32 @@ code {
   margin-top: 1.5rem;
   font-size: 2.375rem;
   max-width: 182px;
+}
+
+.c-homepage-divider {
+  margin-top: 7rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.c-homepage-divider > h4 {
+  margin: 0.5rem;
+}
+
+.c-kijker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+  background-color: var(--global-cta);
+}
+
+.c-kijker__icon {
+  max-height: 3rem;
+  max-width: 3rem;
 }
 
 @media (min-width: 768px) {
