@@ -47,6 +47,12 @@ h4 {
   font-size: 1.75rem;
   font-family: atten-medium;
 }
+h5 {
+  color: var(--global-cta);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-family: atten-extra-bold;
+}
 
 p {
   color: var(--global-text-color);
@@ -79,7 +85,7 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   border-radius: 0px 0px 100px 100px;
   color: #3b3735;
 }
@@ -112,9 +118,8 @@ code {
 .c-menu-card {
   padding: 1rem 1rem;
   background-color: white;
-  /* max-width: 281px; */
-  width: 17rem;
-  height: 15rem;
+  width: 272px;
+  height: 240px;
   border-radius: 20px;
   margin-bottom: 1.5rem;
 }
@@ -162,8 +167,8 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
-  height: 6rem;
+  width: 96px;
+  height: 96px;
   border-radius: 3rem;
   background-color: var(--global-cta);
 }
@@ -171,6 +176,12 @@ code {
 .c-kijker__icon {
   max-height: 3rem;
   max-width: 3rem;
+}
+
+.c-kijker-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .o-row__footer {
@@ -226,6 +237,81 @@ code {
   max-height: 25%;
 }
 
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.c-button {
+  color: white;
+  font-family: atten-extra-bold;
+  font-size: 20px;
+  background-color: var(--global-cta);
+  border-radius: 64px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.c-button:active {
+  opacity: 0.8;
+}
+
+.c-blogpostcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 272px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c-blogpostcard > h5 {
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.c-blogpostcard__img {
+  width: 238px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.c-readmore {
+  margin-top: 8px;
+  color: var(--global-cta);
+}
+
 @media (min-width: 768px) {
   .c-header__homepage {
     background-image: linear-gradient(
@@ -242,7 +328,6 @@ code {
         rgba(59, 55, 53, 0.5)
       ),
       url("Images/Headers/header_desk.png");
-    height: 100vh;
     border-radius: 0px 0px 200px 200px;
   }
 }

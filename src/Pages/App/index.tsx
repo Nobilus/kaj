@@ -19,6 +19,11 @@ import twitter from "Images/Png/socials/twitter.png";
 // sponsors
 import dvv from "Images/Png/sponsors/logo-dvv.png";
 import vlaanderen from "Images/Png/sponsors/vlaanderen-logo.png";
+import Button from "Components/Button";
+import Blogpostcard from "Components/Blogpostcard";
+
+// blogpost placeholder
+import placeholder from "Images/Jpg/placeholder.jpg";
 
 function App() {
   return (
@@ -45,6 +50,13 @@ function App() {
         </div>
         <h4>In de kijker</h4>
       </div>
+      <div className="c-kijker-posts">
+        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
+        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
+        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
+        <Button onClick={(test: any) => {}} title={"Bekijk meer nieuws"} />
+      </div>
+
       <div className="o-row__footer">
         <h4 className="c-footer-title">KAJ VZW</h4>
         <div className="c-footer-row">
