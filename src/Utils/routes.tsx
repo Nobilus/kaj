@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "Components/Navbar/Navbar";
 import { Switch, Route, Redirect } from "react-router-dom";
-import App from "../Pages/App/App";
+import App from "../Pages/App";
 import Afdelingen from "Pages/Afdelingen";
 import OnsTeam from "Pages/OnsTeam";
 import OverOns from "Pages/OverOns";
