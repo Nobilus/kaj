@@ -22,6 +22,9 @@ export function Routes() {
         {Object.entries(possibleRoutes).map((route, index) => {
           return <Route exact path={"/" + route[0]} component={route[1]} />;
         })}
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         {/* <Route exact path={"/home"} component={App} />
         <Route exact path={"/praktisch"} component={Praktisch} />
         <Route exact path={"/themas"} component={Themas} />
