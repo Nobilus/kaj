@@ -6,8 +6,13 @@ import HamburgerMenu from "react-hamburger-menu";
 import { possibleRoutes } from "Utils/possibleRoutes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { MenuI } from "Utils/Types/menuItems";
 
-export default function Burger() {
+interface IBurger {
+  items?: MenuI;
+}
+
+export default function Burger({ items }: IBurger) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   let menu;
@@ -23,18 +28,19 @@ export default function Burger() {
               onClick={() => setMenuOpen(false)}
             />
           </span>
-          {Object.entries(possibleRoutes).map((route, index) => {
-            return (
-              <li className="c-nav__item">
-                <NavLink
-                  onClick={() => setMenuOpen(false)}
-                  className="c-nav__link"
-                  to={"/" + route[0]}
-                >
-                  {route[0]}
-                </NavLink>
-              </li>
-            );
+          {items?.items.map(({ object_slug, title, id, parent }) => {
+            if (parent === 0)
+              return (
+                <li className="c-nav__item">
+                  <NavLink
+                    onClick={() => setMenuOpen(false)}
+                    className="c-nav__link"
+                    to={"/" + object_slug}
+                  >
+                    {title}
+                  </NavLink>
+                </li>
+              );
           })}
         </div>
       </>

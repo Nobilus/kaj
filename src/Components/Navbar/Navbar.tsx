@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MenuI } from "Utils/Types/menuItems";
 
-export default function Navbar() {
+interface INavbar {
+  items?: MenuI;
+}
+
+export default function Navbar({ items }: INavbar) {
   return (
     <nav className="c-app__nav">
       <ul>
+        {items?.items.map(({ object_slug, title, id }) => {
+          return (
+            <li key={id}>
+              <Link to={"/" + { object_slug }}>{title}</Link>
+            </li>
+          );
+        })}
         <li>
           <Link to={"/home"}>Home</Link>
         </li>
