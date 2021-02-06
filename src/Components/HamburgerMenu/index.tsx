@@ -3,7 +3,6 @@ import logo from "Images/Png/logo.png";
 import { NavLink } from "react-router-dom";
 //@ts-ignore
 import HamburgerMenu from "react-hamburger-menu";
-import { possibleRoutes } from "Utils/possibleRoutes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { MenuI } from "Utils/Types/menuItems";

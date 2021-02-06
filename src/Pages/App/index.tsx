@@ -20,13 +20,17 @@ function App() {
   return (
     <>
       <>
-        <div className="c-header__homepage">
+        <section
+          className="c-header__homepage"
+          role="img"
+          aria-label="Image Description"
+        >
           <div className="c-header__moto">
             <h1>ZIEN</h1>
             <h1>OORDELEN</h1>
             <h1>HANDELEN</h1>
           </div>
-        </div>
+        </section>
       </>
       <div className="c-menu-card__row">
         <MenuCard iconSource={overons} title={"Over ons"} />

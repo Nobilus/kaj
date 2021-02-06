@@ -28,18 +28,6 @@ function Footer() {
         <img className="c-footer-social" src={instagram} alt="instagram-icon" />
         {/* <img className="c-footer-social" src={twitter} alt="twitter-icon" /> */}
       </div>
-      <div className="c-footer-row c-footer-row--sponsors">
-        <img
-          className="c-footer-row__sponsor"
-          src={dvv}
-          alt="DVV Verzekeringen"
-        />
-        <img
-          className="c-footer-row__sponsor"
-          src={vlaanderen}
-          alt="Vlaanderen"
-        />
-      </div>
     </footer>
   );
 }

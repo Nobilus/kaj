@@ -3,15 +3,9 @@ import React, { useEffect, useState } from "react";
 import Navbar from "Components/Navbar/Navbar";
 import { Switch, Route, Redirect } from "react-router-dom";
 import App from "../Pages/App";
-import Afdelingen from "Pages/Afdelingen";
 import OnsTeam from "Pages/OnsTeam";
-import OverOns from "Pages/OverOns";
-import Praktisch from "Pages/Praktisch";
 import Shop from "Pages/Shop";
-import Themas from "Pages/Themas";
-import KernEnergie from "Pages/Kernenergie";
 import Burger from "Components/HamburgerMenu";
-import { possibleRoutes } from "./possibleRoutes";
 import axios from "axios";
 import { axiosI } from "./Types/axiosInstance";
 import { MenuI } from "./Types/menuItems";
@@ -19,6 +13,7 @@ import Page from "Pages/Page";
 import Footer from "Components/Footer";
 
 export function Routes() {
+  const [loading, setLoading] = useState(true);
   const [menuItems, setMenuItems] = useState<MenuI>();
 
   useEffect(() => {
@@ -35,6 +30,7 @@ export function Routes() {
           console.log("failed");
           console.warn(err.response);
         });
+      setLoading(false);
     };
     fetchRoutes();
   }, []);
@@ -45,19 +41,20 @@ export function Routes() {
         <Navbar items={menuItems} />
         <Burger items={menuItems} />
         <Switch>
-          {menuItems?.items.map(({ id, title, object_slug }) => {
-            return (
-              <Route key={id} exact path={"/" + object_slug}>
-                {title === "Home" ? (
-                  <App />
-                ) : title === "Ons team" ? (
-                  <OnsTeam />
-                ) : (
-                  <Page title={title} />
-                )}
-              </Route>
-            );
-          })}
+          {!loading &&
+            menuItems?.items.map(({ id, title, object_slug }) => {
+              return (
+                <Route key={id} exact path={"/" + object_slug}>
+                  {title === "Home" ? (
+                    <App />
+                  ) : title === "Ons team" ? (
+                    <OnsTeam />
+                  ) : (
+                    <Page title={title} />
+                  )}
+                </Route>
+              );
+            })}
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>

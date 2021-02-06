@@ -1,47 +1,67 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { MenuI } from "Utils/Types/menuItems";
+import Logo from "Images/Png/logo.png";
+import { useLocation } from "react-router-dom";
+import useWindowSize from "Utils/Hooks/useWindowSize";
 
 interface INavbar {
   items?: MenuI;
 }
 
 export default function Navbar({ items }: INavbar) {
-  return (
-    <nav className="c-app__nav">
-      <ul>
-        {items?.items.map(({ object_slug, title, id }) => {
-          return (
-            <li key={id}>
-              <Link to={"/" + { object_slug }}>{title}</Link>
-            </li>
-          );
-        })}
-        <li>
-          <Link to={"/home"}>Home</Link>
-        </li>
-        <li>
-          <Link to={"/praktisch"}>Praktisch</Link>
-        </li>
-        <li>
-          <Link to={"/themas"}>Thema's</Link>
-        </li>
-        <li>
-          <Link to={"/kernenergie"}>Kernenergie</Link>
-        </li>
-        <li>
-          <Link to={"/shop"}>Shop</Link>
-        </li>
-        <li>
-          <Link to={"/afdelingen"}>Afdelingen</Link>
-        </li>
-        <li>
-          <Link to={"/over-ons"}>Over ons</Link>
-        </li>
-        <li>
-          <Link to={"/ons-team"}>Ons team</Link>
-        </li>
-      </ul>
-    </nav>
-  );
+  const location = useLocation();
+  const { width, height } = useWindowSize();
+
+  console.log(width);
+
+  if (width && width >= 992) {
+    if (location.pathname === "/home") {
+      return (
+        <nav className="c-app__nav">
+          <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
+          <ul className="c-nav__list">
+            {items?.items.map(({ object_slug, title, id }) => {
+              console.log(object_slug);
+              return (
+                <li className="c-nav__item" key={id}>
+                  <NavLink
+                    activeClassName="active"
+                    className="c-nav__link"
+                    to={`/${object_slug}`}
+                  >
+                    {title}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      );
+    } else {
+      return (
+        <nav className="c-app__nav backgroundcolor">
+          <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
+          <ul className="c-nav__list">
+            {items?.items.map(({ object_slug, title, id }) => {
+              console.log(object_slug);
+              return (
+                <li className="c-nav__item" key={id}>
+                  <NavLink
+                    activeClassName="active"
+                    className="c-nav__link"
+                    to={`/${object_slug}`}
+                  >
+                    {title}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      );
+    }
+  } else {
+    return <></>;
+  }
 }
