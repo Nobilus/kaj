@@ -45,9 +45,33 @@ function App() {
         <h4>In de kijker</h4>
       </div>
       <div className="c-kijker-posts">
-        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
-        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
-        <Blogpostcard img={placeholder} title={"dit is een zeer tof artikel"} />
+        <Blogpostcard
+          img={placeholder}
+          title={"dit is een zeer tof artikel"}
+          author={"Bartje"}
+          published={"2021-02-03T15:59:08"}
+          excerpt={
+            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
+          }
+        />
+        <Blogpostcard
+          img={placeholder}
+          title={"dit is een zeer tof artikel"}
+          author={"Bartje"}
+          published={"2021-02-03T15:59:08"}
+          excerpt={
+            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
+          }
+        />
+        <Blogpostcard
+          img={placeholder}
+          title={"dit is een zeer tof artikel"}
+          author={"Bartje"}
+          published={"2021-02-03T15:59:08"}
+          excerpt={
+            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
+          }
+        />
         <Button onClick={(test: any) => {}} title={"Bekijk meer nieuws"} />
       </div>
     </>

@@ -4,6 +4,7 @@ import { MenuI } from "Utils/Types/menuItems";
 import Logo from "Images/Png/logo.png";
 import { useLocation } from "react-router-dom";
 import useWindowSize from "Utils/Hooks/useWindowSize";
+import Burger from "Components/HamburgerMenu";
 
 interface INavbar {
   items?: MenuI;
@@ -62,6 +63,6 @@ export default function Navbar({ items }: INavbar) {
       );
     }
   } else {
-    return <></>;
+    return <Burger items={items} />;
   }
 }
