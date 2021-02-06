@@ -90,6 +90,10 @@ code {
   color: #3b3735;
 }
 
+.c-app {
+  min-height: 50vh;
+}
+
 .c-app__nav {
   display: none;
 }
@@ -380,6 +384,66 @@ code {
   font-size: 2rem;
   font-family: atten-extra-bold;
   text-transform: uppercase;
+}
+
+.c-usercard__grid {
+  margin-top: 80px;
+  margin-left: 16px;
+  margin-right: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+}
+
+.c-usercard {
+  background-color: #fff;
+
+  border-radius: 20px;
+  padding: 16px;
+  /* max-width: 50%; */
+}
+
+.c-usercard__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.c-usercard__img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.c-usercard__title {
+  margin: 0;
+  color: var(--global-dark);
+  text-transform: none;
+  font-family: atten-extra-bold;
+  margin-top: 16px;
+  /* margin-bottom: 8px; */
+  font-size: 1rem;
+}
+.c-usercard__description {
+  font-family: atten-medium;
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.c-usercard__subtext {
+  font-family: atten-regular;
+  font-size: 1rem;
+}
+
+p.c-usercard__subtext {
+  margin: 0;
+}
+a.c-usercard__subtext {
+  color: var(--global-dark);
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {

@@ -16,6 +16,7 @@ import axios from "axios";
 import { axiosI } from "./Types/axiosInstance";
 import { MenuI } from "./Types/menuItems";
 import Page from "Pages/Page";
+import Footer from "Components/Footer";
 
 export function Routes() {
   const [menuItems, setMenuItems] = useState<MenuI>();
@@ -39,32 +40,30 @@ export function Routes() {
   }, []);
 
   return (
-    <div className="c-app">
-      <Navbar items={menuItems} />
-      <Burger items={menuItems} />
-      <Switch>
-        {menuItems?.items.map(({ id, title, object_slug }) => {
-          return (
-            <Route key={id} exact path={"/" + object_slug}>
-              {title === "Home" ? <App /> : <Page title={title} />}
-            </Route>
-          );
-        })}
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        {/* <Route exact path={"/home"} component={App} />
-        <Route exact path={"/praktisch"} component={Praktisch} />
-        <Route exact path={"/themas"} component={Themas} />
-        <Route exact path={"/kernenergie"} component={KernEnergie} />
-        <Route exact path={"/shop"} component={Shop} />
-        <Route exact path={"/afdelingen"} component={Afdelingen} />
-        <Route exact path={"/over-ons"} component={OverOns} />
-        <Route exact path={"/ons-team"} component={OnsTeam} />
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route> */}
-      </Switch>
-    </div>
+    <>
+      <div className="c-app">
+        <Navbar items={menuItems} />
+        <Burger items={menuItems} />
+        <Switch>
+          {menuItems?.items.map(({ id, title, object_slug }) => {
+            return (
+              <Route key={id} exact path={"/" + object_slug}>
+                {title === "Home" ? (
+                  <App />
+                ) : title === "Ons team" ? (
+                  <OnsTeam />
+                ) : (
+                  <Page title={title} />
+                )}
+              </Route>
+            );
+          })}
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
+    </>
   );
 }
