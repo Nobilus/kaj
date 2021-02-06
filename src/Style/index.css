@@ -454,6 +454,9 @@ a.c-usercard__subtext {
       ),
       url("Images/Headers/header_tablet.png");
   }
+  .c-usercard__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 @media (min-width: 992px) {
   .c-header__homepage {
@@ -463,6 +466,11 @@ a.c-usercard__subtext {
       ),
       url("Images/Headers/header_desk.png");
     border-radius: 0px 0px 200px 200px;
+  }
+  .c-usercard__grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    min-width: 100%;
+    max-width: 352px;
   }
 }
 @media (min-width: 1200px) {
