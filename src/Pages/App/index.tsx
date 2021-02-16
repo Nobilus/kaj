@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuCard from "Components/MenuCard";
 
 // Menucard icons
@@ -15,8 +15,27 @@ import Blogpostcard from "Components/Blogpostcard";
 
 // blogpost placeholder
 import placeholder from "Images/Jpg/placeholder.jpg";
+import { axiosI } from "Utils/Types/axiosInstance";
+import endpoints from "Utils/endpoints";
+import { IBlogpost } from "Utils/Types/blogpost";
 
 function App() {
+  const [blogposts, setBlogposts] = useState<IBlogpost[]>();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      axiosI
+        .get<IBlogpost[]>(endpoints.homepageposts)
+        .then(({ data }) => {
+          setBlogposts(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <>
@@ -45,33 +64,19 @@ function App() {
         <h4>In de kijker</h4>
       </div>
       <div className="c-kijker-posts">
-        <Blogpostcard
-          img={placeholder}
-          title={"dit is een zeer tof artikel"}
-          author={"Bartje"}
-          published={"2021-02-03T15:59:08"}
-          excerpt={
-            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
-          }
-        />
-        <Blogpostcard
-          img={placeholder}
-          title={"dit is een zeer tof artikel"}
-          author={"Bartje"}
-          published={"2021-02-03T15:59:08"}
-          excerpt={
-            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
-          }
-        />
-        <Blogpostcard
-          img={placeholder}
-          title={"dit is een zeer tof artikel"}
-          author={"Bartje"}
-          published={"2021-02-03T15:59:08"}
-          excerpt={
-            "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"
-          }
-        />
+        {blogposts?.map((post) => {
+          console.log(post._embedded["wp:featuredmedia"][0].source_url);
+          return (
+            <Blogpostcard
+              img={post._embedded["wp:featuredmedia"][0].source_url}
+              title={post.title.rendered}
+              author={post._embedded.author[0].name}
+              published={post.date}
+              excerpt={post.excerpt.rendered}
+            />
+          );
+        })}
+
         <Button onClick={(test: any) => {}} title={"Bekijk meer nieuws"} />
       </div>
     </>

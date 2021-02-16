@@ -37,8 +37,8 @@ export function Routes() {
 
   return (
     <>
+      <Navbar items={menuItems} />
       <div className="c-app">
-        <Navbar items={menuItems} />
         <Switch>
           {!loading &&
             menuItems?.items.map(({ id, title, object_slug }) => {

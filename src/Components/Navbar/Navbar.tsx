@@ -19,7 +19,7 @@ export default function Navbar({ items }: INavbar) {
   if (width && width >= 992) {
     if (location.pathname === "/home") {
       return (
-        <nav className="c-app__nav">
+        <nav className="c-app__nav" style={{ position: "absolute" }}>
           <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
           <ul className="c-nav__list">
             {items?.items.map(({ object_slug, title, id }) => {
