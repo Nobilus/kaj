@@ -64,10 +64,10 @@ function App() {
         <h4>In de kijker</h4>
       </div>
       <div className="c-kijker-posts">
-        {blogposts?.map((post) => {
-          console.log(post._embedded["wp:featuredmedia"][0].source_url);
+        {blogposts?.map((post, index) => {
           return (
             <Blogpostcard
+              key={index}
               img={post._embedded["wp:featuredmedia"][0].source_url}
               title={post.title.rendered}
               author={post._embedded.author[0].name}

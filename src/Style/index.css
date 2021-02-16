@@ -106,6 +106,10 @@ code {
   padding: 0;
 }
 
+.c-nav__logo--mobile {
+  height: 3rem;
+}
+
 .c-header__logo {
   width: 2rem;
   height: 50px;
@@ -355,9 +359,17 @@ p.c-blogpostcard__publishdate {
 }
 
 .c-mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: var(--global-background-color-dark);
+  border-radius: 0 0 35px 35px;
+}
+
+.c-mobile-nav--absolute {
   position: absolute;
-  right: 16px;
   top: 16px;
+  right: 16px;
 }
 
 .c-mobile-nav__icon {
@@ -575,6 +587,7 @@ a.c-usercard__subtext {
     height: 96px;
     width: 100%;
   }
+
   .c-nav__link {
     font-size: 18px;
     font-family: atten-bold;

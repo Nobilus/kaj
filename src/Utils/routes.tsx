@@ -11,27 +11,51 @@ import { axiosI } from "./Types/axiosInstance";
 import { MenuI } from "./Types/menuItems";
 import Page from "Pages/Page";
 import Footer from "Components/Footer";
+import endpoints from "./endpoints";
+import BlogPost from "Pages/BlogPost";
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
   const [menuItems, setMenuItems] = useState<MenuI>();
 
+  const [categories, setCategories] = useState<Array<any>>([]);
+
   useEffect(() => {
     const fetchRoutes = async () => {
-      console.log("this is  routes fetch");
       await axiosI
-        .get<MenuI>("wp-api-menus/v2/menus/25")
+        .get<MenuI>(endpoints.menuitems)
         .then(({ data }) => {
-          console.log("fetch succes");
           setMenuItems(data);
           console.log(data.items);
         })
         .catch((err) => {
-          console.log("failed");
           console.warn(err.response);
         });
-      setLoading(false);
     };
+
+    const fetchCategories = async () => {
+      await axiosI
+        .get(endpoints.categories)
+        .then(({ data }) => {
+          console.log(data);
+          //@ts-ignore
+          data.forEach(({ name, slug }) => {
+            setCategories([...categories, { name, slug }]);
+          });
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const fetchNewsRoutes = async () => {
+      await axiosI.get(`${endpoints.postsbycat}`);
+    };
+
+    fetchCategories();
+    fetchNewsRoutes();
+
     fetchRoutes();
   }, []);
 
@@ -42,17 +66,41 @@ export function Routes() {
         <Switch>
           {!loading &&
             menuItems?.items.map(({ id, title, object_slug }) => {
-              return (
-                <Route key={id} exact path={"/" + object_slug}>
-                  {title === "Home" ? (
-                    <App />
-                  ) : title === "Ons team" ? (
-                    <OnsTeam />
-                  ) : (
-                    <Page title={title} />
-                  )}
-                </Route>
-              );
+              if (title === "Nieuws") {
+                console.log("categories: ", categories);
+                return (
+                  <>
+                    <Route
+                      key={id}
+                      exact
+                      path={"/" + object_slug}
+                      component={() => <Page title={title} />}
+                    />
+                    {categories.map(({ name, slug }) => {
+                      console.log(slug);
+                      return (
+                        <Route
+                          exact
+                          path={`/${object_slug}/${slug}/:title`}
+                          component={BlogPost}
+                        />
+                      );
+                    })}
+                  </>
+                );
+              } else {
+                return (
+                  <Route key={id} exact path={"/" + object_slug}>
+                    {title === "Home" ? (
+                      <App />
+                    ) : title === "Ons team" ? (
+                      <OnsTeam />
+                    ) : (
+                      <Page title={title} />
+                    )}
+                  </Route>
+                );
+              }
             })}
           <Route exact path="/">
             <Redirect to="/home" />
