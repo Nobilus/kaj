@@ -1,4 +1,4 @@
-@import "Style/normalize.css"; /* import normalize css fileya */
+@import "Style/normalize.css";
 
 :root {
   --global-background-color: #fada73;
@@ -17,19 +17,19 @@
 
 @font-face {
   font-family: atten-regular;
-  src: url("Fonts/AttenRoundNewRegular.otf");
+  src: url("../Fonts/AttenRoundNewRegular.otf");
 }
 @font-face {
   font-family: atten-bold;
-  src: url("Fonts/AttenRoundNewBold.otf");
+  src: url("../Fonts/AttenRoundNewBold.otf");
 }
 @font-face {
   font-family: atten-medium;
-  src: url("Fonts/AttenRoundNewMedium.otf");
+  src: url("../Fonts/AttenRoundNewMedium.otf");
 }
 @font-face {
   font-family: atten-extra-bold;
-  src: url("Fonts/AttenRoundNewExtraBold.otf");
+  src: url("../Fonts/AttenRoundNewExtraBold.otf");
 }
 
 html {
@@ -67,10 +67,9 @@ p {
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: atten-regular, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--global-background-color);
@@ -311,6 +310,73 @@ code {
   opacity: 0.8;
 }
 
+.c-blogpost {
+  background-color: white;
+  border-radius: 20px;
+  padding: 1rem 1rem 2rem 1rem;
+  margin: 4rem 1rem;
+  width: 100%;
+}
+
+.c-blogpost__image-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.c-blogpost__head {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.c-blogpost__title {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.5rem;
+  max-width: 100vw;
+}
+.c-blogpost__info {
+  font-family: atten-regular;
+}
+p.c-blogpost__author,
+p.c-blogpost__publishdate {
+  color: #707070;
+  font-size: 0.75rem;
+}
+p.c-blogpost__author {
+  margin: 0;
+}
+
+.c-blogpost__publishdate {
+  margin: 0;
+}
+
+.c-blogpost__body {
+  margin-top: 2rem;
+}
+
+.c-blogpost__body > h2 {
+  font-family: atten-extra-bold;
+  color: var(--global-text-color);
+  margin: 0.5rem 0 1rem;
+  font-size: 1.1rem;
+}
+
+.c-blogpost__body > ul {
+  padding-inline-start: 1rem;
+}
+
+.c-blogpost__body > p {
+  font-size: 1rem;
+}
+
+.c-blogpost-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .c-blogpostcard {
   display: flex;
   flex-direction: column;
@@ -329,6 +395,7 @@ code {
 .c-blogpostcard > h5 {
   margin: 0;
   margin-bottom: 8px;
+  font-size: 1.5rem;
 }
 
 p.c-blogpostcard__author,
@@ -356,6 +423,10 @@ p.c-blogpostcard__publishdate {
 .c-readmore {
   margin-top: 8px;
   color: var(--global-cta);
+}
+
+.c-nieuws-container {
+  margin-bottom: 2rem;
 }
 
 .c-mobile-nav {
@@ -495,6 +566,10 @@ a.c-usercard__subtext {
 }
 
 @media (min-width: 768px) {
+  .c-blogpost {
+    /* align-self: center; */
+    max-width: 75%;
+  }
   .c-menu-card__row {
     grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
     /* grid-template-columns: repeat(4, 1fr); */

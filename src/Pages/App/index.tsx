@@ -18,9 +18,11 @@ import placeholder from "Images/Jpg/placeholder.jpg";
 import { axiosI } from "Utils/Types/axiosInstance";
 import endpoints from "Utils/endpoints";
 import { IBlogpost } from "Utils/Types/blogpost";
+import { useHistory } from "react-router-dom";
 
 function App() {
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -67,7 +69,9 @@ function App() {
         {blogposts?.map((post, index) => {
           return (
             <Blogpostcard
+              id={post.id}
               key={index}
+              slug={post.slug}
               img={post._embedded["wp:featuredmedia"][0].source_url}
               title={post.title.rendered}
               author={post._embedded.author[0].name}
@@ -77,7 +81,12 @@ function App() {
           );
         })}
 
-        <Button onClick={(test: any) => {}} title={"Bekijk meer nieuws"} />
+        <Button
+          onClick={() => {
+            history.push("/nieuws");
+          }}
+          title={"Bekijk meer nieuws"}
+        />
       </div>
     </>
   );

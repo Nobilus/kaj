@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// import "Style/index.css";
 import "Style/index.css";
-import App from "Pages/App";
 import reportWebVitals from "./reportWebVitals";
 import { Routes } from "Utils/routes";
 import { BrowserRouter as Router } from "react-router-dom";
+import ScrollToTop from "Components/ScrollToTop";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <ScrollToTop />
       <Routes />
     </Router>
   </React.StrictMode>,

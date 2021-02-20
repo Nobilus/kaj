@@ -9,6 +9,8 @@ interface IBlogpostcard {
   author: string;
   published: Date;
   excerpt: string;
+  slug: string;
+  id: number;
 }
 
 function Blogpostcard({
@@ -17,6 +19,8 @@ function Blogpostcard({
   published,
   author,
   excerpt,
+  slug,
+  id,
 }: IBlogpostcard) {
   return (
     <div className="c-blogpostcard">
@@ -35,7 +39,7 @@ function Blogpostcard({
           <img className="c-blogpostcard__img" src={img} alt={title + "-img"} />
         </div>
       </div>
-      <Link className="c-readmore" to={"/home"}>
+      <Link className="c-readmore" to={`/nieuws/${id}`}>
         Lees meer
       </Link>
     </div>

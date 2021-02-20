@@ -13,6 +13,7 @@ import Page from "Pages/Page";
 import Footer from "Components/Footer";
 import endpoints from "./endpoints";
 import BlogPost from "Pages/BlogPost";
+import Nieuws from "Pages/Nieuws";
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
@@ -65,27 +66,22 @@ export function Routes() {
       <div className="c-app">
         <Switch>
           {!loading &&
-            menuItems?.items.map(({ id, title, object_slug }) => {
+            menuItems?.items.map(({ id, title, object_slug }, index) => {
               if (title === "Nieuws") {
                 console.log("categories: ", categories);
                 return (
                   <>
                     <Route
-                      key={id}
+                      key={index}
                       exact
                       path={"/" + object_slug}
-                      component={() => <Page title={title} />}
+                      component={Nieuws}
                     />
-                    {categories.map(({ name, slug }) => {
-                      console.log(slug);
-                      return (
-                        <Route
-                          exact
-                          path={`/${object_slug}/${slug}/:title`}
-                          component={BlogPost}
-                        />
-                      );
-                    })}
+                    <Route
+                      key={index}
+                      path={`/${object_slug}/:postid`}
+                      component={BlogPost}
+                    />
                   </>
                 );
               } else {

@@ -1,4 +1,19 @@
+interface IFeaturedMedia {
+  source_url: string;
+  alt_text: string;
+}
+
+interface ITerm {
+  name: string;
+}
+
+interface IAuthor {
+  name: string;
+}
+
 export interface IBlogpost {
+  id: number;
+  slug: string;
   date: Date;
   title: { rendered: string };
   content: {
@@ -9,10 +24,8 @@ export interface IBlogpost {
   };
 
   _embedded: {
-    author: Array<{
-      name: string;
-    }>;
-    "wp:term": Array<{ name: string }>;
-    "wp:featuredmedia": Array<{ source_url: string }>;
+    author: Array<IAuthor>;
+    "wp:term": Array<ITerm>;
+    "wp:featuredmedia": Array<IFeaturedMedia>;
   };
 }
