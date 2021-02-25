@@ -5,4 +5,5 @@ export default {
   postsbycat: "wp/v2/posts?filter[cat]=",
   postbyid: "wp/v2/posts/",
   allposts: "wp/v2/posts",
+  pagebyslug: "wp/v2/pages/",
 };

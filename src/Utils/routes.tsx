@@ -92,7 +92,7 @@ export function Routes() {
                     ) : title === "Ons team" ? (
                       <OnsTeam />
                     ) : (
-                      <Page title={title} />
+                      <Page title={title} slug={object_slug} />
                     )}
                   </Route>
                 );

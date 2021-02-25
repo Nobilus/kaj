@@ -1,0 +1,15 @@
+<svg id="Over_ons" data-name="Over ons" xmlns="http://www.w3.org/2000/svg" width="92" height="68" viewBox="0 0 92 68">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e76f51;
+      }
+    </style>
+  </defs>
+  <path id="Rectangle_62" data-name="Rectangle 62" class="cls-1" d="M9,0h8a9,9,0,0,1,9,9V38H0V9A9,9,0,0,1,9,0Z" transform="translate(0 30)"/>
+  <circle id="Ellipse_60" data-name="Ellipse 60" class="cls-1" cx="9" cy="9" r="9" transform="translate(4 10)"/>
+  <path id="Rectangle_63" data-name="Rectangle 63" class="cls-1" d="M9,0H21a9,9,0,0,1,9,9V43.846H0V9A9,9,0,0,1,9,0Z" transform="translate(31 24)"/>
+  <circle id="Ellipse_61" data-name="Ellipse 61" class="cls-1" cx="10.5" cy="10.5" r="10.5" transform="translate(36)"/>
+  <path id="Rectangle_64" data-name="Rectangle 64" class="cls-1" d="M9,0h8a9,9,0,0,1,9,9V38H0V9A9,9,0,0,1,9,0Z" transform="translate(66 30)"/>
+  <circle id="Ellipse_62" data-name="Ellipse 62" class="cls-1" cx="9" cy="9" r="9" transform="translate(70 10)"/>
+</svg>
