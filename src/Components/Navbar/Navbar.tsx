@@ -21,6 +21,8 @@ export default function Navbar({ items }: INavbar) {
           <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
           <ul className="c-nav__list">
             {items?.items.map(({ object_slug, title, id }) => {
+              console.log("nav: ", object_slug);
+
               return (
                 <li className="c-nav__item" key={id}>
                   <NavLink

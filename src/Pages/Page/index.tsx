@@ -19,9 +19,8 @@ interface ILocalPage {
 
 function Page({ title, slug }: ILocalPage) {
   const isShop = slug === "shop" ? true : false;
+  console.log(isShop);
   const [page, setPage] = useState<IPage>();
-
-  console.log("on page: ", title);
 
   const [products, setProducts] = useState<Array<IProduct>>([]);
 
@@ -81,9 +80,8 @@ function Page({ title, slug }: ILocalPage) {
     return (
       <>
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-        <div className={isShop ? "c-shop" : "c-page"}>
-          {page && parse(page.content.rendered)}
-        </div>
+        <div className="c-page">{page && parse(page.content.rendered)}</div>
+        <p>This is a page</p>
       </>
     );
   }

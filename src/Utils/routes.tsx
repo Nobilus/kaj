@@ -68,54 +68,64 @@ export function Routes() {
           {!loading &&
             menuItems?.items.map(
               ({ id, title, object_slug: slug, children }, index) => {
-                if (title === "Nieuws") {
-                  return (
-                    <>
+                switch (title) {
+                  case "Home":
+                    return (
+                      <Route key={id} exact path={"/" + slug} component={App} />
+                    );
+                  case "Nieuws":
+                    return (
+                      <>
+                        <Route
+                          key={index}
+                          exact
+                          path={"/" + slug}
+                          component={Nieuws}
+                        />
+                        <Route
+                          key={index}
+                          path={`/${slug}/:postid`}
+                          component={BlogPost}
+                        />
+                      </>
+                    );
+
+                  case "Ons team":
+                    return (
                       <Route
-                        key={index}
+                        key={id}
                         exact
                         path={"/" + slug}
-                        component={Nieuws}
+                        component={OnsTeam}
                       />
-                      <Route
-                        key={index}
-                        path={`/${slug}/:postid`}
-                        component={BlogPost}
-                      />
-                    </>
-                  );
-                } else {
-                  if (children) {
-                    children.map(
-                      ({
-                        object_id,
-                        object_slug: sub_slug,
-                        title: subtitle,
-                      }) => {
-                        return (
-                          <Route
-                            key={object_id}
-                            exact
-                            path={`/${slug}/${sub_slug}`}
-                          >
-                            <Page title={subtitle} slug={sub_slug} />
-                          </Route>
-                        );
-                      }
                     );
-                  } else {
-                    return (
-                      <Route key={id} exact path={"/" + slug}>
-                        {title === "Home" ? (
-                          <App />
-                        ) : title === "Ons team" ? (
-                          <OnsTeam />
-                        ) : (
+
+                  default:
+                    if (children) {
+                      return (
+                        <Route
+                          key={id}
+                          path={`/${slug}`}
+                          render={({ match: { url } }) =>
+                            children.map((item) => (
+                              <Route path={`${url}/${item.object_slug}`}>
+                                <Page
+                                  title={item.title}
+                                  slug={item.object_slug}
+                                />
+                              </Route>
+                            ))
+                          }
+                        />
+                      );
+                    } else {
+                      console.log(id, slug, title);
+                      return (
+                        <Route key={id} path={`/${slug}`}>
                           <Page title={title} slug={slug} />
-                        )}
-                      </Route>
-                    );
-                  }
+                        </Route>
+                      );
+                    }
                 }
               }
             )}

@@ -56,7 +56,6 @@ export default function OnsTeam() {
 
   useEffect(() => {
     console.log("useeffect log: ", users);
-    return () => {};
   }, [users]);
 
   return (
