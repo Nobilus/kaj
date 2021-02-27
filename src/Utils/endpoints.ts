@@ -6,4 +6,5 @@ export default {
   postbyid: "wp/v2/posts/",
   allposts: "wp/v2/posts",
   pagebyslug: "wp/v2/pages/",
+  getproducts: "wc/v3/products/",
 };

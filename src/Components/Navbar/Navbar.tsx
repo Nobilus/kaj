@@ -39,7 +39,9 @@ export default function Navbar({ items }: INavbar) {
     } else {
       return (
         <nav className="c-app__nav backgroundcolor">
-          <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
+          <Link to="/home">
+            <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
+          </Link>
           <ul className="c-nav__list">
             {items?.items.map(({ object_slug, title, id }) => {
               return (

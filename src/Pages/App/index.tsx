@@ -54,10 +54,18 @@ function App() {
         </section>
       </>
       <div className="c-menu-card__row">
-        <MenuCard iconSource={overons} title={"Over ons"} />
-        <MenuCard iconSource={shop} title={"Shop"} />
-        <MenuCard iconSource={locatie} title={"KAJ\nin de buurt"} />
-        <MenuCard iconSource={praktisch} title={"Praktisch"} />
+        <MenuCard link={"/over-ons"} iconSource={overons} title={"Over ons"} />
+        <MenuCard link={"/shop"} iconSource={shop} title={"Shop"} />
+        <MenuCard
+          link={"/afdelingen"}
+          iconSource={locatie}
+          title={"KAJ\nin de buurt"}
+        />
+        <MenuCard
+          link={"/praktisch"}
+          iconSource={praktisch}
+          title={"Praktisch"}
+        />
       </div>
       <div className="c-homepage-divider">
         <div className="c-kijker">

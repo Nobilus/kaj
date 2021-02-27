@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "Images/Png/logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 //@ts-ignore
 import HamburgerMenu from "react-hamburger-menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -70,7 +70,9 @@ export default function Burger({ items }: IBurger) {
   } else {
     return (
       <nav className="c-mobile-nav">
-        <img className="c-nav__logo--mobile" src={Logo} alt="KAJ Logo" />
+        <Link to="/home">
+          <img className="c-nav__logo--mobile" src={Logo} alt="KAJ Logo" />
+        </Link>
         <span
           style={menuOpen ? { backgroundColor: "#FADA73" } : undefined}
           className="c-mobile-nav__icon-container"

@@ -66,38 +66,59 @@ export function Routes() {
       <div className="c-app">
         <Switch>
           {!loading &&
-            menuItems?.items.map(({ id, title, object_slug }, index) => {
-              if (title === "Nieuws") {
-                console.log("categories: ", categories);
-                return (
-                  <>
-                    <Route
-                      key={index}
-                      exact
-                      path={"/" + object_slug}
-                      component={Nieuws}
-                    />
-                    <Route
-                      key={index}
-                      path={`/${object_slug}/:postid`}
-                      component={BlogPost}
-                    />
-                  </>
-                );
-              } else {
-                return (
-                  <Route key={id} exact path={"/" + object_slug}>
-                    {title === "Home" ? (
-                      <App />
-                    ) : title === "Ons team" ? (
-                      <OnsTeam />
-                    ) : (
-                      <Page title={title} slug={object_slug} />
-                    )}
-                  </Route>
-                );
+            menuItems?.items.map(
+              ({ id, title, object_slug: slug, children }, index) => {
+                if (title === "Nieuws") {
+                  return (
+                    <>
+                      <Route
+                        key={index}
+                        exact
+                        path={"/" + slug}
+                        component={Nieuws}
+                      />
+                      <Route
+                        key={index}
+                        path={`/${slug}/:postid`}
+                        component={BlogPost}
+                      />
+                    </>
+                  );
+                } else {
+                  if (children) {
+                    children.map(
+                      ({
+                        object_id,
+                        object_slug: sub_slug,
+                        title: subtitle,
+                      }) => {
+                        return (
+                          <Route
+                            key={object_id}
+                            exact
+                            path={`/${slug}/${sub_slug}`}
+                          >
+                            <Page title={subtitle} slug={sub_slug} />
+                          </Route>
+                        );
+                      }
+                    );
+                  } else {
+                    return (
+                      <Route key={id} exact path={"/" + slug}>
+                        {title === "Home" ? (
+                          <App />
+                        ) : title === "Ons team" ? (
+                          <OnsTeam />
+                        ) : (
+                          <Page title={title} slug={slug} />
+                        )}
+                      </Route>
+                    );
+                  }
+                }
               }
-            })}
+            )}
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>

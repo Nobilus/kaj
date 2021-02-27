@@ -14,6 +14,7 @@ interface Item {
   object_slug: string;
   type: string;
   type_label: string;
+  children?: Array<Item>;
 }
 
 interface Links {

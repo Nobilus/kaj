@@ -109,6 +109,11 @@ code {
 .c-nav__logo--mobile {
   height: 3rem;
 }
+.c-nav__logo {
+  height: 64px;
+  margin-left: 64px;
+  margin-right: 32px;
+}
 
 .c-header__logo {
   width: 2rem;
@@ -138,6 +143,7 @@ code {
   height: 128px;
   width: 124px;
   border-radius: 20px;
+  text-decoration: none;
 }
 
 .c-menu-card__row {
@@ -572,6 +578,7 @@ a.c-usercard__subtext {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -592,13 +599,50 @@ a.c-usercard__subtext {
 .c-page > h2 {
   color: var(--global-text-color);
   font-family: atten-extra-bold;
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 0;
   margin-bottom: 1rem;
 }
 
+.c-page > ul {
+  margin: 0;
+  margin-bottom: 3rem;
+}
+
+.c-page > ul > li {
+  margin: 0.5rem 0 0.5rem;
+}
+
 .c-page > p > img {
   border-radius: 40px;
+}
+
+.c-shop {
+  /* display: grid; */
+}
+
+.c-productcard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.c-productcard > img {
+  width: 7rem;
+}
+
+.c-productcard > h3 {
+  margin: 0;
+  font-size: 1rem;
+  max-width: 50%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0.5rem 0 0.5rem;
 }
 
 @media (min-width: 768px) {
