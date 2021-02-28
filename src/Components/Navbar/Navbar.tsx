@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import useWindowSize from "Utils/Hooks/useWindowSize";
 import Burger from "Components/HamburgerMenu";
 import DropdownButton from "Components/DropdownButton";
+import { colors } from "Utils/colors";
 
 interface INavbar {
   items?: MenuI;
@@ -23,9 +24,18 @@ export default function Navbar({ items }: INavbar) {
         <nav className="c-app__nav" style={{ position: "absolute" }}>
           <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
           <ul className="c-nav__list">
-            {items?.items.map(({ object_slug, title, id }) => {
-              console.log("nav: ", object_slug);
-
+            {items?.items.map(({ object_slug, title, id, children }) => {
+              if (children) {
+                return (
+                  <DropdownButton
+                    slug={object_slug}
+                    title={title}
+                    items={children}
+                    color={"white"}
+                    backgroundColor={"none"}
+                  />
+                );
+              }
               return (
                 <li className="c-nav__item" key={id}>
                   <NavLink

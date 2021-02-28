@@ -7,6 +7,7 @@ interface IDropdownButton {
   items: any[];
   slug: string;
   backgroundColor?: string;
+  color?: string;
 }
 
 function DropdownButton({
@@ -14,6 +15,7 @@ function DropdownButton({
   items,
   slug,
   backgroundColor = colors.primaryDark,
+  color,
 }: IDropdownButton) {
   const [toggleList, setToggleList] = useState(false);
   let location = useLocation();
@@ -29,6 +31,7 @@ function DropdownButton({
     <li className="c-nav__item">
       <button
         className="o-button-reset c-nav__link"
+        style={color ? { color, opacity: 0.5 } : undefined}
         onClick={() => setToggleList(!toggleList)}
       >
         {title}
@@ -43,6 +46,7 @@ function DropdownButton({
                   className="c-nav__link"
                   key={index}
                   to={`/${slug}/${item.object_slug}`}
+                  style={{ color }}
                 >
                   {item.title}
                 </NavLink>
