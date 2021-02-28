@@ -254,7 +254,7 @@ code {
 .c-footer-social-row {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .c-footer-row__sponsor {
@@ -629,6 +629,7 @@ a.c-usercard__subtext {
   margin: 1rem;
   padding: 1rem;
   border-radius: 1rem;
+  min-width: 10%;
 }
 
 .c-productcard > img {
@@ -645,14 +646,54 @@ a.c-usercard__subtext {
   margin: 0.5rem 0 0.5rem;
 }
 
+/* .c-app > .c-map {
+  height: 100vh;
+  width: 100vw;
+} */
+
+.c-nav__dropdownlist {
+}
+
 @media (min-width: 768px) {
+  .c-app {
+    padding: 0 3rem 2rem;
+  }
+  .c-header__homepage {
+    margin: 0 -3rem -2rem;
+    width: calc(100% + 6rem);
+  }
+  /* .c-page {
+    justify-content: space-between;
+  } */
+  .c-post__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .c-post__row-right,
+  .c-post__row-left {
+    min-width: 50%;
+  }
+
+  .c-post__row-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .c-shop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, 100%);
+    padding: 1rem;
+  }
   .c-blogpost {
     /* align-self: center; */
     max-width: 75%;
   }
   .c-menu-card__row {
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-    /* grid-template-columns: repeat(4, 1fr); */
+    /* grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); */
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
   }
   .c-header__homepage {
@@ -679,6 +720,14 @@ a.c-usercard__subtext {
     align-self: center;
   }
 
+  .c-post__row {
+    margin-bottom: 2rem;
+  }
+
+  .c-app > .c-post__row:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+
   .c-page > div:nth-child(even) {
     align-self: flex-end;
   }
@@ -687,6 +736,15 @@ a.c-usercard__subtext {
 }
 
 @media (min-width: 992px) {
+  .c-post__row-left > h2,
+  .c-post__row-right > h2 {
+    font-size: 3rem;
+  }
+  .c-post__row-left > p,
+  .c-post__row-right > p {
+    font-size: 1.5rem;
+  }
+
   .c-app {
     min-height: var(--global-app-height);
   }
@@ -769,11 +827,13 @@ a.c-usercard__subtext {
     font-size: 18px;
     font-family: atten-bold;
     opacity: 0.5;
+    cursor: pointer;
   }
 
   .c-nav__item {
     margin-bottom: 0;
     margin-right: 32px;
+    cursor: pointer;
   }
   .c-nav__logo {
     height: 64px;

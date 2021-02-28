@@ -5,6 +5,7 @@ import Logo from "Images/Png/logo.png";
 import { useLocation } from "react-router-dom";
 import useWindowSize from "Utils/Hooks/useWindowSize";
 import Burger from "Components/HamburgerMenu";
+import DropdownButton from "Components/DropdownButton";
 
 interface INavbar {
   items?: MenuI;
@@ -13,6 +14,8 @@ interface INavbar {
 export default function Navbar({ items }: INavbar) {
   const location = useLocation();
   const { width, height } = useWindowSize();
+
+  console.log(items);
 
   if (width && width >= 992) {
     if (location.pathname === "/home") {
@@ -45,7 +48,16 @@ export default function Navbar({ items }: INavbar) {
             <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
           </Link>
           <ul className="c-nav__list">
-            {items?.items.map(({ object_slug, title, id }) => {
+            {items?.items.map(({ object_slug, title, id, children }) => {
+              if (children) {
+                return (
+                  <DropdownButton
+                    slug={object_slug}
+                    title={title}
+                    items={children}
+                  />
+                );
+              }
               return (
                 <li className="c-nav__item" key={id}>
                   <NavLink

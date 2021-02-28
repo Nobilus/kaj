@@ -80,8 +80,7 @@ function Page({ title, slug }: ILocalPage) {
     return (
       <>
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-        <div className="c-page">{page && parse(page.content.rendered)}</div>
-        <p>This is a page</p>
+        <>{page && parse(page.content.rendered)}</>
       </>
     );
   }

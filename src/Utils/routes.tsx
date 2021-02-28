@@ -14,6 +14,7 @@ import Footer from "Components/Footer";
 import endpoints from "./endpoints";
 import BlogPost from "Pages/BlogPost";
 import Nieuws from "Pages/Nieuws";
+import Afdelingen from "Pages/Afdelingen";
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
@@ -97,6 +98,16 @@ export function Routes() {
                         exact
                         path={"/" + slug}
                         component={OnsTeam}
+                      />
+                    );
+
+                  case "Afdelingen":
+                    return (
+                      <Route
+                        key={id}
+                        exact
+                        path={"/" + slug}
+                        component={Afdelingen}
                       />
                     );
 
