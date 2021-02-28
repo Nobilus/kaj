@@ -606,7 +606,7 @@ a.c-usercard__subtext {
 
 .c-page > ul {
   margin: 0;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 .c-page > ul > li {
@@ -652,6 +652,11 @@ a.c-usercard__subtext {
 } */
 
 .c-nav__dropdownlist {
+}
+
+.c-map-container {
+  width: 50%;
+  height: 50vh;
 }
 
 @media (min-width: 768px) {
@@ -748,6 +753,20 @@ a.c-usercard__subtext {
   .c-app {
     min-height: var(--global-app-height);
   }
+
+  .c-app > h2 {
+    font-size: 3rem;
+  }
+
+  .c-app > p {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .c-app > ul {
+    font-size: 1.5rem;
+  }
+
   .c-blogpostcard__c2 {
     display: flex;
     width: 100%;
