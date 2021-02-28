@@ -1,34 +1,19 @@
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, divIcon } from "leaflet";
 import React, { useEffect, useMemo, useState } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { colors } from "Utils/colors";
 import IAfdeling from "Utils/Types/afdelingen";
-
-const afdelingen = [
-  {
-    naam: "KAJ Merelbeke",
-    tel: "0499 28 32 36",
-    coords: [50.99305641222167, 3.751082091746104],
-  },
-  {
-    naam: "KAJ Bottelare",
-    "e-mail": "kaj.bottelare@gmail.com",
-    coords: [50.97139262791349, 3.7491551103550065],
-  },
-  {
-    naam: "KAJ Watervliet",
-    "e-mail": "kaj.watervliet@gmail.com",
-    coords: [51.27794342692827, 3.6276925419002386],
-  },
-  {
-    naam: "KAJ Machelen",
-    "e-mail": "kaj.machelen@gmail.com",
-    coords: [50.96242657287669, 3.4918973466541487],
-  },
-];
 
 function Afdelingen() {
   const afdelingen: Array<IAfdeling> = require("Assets/Lokalen.json");
-
+  const iconMarkup = renderToStaticMarkup(
+    <i
+      className="fa fa-map-marker-alt fa-3x"
+      style={{ color: colors.globalCta }}
+    />
+  );
+  const customMarkerIcon = divIcon({ html: iconMarkup });
   const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false);
   const [position, setPosition] = useState<LatLngExpression>([
     50.86950695102826,
@@ -71,7 +56,7 @@ function Afdelingen() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {afdelingen.map((item) => (
-        <Marker position={item.coords}>
+        <Marker position={item.coords} icon={customMarkerIcon}>
           <Popup>
             {item.naam} <br />
             {item["e-mail"]} <br />

@@ -81,6 +81,11 @@ code {
     monospace;
 }
 
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
 .c-app {
   min-height: 50vh;
 }
