@@ -659,6 +659,7 @@ a.c-usercard__subtext {
 }
 
 .c-map-container {
+  z-index: -1;
   border-radius: 20px;
   width: 100%;
   height: 75vh;
