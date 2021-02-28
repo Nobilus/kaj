@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { MenuI } from "Utils/Types/menuItems";
 import Logo from "Images/Png/logo.png";
+import DropdownButton from "Components/DropdownButton";
 
 interface IBurger {
   items?: MenuI;
@@ -29,7 +30,21 @@ export default function Burger({ items }: IBurger) {
               onClick={() => setMenuOpen(false)}
             />
           </span>
-          {items?.items.map(({ object_slug, title, id, parent }) => {
+          {items?.items.map(({ object_slug, title, id, parent, children }) => {
+            if (children) {
+              return (
+                <DropdownButton
+                  slug={object_slug}
+                  title={title}
+                  items={children}
+                  color={"white"}
+                  backgroundColor={"none"}
+                  mobile={true}
+                  onClick={() => setMenuOpen(false)}
+                />
+              );
+            }
+
             if (parent === 0)
               return (
                 <li className="c-nav__item" key={id}>

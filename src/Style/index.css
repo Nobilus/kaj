@@ -771,6 +771,26 @@ ul > li > .c-nav__link {
   }
 }
 
+.c-nav__dropdownlist {
+  /* margin-top: 8px; */
+  /* position: absolute; */
+  opacity: 1;
+  text-align: left;
+  list-style: none;
+  padding-inline-end: 40px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 0;
+}
+
+.c-nav__dropdown-item {
+  padding-bottom: 10px;
+}
+
+.c-nav__dropdownlist > .c-nav__dropdown-item > .c-nav__link {
+  font-size: 1rem;
+}
+
 @media (min-width: 992px) {
   .c-nav__dropdownlist {
     margin-top: 8px;

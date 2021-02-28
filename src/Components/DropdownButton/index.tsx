@@ -8,6 +8,8 @@ interface IDropdownButton {
   slug: string;
   backgroundColor?: string;
   color?: string;
+  mobile?: boolean;
+  onClick?: () => void;
 }
 
 function DropdownButton({
@@ -16,6 +18,8 @@ function DropdownButton({
   slug,
   backgroundColor = colors.primaryDark,
   color,
+  mobile,
+  onClick,
 }: IDropdownButton) {
   const [toggleList, setToggleList] = useState(false);
   let location = useLocation();
@@ -31,30 +35,31 @@ function DropdownButton({
     <li className="c-nav__item">
       <button
         className="o-button-reset c-nav__link"
-        style={color ? { color, opacity: 0.5 } : undefined}
+        style={color && !mobile ? { color, opacity: 0.5 } : undefined}
         onClick={() => setToggleList(!toggleList)}
       >
         {title}
-        {toggleList && (
-          <ul
-            style={{ backgroundColor: backgroundColor }}
-            className="c-nav__dropdownlist"
-          >
-            {items.map((item, index) => (
-              <li className="c-nav__dropdown-item">
-                <NavLink
-                  className="c-nav__link"
-                  key={index}
-                  to={`/${slug}/${item.object_slug}`}
-                  style={{ color }}
-                >
-                  {item.title}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        )}
       </button>
+      {toggleList && (
+        <ul
+          style={{ backgroundColor: backgroundColor }}
+          className="c-nav__dropdownlist"
+        >
+          {items.map((item, index) => (
+            <li className="c-nav__dropdown-item">
+              <NavLink
+                className="c-nav__link"
+                key={index}
+                to={`/${slug}/${item.object_slug}`}
+                style={{ color }}
+                onClick={onClick}
+              >
+                {item.title}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
