@@ -42,6 +42,9 @@ function Afdelingen() {
   const ChangeView = ({ center, zoom }: any) => {
     const map = useMap();
     map.setView(center, zoom);
+    map.once("focus", function () {
+      map.scrollWheelZoom.enable();
+    });
     return null;
   };
 
@@ -52,7 +55,7 @@ function Afdelingen() {
         className="c-map-container"
         center={position}
         zoom={12}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
       >
         <ChangeView center={position} zoom={12} />
         <TileLayer
