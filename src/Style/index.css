@@ -7,9 +7,11 @@
 
   --global-dark: #3b3735;
   --global-cta: #e76f51;
+  --global-inactive: #fada9e;
 
   --local-header-height: 96px;
   --local-footer-height: 278.43px;
+  --global-divider-height: 144px;
   --global-app-height: calc(
     100vh - (var(--local-header-height) + var(--local-footer-height))
   );
@@ -161,6 +163,7 @@ code {
   row-gap: 2rem;
   justify-items: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .c-menu-card__item {
@@ -571,7 +574,7 @@ a.c-usercard__subtext {
 }
 
 .active {
-  opacity: 1 !important;
+  color: white !important;
 }
 .backgroundcolor {
   background-color: var(--global-background-color-dark) !important;
@@ -656,7 +659,8 @@ a.c-usercard__subtext {
   width: 100vw;
 } */
 
-.c-nav__dropdownlist {
+ul > li > .c-nav__link {
+  list-style-type: none;
 }
 
 .c-map-container {
@@ -664,6 +668,7 @@ a.c-usercard__subtext {
   border-radius: 20px;
   width: 100%;
   height: 75vh;
+  height: calc(100vh - (176px + 96px + 16px));
   margin-bottom: 2rem;
 }
 
@@ -675,9 +680,7 @@ a.c-usercard__subtext {
     margin: 0 -3rem -2rem;
     width: calc(100% + 6rem);
   }
-  /* .c-page {
-    justify-content: space-between;
-  } */
+
   .c-post__row {
     display: flex;
     width: 100%;
@@ -739,6 +742,7 @@ a.c-usercard__subtext {
 
   .c-app > .c-post__row:nth-child(odd) {
     flex-direction: row-reverse;
+    text-align: right;
   }
 
   .c-page > div:nth-child(even) {
@@ -749,6 +753,22 @@ a.c-usercard__subtext {
 }
 
 @media (min-width: 992px) {
+  .c-nav__dropdownlist {
+    margin-top: 8px;
+    position: absolute;
+
+    opacity: 1;
+    text-align: left;
+    list-style: none;
+    padding-inline-end: 40px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .c-nav__dropdown-item {
+    margin-bottom: 8px;
+  }
+
   .c-post__row-left > h2,
   .c-post__row-right > h2 {
     font-size: 3rem;
@@ -853,7 +873,8 @@ a.c-usercard__subtext {
   .c-nav__link {
     font-size: 18px;
     font-family: atten-bold;
-    opacity: 0.5;
+    color: var(--global-inactive);
+    /* opacity: 0.5; */
     cursor: pointer;
   }
 
