@@ -4,9 +4,6 @@ import Navbar from "Components/Navbar/Navbar";
 import { Switch, Route, Redirect } from "react-router-dom";
 import App from "../Pages/App";
 import OnsTeam from "Pages/OnsTeam";
-import Shop from "Pages/Shop";
-import Burger from "Components/HamburgerMenu";
-import axios from "axios";
 import { axiosI } from "./Types/axiosInstance";
 import { MenuI } from "./Types/menuItems";
 import Page from "Pages/Page";
@@ -28,7 +25,6 @@ export function Routes() {
         .get<MenuI>(endpoints.menuitems)
         .then(({ data }) => {
           setMenuItems(data);
-          console.log(data.items);
         })
         .catch((err) => {
           console.warn(err.response);
@@ -39,7 +35,6 @@ export function Routes() {
       await axiosI
         .get(endpoints.categories)
         .then(({ data }) => {
-          console.log(data);
           //@ts-ignore
           data.forEach(({ name, slug }) => {
             setCategories([...categories, { name, slug }]);
@@ -78,13 +73,13 @@ export function Routes() {
                     return (
                       <>
                         <Route
-                          key={index}
+                          key={id}
                           exact
                           path={"/" + slug}
                           component={Nieuws}
                         />
                         <Route
-                          key={index}
+                          key={`${index}-${id}`}
                           path={`/${slug}/:postid`}
                           component={BlogPost}
                         />
@@ -118,9 +113,13 @@ export function Routes() {
                           key={id}
                           path={`/${slug}`}
                           render={({ match: { url } }) =>
-                            children.map((item) => (
-                              <Route path={`${url}/${item.object_slug}`}>
+                            children.map((item, index) => (
+                              <Route
+                                key={`${item.id}-${index}`}
+                                path={`${url}/${item.object_slug}`}
+                              >
                                 <Page
+                                  key={`${item.id}-${index}`}
                                   title={item.title}
                                   slug={item.object_slug}
                                 />
@@ -130,7 +129,6 @@ export function Routes() {
                         />
                       );
                     } else {
-                      console.log(id, slug, title);
                       return (
                         <Route key={id} path={`/${slug}`}>
                           <Page title={title} slug={slug} />

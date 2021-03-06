@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import useWindowSize from "Utils/Hooks/useWindowSize";
 import Burger from "Components/HamburgerMenu";
 import DropdownButton from "Components/DropdownButton";
-import { colors } from "Utils/colors";
+import parse from "html-react-parser";
 
 interface INavbar {
   items?: MenuI;
@@ -15,8 +15,6 @@ interface INavbar {
 export default function Navbar({ items }: INavbar) {
   const location = useLocation();
   const { width, height } = useWindowSize();
-
-  console.log(items);
 
   if (width && width >= 992) {
     if (location.pathname === "/home") {
@@ -45,7 +43,7 @@ export default function Navbar({ items }: INavbar) {
                     className="c-nav__link"
                     to={`/${object_slug}`}
                   >
-                    {title}
+                    {parse(title)}
                   </NavLink>
                 </li>
               );
@@ -77,7 +75,7 @@ export default function Navbar({ items }: INavbar) {
                     className="c-nav__link"
                     to={`/${object_slug}`}
                   >
-                    {title}
+                    {parse(title)}
                   </NavLink>
                 </li>
               );

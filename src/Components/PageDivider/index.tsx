@@ -8,7 +8,6 @@ interface IDivider {
 }
 
 function PageDivider({ src, alt, title }: IDivider) {
-  console.log(typeof src);
   return (
     <div className="c-homepage-divider">
       <div className="c-kijker">

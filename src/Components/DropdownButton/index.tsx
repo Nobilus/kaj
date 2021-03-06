@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { colors } from "Utils/colors";
+import parse from "html-react-parser";
 
 interface IDropdownButton {
   title: string;
@@ -38,7 +39,7 @@ function DropdownButton({
         style={color && !mobile ? { color, opacity: 0.5 } : undefined}
         onClick={() => setToggleList(!toggleList)}
       >
-        {title}
+        {parse(title)}
       </button>
       {toggleList && (
         <ul
