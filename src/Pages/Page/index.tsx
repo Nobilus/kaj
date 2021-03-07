@@ -68,7 +68,7 @@ function Page({ title, slug }: ILocalPage) {
 
   if (isShop) {
     return (
-      <>
+      <div className="c-page">
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
         <div className="c-shoprow">
           <CategoryCard
@@ -91,14 +91,14 @@ function Page({ title, slug }: ILocalPage) {
             })}
           </div>
         </div>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div className="c-page">
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
         <>{page && parse(page.content.rendered)}</>
-      </>
+      </div>
     );
   }
 }
