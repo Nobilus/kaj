@@ -22,8 +22,8 @@ function Page({ title, slug }: ILocalPage) {
   const isShop = slug === "shop" ? true : false;
   const [page, setPage] = useState<IPage>();
   const [products, setProducts] = useState<Array<IProduct>>([]);
-  const [categories, setCategories] = useState<Array<string>>([]);
-  const [selectedCat, setSelectedCat] = useState<string>();
+  const [categories, setCategories] = useState<Object>({});
+  const [catId, setCatId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPage = async () => {
@@ -44,10 +44,18 @@ function Page({ title, slug }: ILocalPage) {
 
   useEffect(() => {
     const fetchProducts = () => {
+      const axiosConf: AxiosRequestConfig = {
+        params: {
+          category: catId,
+        },
+      };
       axiosI
-        .get<Array<IProduct>>(endpoints.getproducts)
+        .get<Array<IProduct>>(endpoints.getproducts, axiosConf)
         .then(({ data }) => {
           setProducts(data);
+          if (Object.keys(categories).length === 0) {
+            setCategories(categoriesFromProducts(data));
+          }
         })
         .catch(() => {
           console.log("cant fetch products");
@@ -56,70 +64,31 @@ function Page({ title, slug }: ILocalPage) {
     if (isShop) {
       fetchProducts();
     }
-  }, []);
-
-  useEffect(() => {
-    if (products) {
-      setCategories(categoriesFromProducts(products));
-    }
-  }, [products]);
-
-  const Products = () => {
-    if (selectedCat) {
-      console.log(
-        "results: ",
-        products.filter((product) => {
-          product.categories.forEach((c) => {
-            console.log(c.name === selectedCat);
-            return c.name === selectedCat;
-          });
-        })
-      );
-    }
-  };
+  }, [catId]);
 
   if (isShop) {
-    Products();
     return (
       <>
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
         <div className="c-shoprow">
           <CategoryCard
             getCategory={(value: string) => {
-              setSelectedCat(value);
+              setCatId(value);
             }}
-            items={categoriesFromProducts(products)}
+            items={categories}
           />
           <div className="c-productgrid">
-            {selectedCat
-              ? products
-                  .filter((item) => {
-                    if (item.categories.filter((e) => e.name === selectedCat)) {
-                      // console.log("filter: ", selectedCat);
-                      // console.log("filtered items: ", item.name);
-                      return item;
-                    }
-                  })
-                  .map((item, index) => {
-                    return (
-                      <ProductCard
-                        key={index}
-                        title={item.name}
-                        img={item.images[0].src}
-                        price={item.price_html}
-                      />
-                    );
-                  })
-              : products.map((item, index) => {
-                  return (
-                    <ProductCard
-                      key={index}
-                      title={item.name}
-                      img={item.images[0].src}
-                      price={item.price_html}
-                    />
-                  );
-                })}
+            {products.map((item, index) => {
+              return (
+                <ProductCard
+                  id={item.id}
+                  key={index}
+                  title={item.name}
+                  img={item.images[0].src}
+                  price={item.price_html}
+                />
+              );
+            })}
           </div>
         </div>
       </>

@@ -6,6 +6,7 @@ import { IBlogpost } from "Utils/Types/blogpost";
 import { axiosI } from "Utils/Types/axiosInstance";
 import endpoints from "Utils/endpoints";
 import { AxiosRequestConfig } from "axios";
+
 function Nieuws() {
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
   useEffect(() => {

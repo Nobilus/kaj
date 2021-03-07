@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { colors } from "Utils/colors";
 
 interface ICategoryCard {
-  items: Array<string>;
+  items: any;
   getCategory: (value: string) => void;
 }
 
@@ -32,14 +32,14 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
         )}
       </div>
       <ul style={{ display: show ? "block" : "none" }}>
-        {items.map((item, index) => (
+        {Object.keys(items).map((item, index) => (
           <li key={index}>
             <input
               className={"o-hide-accessible"}
               type="radio"
               name="category"
               id={`${item}-id`}
-              value={item}
+              value={items[item]}
               onChange={(e) => {
                 getCategory(e.target.value);
               }}

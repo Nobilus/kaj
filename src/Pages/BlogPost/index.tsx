@@ -11,8 +11,6 @@ function BlogPost({ match }) {
     params: { postid },
   } = match;
 
-  console.log(match);
-
   const [data, setData] = useState<IBlogpost | undefined>(undefined);
 
   useEffect(() => {

@@ -1,13 +1,15 @@
 import { IProduct } from "Utils/Types/product";
 
 export const categoriesFromProducts = (products: Array<IProduct>) => {
-  const categoriesArr: Array<string> = [];
+  const catObj = {};
+
   products.forEach(({ categories }) => {
-    categories.forEach(({ name }) => {
-      if (!categoriesArr.includes(name)) {
-        categoriesArr.push(name);
+    categories.forEach(({ name, id }) => {
+      if (!Object.keys(catObj).includes(name)) {
+        //@ts-ignore
+        catObj[name] = id;
       }
     });
   });
-  return categoriesArr;
+  return catObj;
 };

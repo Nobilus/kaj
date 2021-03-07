@@ -12,6 +12,7 @@ import endpoints from "./endpoints";
 import BlogPost from "Pages/BlogPost";
 import Nieuws from "Pages/Nieuws";
 import Afdelingen from "Pages/Afdelingen";
+import ProductPage from "Pages/Product";
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
@@ -60,88 +61,106 @@ export function Routes() {
     <>
       <Navbar items={menuItems} />
       <div className="c-app">
-        <Switch>
-          {!loading &&
-            menuItems?.items.map(
-              ({ id, title, object_slug: slug, children }, index) => {
-                switch (title) {
-                  case "Home":
-                    return (
-                      <Route key={id} exact path={"/" + slug} component={App} />
-                    );
-                  case "Nieuws":
-                    return (
-                      <>
-                        <Route
-                          key={id}
-                          exact
-                          path={"/" + slug}
-                          component={Nieuws}
-                        />
-                        <Route
-                          key={`${index}-${id}`}
-                          path={`/${slug}/:postid`}
-                          component={BlogPost}
-                        />
-                      </>
-                    );
+        {!loading &&
+          menuItems &&
+          menuItems.items.map(
+            ({ id, title, object_slug: slug, children }, index) => {
+              switch (title) {
+                case "Home":
+                  return (
+                    <Route key={id} exact path={"/" + slug} component={App} />
+                  );
 
-                  case "Ons team":
+                case "Ons team":
+                  return (
+                    <Route
+                      key={id}
+                      exact
+                      path={"/" + slug}
+                      component={OnsTeam}
+                    />
+                  );
+
+                case "Afdelingen":
+                  return (
+                    <Route
+                      key={id}
+                      exact
+                      path={"/" + slug}
+                      component={Afdelingen}
+                    />
+                  );
+
+                case "Shop":
+                  return (
+                    <>
+                      <Route exact key={id} path={"/" + slug}>
+                        <Page key={`${id}-${id}`} title={title} slug={slug} />
+                      </Route>
+                      <Route
+                        exact
+                        key={`${index}-${id}`}
+                        path={`/${slug}/:itemid`}
+                        component={ProductPage}
+                      />
+                    </>
+                  );
+
+                case "Nieuws":
+                  return (
+                    <>
+                      <Route
+                        exact
+                        key={id}
+                        path={"/" + slug}
+                        component={Nieuws}
+                      />
+                      <Route
+                        exact
+                        key={`${index}-${id}`}
+                        path={`/${slug}/:postid`}
+                        component={BlogPost}
+                      />
+                    </>
+                  );
+
+                default:
+                  if (children) {
                     return (
                       <Route
                         key={id}
-                        exact
-                        path={"/" + slug}
-                        component={OnsTeam}
-                      />
-                    );
-
-                  case "Afdelingen":
-                    return (
-                      <Route
-                        key={id}
-                        exact
-                        path={"/" + slug}
-                        component={Afdelingen}
-                      />
-                    );
-
-                  default:
-                    if (children) {
-                      return (
-                        <Route
-                          key={id}
-                          path={`/${slug}`}
-                          render={({ match: { url } }) =>
-                            children.map((item, index) => (
-                              <Route
+                        path={`/${slug}`}
+                        render={({ match: { url } }) =>
+                          children.map((item, index) => (
+                            <Route
+                              key={`${item.id}-${index}`}
+                              path={`${url}/${item.object_slug}`}
+                            >
+                              <Page
                                 key={`${item.id}-${index}`}
-                                path={`${url}/${item.object_slug}`}
-                              >
-                                <Page
-                                  key={`${item.id}-${index}`}
-                                  title={item.title}
-                                  slug={item.object_slug}
-                                />
-                              </Route>
-                            ))
-                          }
-                        />
-                      );
-                    } else {
-                      return (
-                        <Route key={id} path={`/${slug}`}>
-                          <Page title={title} slug={slug} />
-                        </Route>
-                      );
-                    }
-                }
+                                title={item.title}
+                                slug={item.object_slug}
+                              />
+                            </Route>
+                          ))
+                        }
+                      />
+                    );
+                  } else {
+                    return (
+                      <Route key={id} path={`/${slug}`}>
+                        <Page title={title} slug={slug} />
+                      </Route>
+                    );
+                  }
               }
-            )}
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </Switch>
+            }
+          )}
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route exact path="/basket" />
+        <Route exact path="/check-out" />
       </div>
       <Footer />
     </>
