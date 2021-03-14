@@ -107,10 +107,18 @@ function App() {
           title={"Bekijk meer nieuws"}
         />
       </div>
-      <PageDivider src={kijker} title={"Kalender"} />
-      {events?.map((item, index) => (
-        <CalendarEventCard key={`event-${index}`} event={item} />
-      ))}
+      {events ? (
+        <>
+          <PageDivider src={kijker} title={"Kalender"} />
+          <div className="c-calendar-grid">
+            {events?.map((item, index) => (
+              <CalendarEventCard key={`event-${index}`} event={item} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

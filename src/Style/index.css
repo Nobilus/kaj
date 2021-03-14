@@ -103,6 +103,12 @@ code {
     monospace;
 }
 
+.MuiButtonBase-root,
+.MuiPaginationItem-root,
+.MuiPaginationItem-page {
+  font-family: atten-regular !important;
+}
+
 .leaflet-div-icon {
   background: transparent;
   border: none;
@@ -925,6 +931,12 @@ ul > li > .c-nav__link {
 }
 
 @media (min-width: 768px) {
+  .c-calendar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
+    column-gap: 2rem;
+  }
   .c-blogpost__head {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

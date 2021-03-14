@@ -71,7 +71,7 @@ function Nieuws() {
             />
           );
         })}
-        <Pagination count={maxPage} onChange={handleChange} />
+        {blogposts && <Pagination count={maxPage} onChange={handleChange} />}
       </div>
     </div>
   );
