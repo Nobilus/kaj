@@ -161,7 +161,7 @@ export function Routes() {
         </Route>
         <Route exact path="/evenementen/:eventid" component={Page} />
         <Route exact path="/winkelwagen">
-          <Page title={"winkelwagen"} slug={"winkelwagen"} />
+          <Page title={"Winkelwagen"} slug={"winkelwagen"} />
         </Route>
         <Route exact path="/afrekenen" component={Page}>
           <Page title={"Afrekenen"} slug={"afrekenen"} />
