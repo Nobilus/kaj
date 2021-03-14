@@ -3,11 +3,11 @@ import { JsxElement } from "typescript";
 
 interface IDivider {
   src: string;
-  alt: string;
+  alt?: string;
   title: string;
 }
 
-function PageDivider({ src, alt, title }: IDivider) {
+function PageDivider({ src, title, alt = title }: IDivider) {
   return (
     <div className="c-homepage-divider">
       <div className="c-kijker">

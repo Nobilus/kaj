@@ -159,6 +159,7 @@ export function Routes() {
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
+        <Route exact path="/evenementen/:eventid" component={Page} />
         <Route exact path="/basket" />
         <Route exact path="/check-out" />
       </div>

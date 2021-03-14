@@ -58,6 +58,11 @@ interface Cury {
   templated: boolean;
 }
 
+interface FeaturedMedia {
+  embeddable: boolean;
+  href: string;
+}
+
 interface Links {
   self: Self[];
   collection: Collection[];
@@ -67,7 +72,17 @@ interface Links {
   "version-history": VersionHistory[];
   "predecessor-version": PredecessorVersion[];
   "wp:attachment": WpAttachment[];
+  "wp:featuredmedia"?: FeaturedMedia[];
   curies: Cury[];
+}
+
+interface EmbeddedFeaturedMedia {
+  source_url: string;
+  alt_text: string;
+}
+
+interface Embedded {
+  "wp:featuredmedia"?: EmbeddedFeaturedMedia[];
 }
 
 export interface IPage {
@@ -95,4 +110,5 @@ export interface IPage {
   acf: any[];
   yoast_head: string;
   _links: Links;
+  _embedded: Embedded;
 }

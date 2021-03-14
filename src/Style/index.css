@@ -8,6 +8,7 @@
   --global-dark: #3b3735;
   --global-cta: #e76f51;
   --global-inactive: #fada9e;
+  --global-pink: #ea4c6d;
 
   --local-header-height: 96px;
   --local-footer-height: 278.43px;
@@ -626,12 +627,34 @@ a.c-usercard__subtext {
   margin: 0 0 0.5rem 0;
 }
 
+.c-page > img {
+  margin: -1rem -1.25rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+  background-size: contain;
+  width: calc(100% + (1.25rem * 2));
+  height: 10rem;
+}
+
+.c-page > img + h2 {
+  position: relative;
+}
+
 .c-page > h2 {
-  color: var(--global-text-color);
+  color: white;
+  background-color: var(--global-pink);
+  line-height: 3rem;
+  padding: 0 0.5rem;
+  width: max-content;
   font-family: atten-extra-bold;
-  font-size: 2rem;
+  font-size: 2.25rem;
   margin: 0;
   margin-bottom: 1rem;
+}
+
+.c-page > p {
+  margin-bottom: 1.5rem;
 }
 
 .c-page > ul {
@@ -837,15 +860,66 @@ ul > li > .c-nav__link {
   color: var(--global-dark);
 }
 
-/* .c-page-container {
+.c-page-container {
   background-color: white;
   width: 100%;
   padding: 0.5rem 1rem;
   margin-top: 16px;
   border-radius: 20px;
   object-fit: contain;
-} */
+}
 
+.c-eventcard {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.c-eventcard__datecontainer {
+  text-align: center;
+}
+
+.c-eventcard__day,
+.c-eventcard__month,
+.c-eventcard__year {
+  padding: 0;
+  margin: 0;
+}
+
+.c-eventcard__day,
+.c-eventcard__month,
+.c-eventcard__year,
+.c-eventcard__title {
+  font-family: atten-extra-bold;
+}
+
+.c-eventcard__day,
+.c-eventcard__year {
+  color: var(--global-text-color);
+}
+
+.c-eventcard__day {
+  font-size: 2rem;
+}
+
+.c-eventcard__month {
+  color: var(--global-cta);
+}
+
+.c-eventcard__titlecontainer {
+  margin-left: 1.25rem;
+}
+.c-eventcard__title {
+  color: var(--global-cta);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
 .c-post__row img {
   border-radius: 20px;
 }
@@ -908,10 +982,18 @@ ul > li > .c-nav__link {
   .c-page {
     padding: 1.5rem 4rem;
     max-width: 75%;
+    margin: auto;
   }
 
   .c-page > img {
-    align-self: center;
+    /* align-self: center; */
+    height: 14rem;
+    margin: -1.5rem -4rem;
+    width: calc(100% + (4rem * 2));
+  }
+
+  .c-page > h2 {
+    font-size: 3rem;
   }
 
   .c-post__row {
@@ -1114,6 +1196,15 @@ input[type="radio"]:checked + label {
   }
 }
 @media (min-width: 1200px) {
+  .c-page > img {
+    height: 20rem;
+  }
+
+  .c-page > h2 {
+    font-size: 4rem;
+    line-height: 5rem;
+    padding: 0 1rem;
+  }
   .c-menu-card__row {
     grid-template-columns: repeat(4, 1fr);
   }

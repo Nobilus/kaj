@@ -8,4 +8,5 @@ export default {
   pagebyslug: "wp/v2/pages/",
   getproducts: "wc/v3/products/",
   productbyid: "wc/v3/products/",
+  getevents: "tribe/events/v1/events",
 };

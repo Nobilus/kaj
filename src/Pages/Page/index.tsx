@@ -30,6 +30,7 @@ function Page({ title, slug }: ILocalPage) {
       const axiosconf: AxiosRequestConfig = {
         params: {
           slug: slug,
+          _embed: true,
         },
       };
       axiosI
@@ -95,10 +96,18 @@ function Page({ title, slug }: ILocalPage) {
     );
   } else {
     return (
-      <div className="c-page">
+      <>
         <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-        <>{page && parse(page.content.rendered)}</>
-      </div>
+        <div className="c-page">
+          {page && page?._embedded["wp:featuredmedia"] && (
+            <img
+              src={page._embedded["wp:featuredmedia"][0].source_url}
+              alt={page._embedded["wp:featuredmedia"][0].alt_text}
+            />
+          )}
+          {page && parse(page.content.rendered)}
+        </div>
+      </>
     );
   }
 }

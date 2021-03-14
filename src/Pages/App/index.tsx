@@ -19,9 +19,14 @@ import { axiosI } from "Utils/Types/axiosInstance";
 import endpoints from "Utils/endpoints";
 import { IBlogpost } from "Utils/Types/blogpost";
 import { useHistory } from "react-router-dom";
+import PageDivider from "Components/PageDivider";
+import { Events, Event } from "Utils/Types/events";
+
+import CalendarEventCard from "Components/CalendarEventCard";
 
 function App() {
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
+  const [events, setEvents] = useState<Event[]>();
   const history = useHistory();
 
   useEffect(() => {
@@ -35,7 +40,18 @@ function App() {
           console.log(error);
         });
     };
+    const fetchEvents = async () => {
+      axiosI
+        .get<Events>(endpoints.getevents)
+        .then(({ data }) => {
+          setEvents(data.events);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
     fetchPosts();
+    fetchEvents();
   }, []);
 
   return (
@@ -67,12 +83,7 @@ function App() {
           title={"Praktisch"}
         />
       </div>
-      <div className="c-homepage-divider">
-        <div className="c-kijker">
-          <img className="c-kijker__icon" src={kijker} alt="In De Kijker" />
-        </div>
-        <h4>In de kijker</h4>
-      </div>
+      <PageDivider src={kijker} title={"In de kijker"} />
       <div className="c-kijker-posts">
         {blogposts?.map((post, index) => {
           return (
@@ -96,6 +107,10 @@ function App() {
           title={"Bekijk meer nieuws"}
         />
       </div>
+      <PageDivider src={kijker} title={"Kalender"} />
+      {events?.map((item, index) => (
+        <CalendarEventCard key={`event-${index}`} event={item} />
+      ))}
     </>
   );
 }
