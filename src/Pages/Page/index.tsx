@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import endpoints from "Utils/endpoints";
 import { axiosI } from "Utils/Types/axiosInstance";
 import parse from "html-react-parser";
@@ -7,13 +7,9 @@ import { IPage } from "Utils/Types/page";
 import PageDivider from "Components/PageDivider";
 
 import OnsTeamIcon from "Images/Png/ons_team_icon.png";
-import { IProduct } from "Utils/Types/product";
-import ProductCard from "Components/ProductCard";
-import { categoriesFromProducts } from "Utils/fp/categoriesFromProducts";
-import CategoryCard from "Components/CategoryCard";
-import { isTemplateTail } from "typescript";
 import Winkelwagen from "Pages/Winkelwagen";
 import Checkout from "Pages/Checkout";
+import Shop from "Pages/Shop";
 
 interface ILocalPage {
   title: string;
@@ -21,11 +17,7 @@ interface ILocalPage {
 }
 
 function Page({ title, slug }: ILocalPage) {
-  const isShop = slug === "shop" ? true : false;
   const [page, setPage] = useState<IPage>();
-  const [products, setProducts] = useState<Array<IProduct>>([]);
-  const [categories, setCategories] = useState<Object>({});
-  const [catId, setCatId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPage = async () => {
@@ -42,56 +34,14 @@ function Page({ title, slug }: ILocalPage) {
         })
         .catch(() => {});
     };
-    fetchPage();
-  }, []);
-
-  useEffect(() => {
-    const fetchProducts = () => {
-      const axiosConf: AxiosRequestConfig = {
-        params: {
-          category: catId,
-        },
-      };
-      axiosI
-        .get<Array<IProduct>>(endpoints.getproducts, axiosConf)
-        .then(({ data }) => {
-          setProducts(data);
-          if (Object.keys(categories).length === 0) {
-            setCategories(categoriesFromProducts(data));
-          }
-        })
-        .catch(() => {
-          console.log("cant fetch products");
-        });
-    };
-    if (isShop) {
-      fetchProducts();
+    if (slug !== "shop" && slug !== "winkelwage" && slug !== "afrekenen") {
+      fetchPage();
     }
-  }, [catId]);
+  }, []);
 
   switch (slug) {
     case "shop":
-      return (
-        <>
-          <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-
-          <div className="c-page">
-            <div className="c-shoprow">
-              <CategoryCard
-                getCategory={(value: string) => {
-                  setCatId(value);
-                }}
-                items={categories}
-              />
-              <div className="c-productgrid">
-                {products.map((item, index) => {
-                  return <ProductCard key={index} product={item} />;
-                })}
-              </div>
-            </div>
-          </div>
-        </>
-      );
+      return <Shop title={title} />;
 
     case "winkelwagen":
       return <Winkelwagen />;
