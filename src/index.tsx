@@ -6,13 +6,35 @@ import reportWebVitals from "./reportWebVitals";
 import { Routes } from "Utils/routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import ScrollToTop from "Components/ScrollToTop";
+import { compose, createStore } from "redux";
+import { Provider } from "react-redux";
+import allReducers from "Reducers";
+import { loadState, saveState } from "Utils/fp/state";
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const storedState = loadState();
+const store = createStore(allReducers, storedState, composeEnhancers());
+store.subscribe(() => {
+  saveState({
+    shop: store.getState().shop,
+  });
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <ScrollToTop />
-      <Routes />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <ScrollToTop />
+        <Routes />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

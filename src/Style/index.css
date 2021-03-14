@@ -54,6 +54,12 @@
   background-color: #555;
 }
 
+
+button:hover, button:active{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 html {
   font-size: 16px;
   font-family: atten-regular;
@@ -117,6 +123,14 @@ code {
 .c-app {
   min-height: 50vh;
   padding: 0 1rem 2rem;
+}
+
+.c-divider{
+  border: 0;
+  margin: 0 -0.5rem 1rem;
+  border-top: 1px solid #B8B7B8;
+  background: #B8B7B8
+
 }
 
 .c-header__homepage {
@@ -929,6 +943,63 @@ ul > li > .c-nav__link {
   border-radius: 20px;
 }
 
+.c-winkel-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.align-end{
+  justify-content: flex-end;
+}
+
+.c-winkel-items > p{
+  margin-top: 8px;
+}
+
+.c-winkel-items{
+  margin-left: 1rem;
+}
+
+
+
+.c-button-to-checkout{
+  border-radius: 12px;
+  background-color: var(--global-cta);
+  color: white;
+  font-family: atten-bold;
+  padding: 0.5rem 1rem;
+}
+.c-button-continue-shopping{
+  background-color: var(--global-background-color);
+  border-radius: 12px;
+  color: white;
+  font-family: atten-bold;
+  padding: 0.5rem 1rem;
+}
+
+.c-basket{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  object-position: center;
+}
+
+.c-basket-img{
+  height: 4rem;
+}
+/* 
+.c-basket-desc{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.c-basket-desc, .c-basket-input, .c-basket-price{
+  margin: auto;
+}
+
 @media (min-width: 768px) {
   .c-calendar-grid {
     display: grid;
@@ -1167,10 +1238,35 @@ input[type="radio"]:checked + label {
     top: 0;
     left: 0;
   }
+
+  .c-nav__item {
+    margin-bottom: 0;
+    padding: 0 1rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: atten-bold;
+    color: var(--global-inactive);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  /* .c-nav__item:hover{
+    background-color: hotpink;
+  } */
+
+  .c-nav__link{
+    height: 100%;
+  }
+
   .c-nav__list {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    align-content: center;
     height: 96px;
     width: 100%;
   }
@@ -1183,11 +1279,6 @@ input[type="radio"]:checked + label {
     cursor: pointer;
   }
 
-  .c-nav__item {
-    margin-bottom: 0;
-    margin-right: 32px;
-    cursor: pointer;
-  }
   .c-nav__logo {
     height: 64px;
     margin-left: 64px;

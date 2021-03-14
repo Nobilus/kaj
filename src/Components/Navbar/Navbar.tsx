@@ -69,15 +69,15 @@ export default function Navbar({ items }: INavbar) {
                 );
               }
               return (
-                <li className="c-nav__item" key={id}>
-                  <NavLink
-                    activeClassName="active"
-                    className="c-nav__link"
-                    to={`/${object_slug}`}
-                  >
-                    {parse(title)}
-                  </NavLink>
-                </li>
+                // <li className="c-nav__item" key={id}>
+                <NavLink
+                  activeClassName="active"
+                  className="c-nav__item"
+                  to={`/${object_slug}`}
+                >
+                  {parse(title)}
+                </NavLink>
+                // </li>
               );
             })}
           </ul>

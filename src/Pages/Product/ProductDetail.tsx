@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Image, IProduct } from "Utils/Types/product";
 import parse from "html-react-parser";
 import shop from "../../Images/Png/shop_icon_white.png";
+import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { addItem } from "Actions";
 
 interface IProductDetails {
   product: IProduct;
@@ -20,9 +23,13 @@ function Button({ type, onClick }: IButton) {
   );
 }
 
-function BasketButton() {
+interface IBasketButton {
+  onClick: () => any;
+}
+
+function BasketButton({ onClick }: IBasketButton) {
   return (
-    <button className="o-button-reset c-basket-button">
+    <button className="o-button-reset c-basket-button" onClick={onClick}>
       <h5>Bestellen</h5>
       <img className="c-basket-button__image" src={shop} alt="shop-icon" />
     </button>
@@ -30,6 +37,9 @@ function BasketButton() {
 }
 
 function ProductDetail({ product }: IProductDetails) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const [amount, setAmount] = useState(1);
   const _increase = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -49,6 +59,13 @@ function ProductDetail({ product }: IProductDetails) {
     if (number.match(/^\d+$/) && Number(number) <= 999) {
       setAmount(Number(number));
     }
+  };
+
+  const _order = () => {
+    dispatch(
+      addItem(product.name, amount, product.price, product.images[0].src)
+    );
+    history.push("/winkelwagen");
   };
 
   return (
@@ -77,7 +94,7 @@ function ProductDetail({ product }: IProductDetails) {
           />
           <Button onClick={_increase} type={"+"} />
         </div>
-        <BasketButton />
+        <BasketButton onClick={_order} />
       </div>
     </div>
   );
