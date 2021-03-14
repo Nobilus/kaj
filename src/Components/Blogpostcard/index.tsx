@@ -15,7 +15,7 @@ interface IBlogpostcard {
 
 function Blogpostcard({
   title,
-  img,
+  img = "",
   published,
   author,
   excerpt,
