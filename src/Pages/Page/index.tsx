@@ -12,6 +12,8 @@ import ProductCard from "Components/ProductCard";
 import { categoriesFromProducts } from "Utils/fp/categoriesFromProducts";
 import CategoryCard from "Components/CategoryCard";
 import { isTemplateTail } from "typescript";
+import Winkelwagen from "Pages/Winkelwagen";
+import Checkout from "Pages/Checkout";
 
 interface ILocalPage {
   title: string;
@@ -67,48 +69,51 @@ function Page({ title, slug }: ILocalPage) {
     }
   }, [catId]);
 
-  if (isShop) {
-    return (
-      <div className="c-page">
-        <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-        <div className="c-shoprow">
-          <CategoryCard
-            getCategory={(value: string) => {
-              setCatId(value);
-            }}
-            items={categories}
-          />
-          <div className="c-productgrid">
-            {products.map((item, index) => {
-              return (
-                <ProductCard
-                  id={item.id}
-                  key={index}
-                  title={item.name}
-                  img={item.images[0].src}
-                  price={item.price_html}
-                />
-              );
-            })}
+  switch (slug) {
+    case "shop":
+      return (
+        <>
+          <PageDivider src={OnsTeamIcon} alt={""} title={title} />
+
+          <div className="c-page">
+            <div className="c-shoprow">
+              <CategoryCard
+                getCategory={(value: string) => {
+                  setCatId(value);
+                }}
+                items={categories}
+              />
+              <div className="c-productgrid">
+                {products.map((item, index) => {
+                  return <ProductCard key={index} product={item} />;
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        <PageDivider src={OnsTeamIcon} alt={""} title={title} />
-        <div className="c-page">
-          {page && page?._embedded["wp:featuredmedia"] && (
-            <img
-              src={page._embedded["wp:featuredmedia"][0].source_url}
-              alt={page._embedded["wp:featuredmedia"][0].alt_text}
-            />
-          )}
-          {page && parse(page.content.rendered)}
-        </div>
-      </>
-    );
+        </>
+      );
+
+    case "winkelwagen":
+      return <Winkelwagen />;
+
+    case "afrekenen":
+      return <Checkout />;
+
+    default:
+      return (
+        <>
+          <PageDivider src={OnsTeamIcon} alt={""} title={title} />
+          <div className="c-page">
+            {page && page?._embedded["wp:featuredmedia"] && (
+              <img
+                src={page._embedded["wp:featuredmedia"][0].source_url}
+                alt={page._embedded["wp:featuredmedia"][0].alt_text}
+              />
+            )}
+            {page && parse(page.content.rendered)}
+          </div>
+        </>
+      );
   }
 }
 

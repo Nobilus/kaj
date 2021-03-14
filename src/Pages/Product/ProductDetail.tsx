@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { Image } from "Utils/Types/product";
+import { Image, IProduct } from "Utils/Types/product";
 import parse from "html-react-parser";
 import shop from "../../Images/Png/shop_icon_white.png";
 
 interface IProductDetails {
-  image: Image;
-  description?: string;
-  price: string;
-  name: string;
+  product: IProduct;
 }
 
 interface IButton {
@@ -32,7 +29,7 @@ function BasketButton() {
   );
 }
 
-function ProductDetail({ image, description, price, name }: IProductDetails) {
+function ProductDetail({ product }: IProductDetails) {
   const [amount, setAmount] = useState(1);
   const _increase = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -58,12 +55,12 @@ function ProductDetail({ image, description, price, name }: IProductDetails) {
     <div className="c-productdetail-container">
       <img
         className="c-product__img"
-        src={image.src}
-        alt={`${name} afbeelding`}
+        src={product.images[0].src}
+        alt={`${product.name} afbeelding`}
       />
-      <h2>{name}</h2>
-      {description && <p>{description}</p>}
-      <p>{parse(price)}</p>
+      <h2>{product.name}</h2>
+      <p>{parse(product.price_html)}</p>
+      {/* {product.short_description && parse(product.short_description)} */}
       <div className="c-productcontrol-column">
         <div className="c-productcontrols">
           <Button onClick={_decrease} type={"-"} />

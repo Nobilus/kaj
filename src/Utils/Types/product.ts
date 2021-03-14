@@ -55,7 +55,7 @@ export interface IProduct {
   categories: Category[];
   tags: any[];
   images: Image[];
-  attributes: any[];
+  attributes: Attributes[];
   default_attributes: any[];
   variations: any[];
   grouped_products: any[];
@@ -66,6 +66,11 @@ export interface IProduct {
   stock_status: string;
   acf: any[];
   _links: Links;
+}
+
+interface Attributes {
+  name: string;
+  options?: string[];
 }
 
 interface Links {

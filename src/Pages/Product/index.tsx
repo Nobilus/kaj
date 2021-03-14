@@ -32,12 +32,7 @@ function ProductPage({ match }) {
       {product && (
         <>
           <Breadcrumbs match={match} title={product.name} id={itemid} />
-          <ProductDetail
-            image={product.images[0]}
-            description={product.description}
-            name={product.name}
-            price={product.price_html}
-          />
+          <ProductDetail product={product} />
         </>
       )}
     </>

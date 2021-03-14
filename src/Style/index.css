@@ -697,7 +697,6 @@ a.c-usercard__subtext {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: white;
   margin: 1rem;
   padding: 1rem;
   border-radius: 1rem;
@@ -1208,6 +1207,9 @@ input[type="radio"]:checked + label {
   }
 }
 @media (min-width: 1200px) {
+  .c-shoprow {
+    flex-direction: row;
+  }
   .c-page > img {
     height: 20rem;
   }

@@ -1,20 +1,18 @@
 import React from "react";
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
+import { IProduct } from "Utils/Types/product";
 
 interface IProductCard {
-  img: string;
-  title: string;
-  price: string;
-  id: number;
+  product: IProduct;
 }
 
-function ProductCard({ img, title, price, id }: IProductCard) {
+function ProductCard({ product }: IProductCard) {
   return (
-    <Link to={`/shop/${id}`} className="c-productcard">
-      <img src={img} alt={`${title}-image`} />
-      <h3>{title}</h3>
-      {parse(price)}
+    <Link to={`/shop/${product.id}`} className="c-productcard">
+      <img src={product.images[0].src} alt={`${product.slug}-image`} />
+      <h3>{product.name}</h3>
+      {parse(product.price_html)}
     </Link>
   );
 }
