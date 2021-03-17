@@ -33,8 +33,8 @@ function Shop({ title }: IShop) {
             setCategories(categoriesFromProducts(data));
           }
         })
-        .catch(() => {
-          console.log("cant fetch products");
+        .catch((error) => {
+          console.log("cant fetch products", error);
         });
     };
     fetchProducts();
@@ -46,12 +46,12 @@ function Shop({ title }: IShop) {
 
       <div className="c-page">
         <div className="c-shoprow">
-          <CategoryCard
+          {/* <CategoryCard
             getCategory={(value: string) => {
               setCatId(value);
             }}
             items={categories}
-          />
+          /> */}
           <div className="c-productgrid">
             {products.map((item, index) => {
               return <ProductCard key={index} product={item} />;

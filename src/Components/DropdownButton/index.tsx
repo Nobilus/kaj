@@ -33,9 +33,9 @@ function DropdownButton({
   }, [location]);
 
   return (
-    <li className="c-nav__item">
+    <>
       <button
-        className="o-button-reset c-nav__link"
+        className="o-button-reset c-nav__item"
         style={color && !mobile ? { color, opacity: 0.5 } : undefined}
         onClick={() => setToggleList(!toggleList)}
       >
@@ -61,7 +61,7 @@ function DropdownButton({
           ))}
         </ul>
       )}
-    </li>
+    </>
   );
 }
 

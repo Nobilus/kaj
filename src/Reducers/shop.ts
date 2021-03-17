@@ -10,6 +10,12 @@ const shopReducer = (state = {}, action: any) => {
         [key]: { price, img, amount },
       };
 
+    case "REMOVE_ITEM":
+      const itemkey = action.payload.name;
+      // @ts-ignore
+      delete state[itemkey];
+      return { ...state };
+
     default:
       return state;
   }

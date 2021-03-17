@@ -35,17 +35,17 @@ export default function Navbar({ items }: INavbar) {
                 );
               }
               return (
-                <li className="c-nav__item" key={id}>
-                  <NavLink
-                    activeClassName="active"
-                    style={{ color: "white", opacity: 0.5 }}
-                    activeStyle={{ opacity: 1 }}
-                    className="c-nav__link"
-                    to={`/${object_slug}`}
-                  >
-                    {parse(title)}
-                  </NavLink>
-                </li>
+                // <li className="c-nav__item" key={id}>
+                <NavLink
+                  activeClassName="active"
+                  style={{ color: "white", opacity: 0.5 }}
+                  activeStyle={{ opacity: 1 }}
+                  className="c-nav__item"
+                  to={`/${object_slug}`}
+                >
+                  {parse(title)}
+                </NavLink>
+                // </li>
               );
             })}
           </ul>

@@ -1,8 +1,11 @@
 import Button from "Components/Button";
 import PageDivider from "Components/PageDivider";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { deleteItem } from "Actions";
 
 interface IProductRow {
   img: string;
@@ -13,6 +16,8 @@ interface IProductRow {
 }
 
 const ProductRow = ({ img, title, amount, price }: IProductRow) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="c-basket">
       <div className="c-basket-desc">
@@ -37,6 +42,13 @@ const ProductRow = ({ img, title, amount, price }: IProductRow) => {
           minimumFractionDigits: 2,
         })}
       </p>
+      <FontAwesomeIcon
+        className="c-basket-cancel"
+        icon={faTimes}
+        onClick={() => {
+          dispatch(deleteItem(title));
+        }}
+      />
     </div>
   );
 };
@@ -55,7 +67,12 @@ function Winkelwagen() {
       }
       setTotalPrice(tempTotal);
     };
-    computeTotalPrice();
+
+    if (Object.keys(basket).length >= 1) {
+      computeTotalPrice();
+    } else {
+      history.push("/shop");
+    }
   }, [basket]);
 
   return (

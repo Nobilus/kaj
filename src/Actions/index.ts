@@ -9,3 +9,7 @@ export const addItem = (
     payload: { name, amount, price, img },
   };
 };
+
+export const deleteItem = (name: string) => {
+  return { type: "REMOVE_ITEM", payload: { name } };
+};
