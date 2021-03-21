@@ -54,10 +54,6 @@ export default function OnsTeam() {
     fetchUsers();
   }, []);
 
-  useEffect(() => {
-    console.log("useeffect log: ", users);
-  }, [users]);
-
   return (
     <>
       <div className="c-homepage-divider">

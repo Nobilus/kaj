@@ -19,37 +19,39 @@ const ProductRow = ({ img, title, amount, price }: IProductRow) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="c-basket">
-      <div className="c-basket-desc">
-        <img className="c-basket-img" src={img} alt={title} />
-        <p className="c-basket-title">{title}</p>
-      </div>
+    <>
+      <div className="c-basket">
+        <div className="c-basket-desc">
+          {/* <img className="c-basket-img" src={img} alt={title} /> */}
+          <p className="c-basket-title">{title}</p>
+        </div>
 
-      <input
-        className="c-basket-input"
-        min={1}
-        max={999}
-        pattern={"[1-9]*"}
-        inputMode={"numeric"}
-        value={amount}
-        type="number"
-        name="amount"
-        id="amount"
-      />
-      <p className="c-basket-price">
-        €
-        {Number(price).toLocaleString("be-NL", {
-          minimumFractionDigits: 2,
-        })}
-      </p>
-      <FontAwesomeIcon
-        className="c-basket-cancel"
-        icon={faTimes}
-        onClick={() => {
-          dispatch(deleteItem(title));
-        }}
-      />
-    </div>
+        <input
+          className="c-basket-input"
+          min={1}
+          max={999}
+          pattern={"[1-9]*"}
+          inputMode={"numeric"}
+          value={amount}
+          type="number"
+          name="amount"
+          id="amount"
+        />
+        <p className="c-basket-price">
+          €
+          {Number(price).toLocaleString("be-NL", {
+            minimumFractionDigits: 2,
+          })}
+        </p>
+        <FontAwesomeIcon
+          className="c-basket-cancel"
+          icon={faTimes}
+          onClick={() => {
+            dispatch(deleteItem(title));
+          }}
+        />
+      </div>
+    </>
   );
 };
 
@@ -94,6 +96,7 @@ function Winkelwagen() {
           </button>
         </div>
         <hr className="c-divider" />
+
         {basket &&
           Object.keys(basket).map((key: any, index: any) => (
             <ProductRow

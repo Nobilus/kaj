@@ -2,22 +2,28 @@ import React, {
   DOMAttributes,
   FormEvent,
   FormEventHandler,
+  useEffect,
   useState,
 } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import PageDivider from "Components/PageDivider";
 import emailjs from "emailjs-com";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { clearBasket } from "Actions";
+import { renderToStaticMarkup } from "react-dom/server";
 
 function Checkout() {
   const basket = useSelector((state: any) => state.shop);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   // captcha
   const siteKey = "6LepcIgaAAAAAKaFi_W1R9u2Zo6OHHpm-AI3TMlA";
   const [token, setToken] = useState<string | null>(null);
 
   // emailjs
   const userID = "user_E9OXdiZpf3CgW2U9OEAFF";
-  const accessToken = "ca4d56671813c7fe0a4472312c7c2846";
   const serviceId = "service_ms5722r";
   const templateId = "template_f63ogz8";
 
@@ -29,13 +35,69 @@ function Checkout() {
     huisnummer: "",
     postcode: "",
     stad: "",
-    opmerkingen: "",
+    opmerkingen: "geen",
     bestelling: "",
   };
 
   const onChange = (token: string | null) => {
     setToken(token);
     console.log(token);
+  };
+
+  const CreateTableFromBasket = () => {
+    let total = 7;
+
+    const border = {
+      border: "1px solid black",
+    };
+
+    return (
+      <table
+        style={{
+          borderCollapse: "collapse",
+          border: "1px solid black",
+        }}
+      >
+        <thead style={{ textAlign: "left" }}>
+          <tr>
+            <th style={{ ...border }}>Artikel</th>
+            <th style={{ ...border }}>Aantal</th>
+            <th style={{ ...border }}>Eenheidsprijs</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(basket).map((key: any, index: any) => {
+            total += basket[key].amount * basket[key].price;
+            return (
+              <tr key={index}>
+                <td style={border}>{key}</td>
+                <td style={border}>{basket[key].amount}</td>
+                <td style={border}>
+                  €
+                  {Number(basket[key].price).toLocaleString("be-NL", {
+                    minimumFractionDigits: 2,
+                  })}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td style={{ textAlign: "right" }}>Verzendkosten</td>
+            <td></td>
+            <td>€7.00</td>
+          </tr>
+          <tr>
+            <th style={{ textAlign: "right" }}>Totaal</th>
+            <td></td>
+            <td>
+              €{total.toLocaleString("be-NL", { minimumFractionDigits: 2 })}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    );
   };
 
   const sendEmail = (e: any) => {
@@ -49,7 +111,7 @@ function Checkout() {
           templateParams[key] = e.target.elements[key].value;
         } else {
           //@ts-ignore
-          templateParams[key] = JSON.stringify(basket, null, 2);
+          templateParams[key] = renderToStaticMarkup(CreateTableFromBasket());
         }
         //@ts-ignore
         templateParams["g-recaptcha-response"] = token;
@@ -57,7 +119,8 @@ function Checkout() {
 
       emailjs.send(serviceId, templateId, templateParams, userID).then(
         (result) => {
-          // redirecten naar shop
+          dispatch(clearBasket());
+          history.push("/home");
           console.log(result.text);
         },
         (error) => {
@@ -71,26 +134,38 @@ function Checkout() {
     <>
       <PageDivider title={"Afrekenen"} />
       <div className="c-page">
-        <form onSubmit={sendEmail}>
-          <div>
+        <form className="c-form" onSubmit={sendEmail}>
+          <input
+            className="c-form__input"
+            type="text"
+            name="voornaam"
+            id="voornaam"
+            placeholder="Voornaam"
+          />
+          <input
+            className="c-form__input"
+            type="text"
+            name="naam"
+            id="naam"
+            placeholder="Naam"
+          />
+          <br />
+          <input
+            className="c-form__input"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+          />
+          <br />
+          <div className="c-form-row">
             <input
-              type="text"
-              name="voornaam"
-              id="voornaam"
-              placeholder="Voornaam"
-            />
-            <input type="text" name="naam" id="naam" placeholder="Naam" />
-            <input type="email" name="email" id="email" placeholder="E-mail" />
-          </div>
-          <div>
-            <input
+              className="c-form__input c-form__input--margin"
               type="text"
               name="straatnaam"
               id="straatnaam"
               placeholder="Straatnaam"
             />
-          </div>
-          <div>
             <input
               type="number"
               name="huisnummer"
@@ -98,24 +173,39 @@ function Checkout() {
               placeholder="Nr."
             />
           </div>
-          <div>
+          <div className="c-form-row">
             <input
+              className="c-form__input c-form__input--margin"
+              type="text"
+              name="stad"
+              id="stad"
+              placeholder="Stad"
+            />
+            <input
+              className="c-form__input"
               type="number"
               name="postcode"
               id="postcode"
               placeholder="Postcode"
             />
-            <input type="text" name="stad" id="stad" placeholder="Stad" />
           </div>
+          <br />
           <textarea
+            className="c-form__input"
             name="opmerkingen"
             id="opmerkingen"
             cols={30}
             rows={10}
             placeholder="bv. maten van t-shirts"
           />
+          <br />
           <ReCAPTCHA sitekey={siteKey} onChange={onChange} />
-          <input type="submit" value="Bestellen" />
+          <br />
+          <input
+            className="o-button-reset c-form-button"
+            type="submit"
+            value="Bestellen"
+          />
         </form>
       </div>
     </>

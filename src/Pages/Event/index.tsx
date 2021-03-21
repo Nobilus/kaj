@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Event() {
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   return <div></div>;
 }
 

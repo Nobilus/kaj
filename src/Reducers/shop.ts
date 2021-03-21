@@ -16,6 +16,8 @@ const shopReducer = (state = {}, action: any) => {
       delete state[itemkey];
       return { ...state };
 
+    case "CLEAR_ALL":
+      return {};
     default:
       return state;
   }

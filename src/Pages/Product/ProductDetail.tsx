@@ -70,31 +70,41 @@ function ProductDetail({ product }: IProductDetails) {
 
   return (
     <div className="c-productdetail-container">
-      <img
-        className="c-product__img"
-        src={product.images[0].src}
-        alt={`${product.name} afbeelding`}
-      />
-      <h2>{product.name}</h2>
-      <p>{parse(product.price_html)}</p>
-      {/* {product.short_description && parse(product.short_description)} */}
-      <div className="c-productcontrol-column">
-        <div className="c-productcontrols">
-          <Button onClick={_decrease} type={"-"} />
-          <input
-            min={1}
-            max={999}
-            pattern={"[1-9]*"}
-            inputMode={"numeric"}
-            value={amount}
-            type="number"
-            name="amount"
-            id="amount"
-            onChange={_handleChange}
-          />
-          <Button onClick={_increase} type={"+"} />
+      <div className="c-productdetail-inforow">
+        <img
+          className="c-product__img"
+          src={product.images[0].src}
+          alt={`${product.name} afbeelding`}
+        />
+        <div>
+          <h2>{product.name}</h2>
+          <p>{parse(product.price_html)}</p>
+
+          <div className="c-productcontrol-column">
+            <div className="c-productcontrols">
+              <Button onClick={_decrease} type={"-"} />
+              <input
+                min={1}
+                max={999}
+                pattern={"[1-9]*"}
+                inputMode={"numeric"}
+                value={amount}
+                type="number"
+                name="amount"
+                id="amount"
+                onChange={_handleChange}
+              />
+              <Button onClick={_increase} type={"+"} />
+            </div>
+            <BasketButton onClick={_order} />
+          </div>
         </div>
-        <BasketButton onClick={_order} />
+      </div>
+      <div className="c-productdetail__desc">
+        <b>
+          <p>Beschrijving</p>
+        </b>
+        {product.short_description && parse(product.short_description)}
       </div>
     </div>
   );

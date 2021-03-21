@@ -13,3 +13,7 @@ export const addItem = (
 export const deleteItem = (name: string) => {
   return { type: "REMOVE_ITEM", payload: { name } };
 };
+
+export const clearBasket = () => {
+  return { type: "CLEAR_ALL" };
+};
