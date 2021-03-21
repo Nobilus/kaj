@@ -20,13 +20,13 @@ import endpoints from "Utils/endpoints";
 import { IBlogpost } from "Utils/Types/blogpost";
 import { useHistory } from "react-router-dom";
 import PageDivider from "Components/PageDivider";
-import { Events, Event } from "Utils/Types/events";
+import { EventElement, Event } from "Utils/Types/events";
 
 import CalendarEventCard from "Components/CalendarEventCard";
 
 function App() {
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
-  const [events, setEvents] = useState<Event[]>();
+  const [events, setEvents] = useState<EventElement[]>();
   const history = useHistory();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
     };
     const fetchEvents = async () => {
       axiosI
-        .get<Events>(endpoints.getevents)
+        .get<Event>(endpoints.getevents)
         .then(({ data }) => {
           setEvents(data.events);
         })

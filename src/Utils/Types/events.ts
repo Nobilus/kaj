@@ -1,11 +1,11 @@
-export interface Events {
-  events: Event[];
+export interface Event {
+  events: EventElement[];
   rest_url: string;
   total: number;
   total_pages: number;
 }
 
-export interface Event {
+export interface EventElement {
   id: number;
   global_id: string;
   global_id_lineage: string[];
@@ -21,7 +21,7 @@ export interface Event {
   description: string;
   excerpt: string;
   slug: string;
-  image: boolean;
+  image: boolean | ImageClass;
   all_day: boolean;
   start_date: Date;
   start_date_details: DateDetails;
@@ -60,4 +60,25 @@ export interface DateDetails {
   hour: string;
   minutes: string;
   seconds: string;
+}
+
+export interface ImageClass {
+  url: string;
+  id: number;
+  extension: string;
+  width: number;
+  height: number;
+  sizes: { [key: string]: Size };
+}
+
+export interface Size {
+  width: number;
+  height: number;
+  "mime-type": MIMEType;
+  url: string;
+  uncropped?: boolean;
+}
+
+export enum MIMEType {
+  ImageJPEG = "image/jpeg",
 }

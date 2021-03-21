@@ -159,11 +159,13 @@ export function Routes() {
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route exact path="/evenementen/:eventid" component={Page} />
+        <Route exact path="/evenementen/:eventid">
+          <Page title={"Evenement"} slug={"evenement"} />
+        </Route>
         <Route exact path="/winkelwagen">
           <Page title={"Winkelwagen"} slug={"winkelwagen"} />
         </Route>
-        <Route exact path="/afrekenen" component={Page}>
+        <Route exact path="/afrekenen">
           <Page title={"Afrekenen"} slug={"afrekenen"} />
         </Route>
       </div>

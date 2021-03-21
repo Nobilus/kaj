@@ -9,4 +9,5 @@ export default {
   getproducts: "wc/v3/products/",
   productbyid: "wc/v3/products/",
   getevents: "tribe/events/v1/events",
+  getevent: "tribe/events/v1/events/",
 };

@@ -10,7 +10,7 @@ import OnsTeamIcon from "Images/Png/ons_team_icon.png";
 import Winkelwagen from "Pages/Winkelwagen";
 import Checkout from "Pages/Checkout";
 import Shop from "Pages/Shop";
-import Event from "Pages/Event";
+import EventPage from "Pages/EventPage";
 
 interface ILocalPage {
   title: string;
@@ -35,7 +35,13 @@ function Page({ title, slug }: ILocalPage) {
         })
         .catch(() => {});
     };
-    if (slug !== "shop" && slug !== "winkelwage" && slug !== "afrekenen") {
+
+    if (
+      slug !== "shop" &&
+      slug !== "winkelwagen" &&
+      slug !== "afrekenen" &&
+      slug !== "evenement"
+    ) {
       fetchPage();
     }
   }, []);
@@ -50,8 +56,8 @@ function Page({ title, slug }: ILocalPage) {
     case "afrekenen":
       return <Checkout />;
 
-    case "event":
-      return <Event />;
+    case "evenement":
+      return <EventPage />;
 
     default:
       return (
