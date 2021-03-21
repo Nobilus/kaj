@@ -10,6 +10,7 @@ import OnsTeamIcon from "Images/Png/ons_team_icon.png";
 import Winkelwagen from "Pages/Winkelwagen";
 import Checkout from "Pages/Checkout";
 import Shop from "Pages/Shop";
+import Event from "Pages/Event";
 
 interface ILocalPage {
   title: string;
@@ -48,6 +49,9 @@ function Page({ title, slug }: ILocalPage) {
 
     case "afrekenen":
       return <Checkout />;
+
+    case "event":
+      return <Event />;
 
     default:
       return (

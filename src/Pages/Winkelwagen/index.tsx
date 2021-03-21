@@ -86,7 +86,10 @@ function Winkelwagen() {
           >
             Verder winkelen
           </button>
-          <button className="o-button-reset c-button-to-checkout">
+          <button
+            className="o-button-reset c-button-to-checkout"
+            onClick={() => history.push("/afrekenen")}
+          >
             Afrekenen
           </button>
         </div>
