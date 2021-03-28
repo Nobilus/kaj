@@ -13,8 +13,6 @@ import { AxiosRequestConfig } from "axios";
 import parse from "html-react-parser";
 
 function Afdelingen() {
-  const afdelingen: Array<IAfdeling> = require("Assets/Lokalen.json");
-
   const brusselPos: LatLngExpression = [50.86950695102826, 4.3857279405439815];
   const iconMarkup = renderToStaticMarkup(
     <i
