@@ -6,9 +6,16 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { colors } from "Utils/colors";
 import IAfdeling from "Utils/Types/afdelingen";
 import OnsTeamIcon from "Images/Png/ons_team_icon.png";
+import { axiosI } from "Utils/Types/axiosInstance";
+import { IPage } from "Utils/Types/page";
+import endpoints from "Utils/endpoints";
+import { AxiosRequestConfig } from "axios";
+import parse from "html-react-parser";
 
 function Afdelingen() {
   const afdelingen: Array<IAfdeling> = require("Assets/Lokalen.json");
+
+  const brusselPos: LatLngExpression = [50.86950695102826, 4.3857279405439815];
   const iconMarkup = renderToStaticMarkup(
     <i
       className="fa fa-map-marker-alt fa-3x"
@@ -16,11 +23,12 @@ function Afdelingen() {
     />
   );
   const customMarkerIcon = divIcon({ html: iconMarkup });
+  const parser = new DOMParser();
+
   const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false);
-  const [position, setPosition] = useState<LatLngExpression>([
-    50.86950695102826,
-    4.3857279405439815,
-  ]);
+  const [position, setPosition] = useState<LatLngExpression>(brusselPos);
+  const [locations, setLocations] = useState<Array<IAfdeling>>();
+  const [content, setContent] = useState<IPage>();
 
   useEffect(() => {
     const checkForGeolocation = () => {
@@ -48,30 +56,98 @@ function Afdelingen() {
     return null;
   };
 
+  useEffect(() => {
+    const fetchAfdelingen = async () => {
+      const axiosconf: AxiosRequestConfig = {
+        params: {
+          slug: "afdelingen",
+          _embed: true,
+        },
+      };
+      axiosI
+        .get<Array<IPage>>(endpoints.pagebyslug, axiosconf)
+        .then(({ data }) => {
+          let parsedHtml = parser.parseFromString(
+            data[0].content.rendered,
+            "text/html"
+          );
+
+          setContent(data[0]);
+
+          const codeTags: any = parsedHtml.getElementsByTagName("code");
+          const h2Tags: any = parsedHtml.getElementsByTagName("h2");
+          const addressTags: any = parsedHtml.getElementsByTagName("address");
+          const coords: any = [];
+          const names: any = [];
+          const addresses: any = [];
+
+          for (const h2 of h2Tags) {
+            names.push(h2.textContent);
+          }
+
+          for (const address of addressTags) {
+            addresses.push(address.textContent);
+          }
+
+          for (const item of codeTags) {
+            coords.push(item.textContent);
+          }
+          const newLocations = coords.map((item: any, index: any) => {
+            const splitCoords = item
+              .replace("[", "")
+              .replace("]", "")
+              .split(",");
+
+            const newCoords: LatLngExpression = [
+              Number(splitCoords[0]),
+              Number(splitCoords[1]),
+            ];
+            return {
+              naam: names[index],
+              coords: newCoords,
+              adres: addresses[index],
+            };
+          });
+          setLocations(newLocations);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    fetchAfdelingen();
+  }, []);
+
   return (
     <>
-      <PageDivider src={OnsTeamIcon} alt={""} title={"Afdelingen"} />
-      <MapContainer
-        className="c-map-container"
-        center={position}
-        zoom={12}
-        scrollWheelZoom={false}
-      >
-        <ChangeView center={position} zoom={12} />
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {afdelingen.map((item) => (
-          <Marker position={item.coords} icon={customMarkerIcon}>
-            <Popup>
-              {item.naam} <br />
-              {item["e-mail"]} <br />
-              {item.tel}
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+      <PageDivider title={"Afdelingen"} />
+      <div className="c-afdelingen">
+        <MapContainer
+          className="c-map-container"
+          center={position}
+          zoom={12}
+          scrollWheelZoom={false}
+        >
+          <ChangeView center={position} zoom={12} />
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {locations &&
+            locations.map((item) => {
+              return (
+                <Marker position={item.coords} icon={customMarkerIcon}>
+                  <Popup>
+                    {item.naam} <br />
+                    {item.adres}
+                  </Popup>
+                </Marker>
+              );
+            })}
+        </MapContainer>
+        <section className="c-afdeling-section">
+          {content && parse(content.content.rendered)}
+        </section>
+      </div>
     </>
   );
 }
