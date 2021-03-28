@@ -746,16 +746,17 @@ a.c-usercard__subtext {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: auto;
+  /* margin: auto; */
   border-radius: 1rem;
   min-width: 10%;
   border-radius: 20px;
   padding: 1rem;
   text-decoration: none;
+  justify-content: center;
 }
 
 .c-productcard > img {
-  margin: auto;
+  /* margin: auto; */
 }
 
 bdi {
@@ -1145,7 +1146,7 @@ section.c-afdeling-section p {
 
 @media (min-width: 768px) {
   .c-productgrid {
-    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
   }
   .c-form {
     padding: auto;
@@ -1497,11 +1498,6 @@ li > input[type="radio"]:checked + label + svg.c-cancel {
     height: calc(90vh - (176px + 96px + 16px));
     max-height: calc(90vh - (176px + 96px));
     margin-bottom: 0;
-  }
-
-  .c-productgrid {
-    width: 80%;
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   }
 }
 @media (min-width: 1200px) {
