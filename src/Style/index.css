@@ -136,6 +136,16 @@ code {
     monospace;
 }
 
+.c-attribution {
+  font-size: 0.75rem;
+}
+.c-attribution-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .MuiButtonBase-root,
 .MuiPaginationItem-root,
 .MuiPaginationItem-page {
@@ -424,7 +434,7 @@ code {
 p.c-blogpost__author,
 p.c-blogpost__publishdate {
   color: #707070;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 p.c-blogpost__author {
   margin: 0;
@@ -1277,9 +1287,14 @@ section.c-afdeling-section p {
   }
 }
 
+button.c-nav__link:hover {
+  opacity: 1;
+}
+
 .c-nav__dropdownlist {
   /* margin-top: 8px; */
   /* position: absolute; */
+  padding-top: 8px;
   opacity: 1;
   text-align: left;
   list-style: none;

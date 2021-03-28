@@ -107,7 +107,7 @@ function App() {
           title={"Bekijk meer nieuws"}
         />
       </div>
-      {events ? (
+      {events && events.length >= 1 ? (
         <>
           <PageDivider src={kijker} title={"Kalender"} />
           <div className="c-calendar-grid">

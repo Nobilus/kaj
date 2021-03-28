@@ -28,6 +28,20 @@ function Footer() {
         <img className="c-footer-social" src={instagram} alt="instagram-icon" />
         {/* <img className="c-footer-social" src={twitter} alt="twitter-icon" /> */}
       </div>
+      <div className="c-attribution-container">
+        <p className="c-attribution">
+          Created by{" "}
+          <a href="https://nobilus.be" target="_blank">
+            Nobilus
+          </a>
+        </p>
+        <p className="c-attribution">
+          Designed by{" "}
+          <a href="https://henrivanoost.be/" target="_blank">
+            Creabiz
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }

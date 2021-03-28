@@ -22,21 +22,10 @@ const ProductRow = ({ img, title, amount, price }: IProductRow) => {
     <>
       <div className="c-basket">
         <div className="c-basket-desc">
-          {/* <img className="c-basket-img" src={img} alt={title} /> */}
           <p className="c-basket-title">{title}</p>
         </div>
 
-        <input
-          className="c-basket-input"
-          min={1}
-          max={999}
-          pattern={"[1-9]*"}
-          inputMode={"numeric"}
-          value={amount}
-          type="number"
-          name="amount"
-          id="amount"
-        />
+        <p className="c-basket-price">{amount}x</p>
         <p className="c-basket-price">
           €
           {Number(price).toLocaleString("be-NL", {

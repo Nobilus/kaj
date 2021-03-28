@@ -26,7 +26,6 @@ function DropdownButton({
   let location = useLocation();
 
   useEffect(() => {
-    console.log(location.pathname);
     if (!location.pathname.includes(title)) {
       setToggleList(false);
     }
@@ -34,33 +33,42 @@ function DropdownButton({
 
   return (
     <>
-      <button
-        className="o-button-reset c-nav__item"
-        style={color && !mobile ? { color, opacity: 0.5 } : undefined}
-        onClick={() => setToggleList(!toggleList)}
-      >
-        {parse(title)}
-      </button>
-      {toggleList && (
-        <ul
-          style={{ backgroundColor: backgroundColor }}
-          className="c-nav__dropdownlist"
+      <li className="c-nav__item">
+        <button
+          className="o-button-reset c-nav__link"
+          style={color && !mobile ? { color, opacity: 0.5 } : undefined}
+          onClick={() => setToggleList(!toggleList)}
         >
-          {items.map((item, index) => (
-            <li className="c-nav__dropdown-item">
-              <NavLink
-                className="c-nav__link"
-                key={index}
-                to={`/${slug}/${item.object_slug}`}
-                style={{ color }}
-                onClick={onClick}
+          {parse(title)}
+        </button>
+        {toggleList && (
+          <ul
+            style={{ backgroundColor: backgroundColor }}
+            className="c-nav__dropdownlist"
+          >
+            {items.map((item, index) => (
+              <li
+                className="c-nav__dropdown-item"
+                style={
+                  location.pathname === "/home" && !mobile
+                    ? { opacity: 0.5 }
+                    : undefined
+                }
               >
-                {item.title}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      )}
+                <NavLink
+                  className="c-nav__link"
+                  key={index}
+                  to={`/${slug}/${item.object_slug}`}
+                  style={{ color }}
+                  onClick={onClick}
+                >
+                  {item.title}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
     </>
   );
 }
