@@ -46,7 +46,7 @@ function Shop({ title }: IShop) {
 
       <div className="c-shoppage">
         <CategoryCard
-          getCategory={(value: string) => {
+          getCategory={(value: string | null) => {
             setCatId(value);
           }}
           items={categories}

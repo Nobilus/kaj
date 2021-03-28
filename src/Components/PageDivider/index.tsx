@@ -24,6 +24,8 @@ const icons: { [key: string]: string } = {
   "ons team": onsteamIcon,
   praktisch: kijkerIcon,
   shop: shopIcon,
+  winkelwagen: shopIcon,
+  afrekenen: shopIcon,
   nieuws: kijkerIcon,
 };
 
