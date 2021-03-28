@@ -723,12 +723,16 @@ a.c-usercard__subtext {
 }
 
 .c-productgrid {
-  margin: 0 -3rem -2rem;
-  width: calc(100%);
+  /* margin: 0 -3rem -2rem; */
+  /* width: calc(100%); */
+  width: 100%;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   column-gap: 1rem;
   row-gap: 1rem;
+  background-color: #fff;
+  border-radius: 20px;
 }
 
 .c-shoprow {
@@ -742,7 +746,7 @@ a.c-usercard__subtext {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 1rem;
+  margin: auto;
   border-radius: 1rem;
   min-width: 10%;
   border-radius: 20px;
@@ -767,7 +771,7 @@ bdi {
 .c-productcard > h3 {
   margin: 0;
   font-size: 1rem;
-  max-width: 50%;
+  max-width: 75%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -777,7 +781,7 @@ bdi {
 .c-categorycard {
   padding: 1rem;
   border-radius: 20px;
-  margin-right: -9px;
+  /* margin-right: -9px; */
   background-color: var(--global-background-color-dark);
   margin-bottom: 1rem;
 }
@@ -1132,7 +1136,17 @@ section.c-afdeling-section p {
   margin-bottom: 1rem;
 }
 
+.c-shoppage {
+}
+
+.category {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
+  .c-productgrid {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+  }
   .c-form {
     padding: auto;
     width: 75%;
@@ -1275,7 +1289,17 @@ section.c-afdeling-section p {
 
 input[type="radio"]:checked + label {
   border-bottom: 1px solid var(--global-text-color);
-  /* text-decoration: underline; */
+  cursor: default;
+}
+
+li > svg.c-cancel {
+  display: none !important;
+}
+
+li > input[type="radio"]:checked + label + svg.c-cancel {
+  margin-left: 0.5rem;
+  display: inline-block !important;
+  cursor: pointer;
 }
 
 @media (min-width: 992px) {
@@ -1457,6 +1481,27 @@ input[type="radio"]:checked + label {
   }
   .c-afdelingen {
     width: 100%;
+  }
+  .c-shoprow {
+    width: 100%;
+  }
+  .c-shoppage {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .c-categorycard {
+    width: 20%;
+    margin-right: 2rem;
+    height: calc(90vh - (176px + 96px + 16px));
+    max-height: calc(90vh - (176px + 96px));
+    margin-bottom: 0;
+  }
+
+  .c-productgrid {
+    width: 80%;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   }
 }
 @media (min-width: 1200px) {

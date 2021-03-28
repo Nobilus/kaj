@@ -44,19 +44,17 @@ function Shop({ title }: IShop) {
     <>
       <PageDivider title={title} />
 
-      <div className="c-page">
-        <div className="c-shoprow">
-          {/* <CategoryCard
-            getCategory={(value: string) => {
-              setCatId(value);
-            }}
-            items={categories}
-          /> */}
-          <div className="c-productgrid">
-            {products.map((item, index) => {
-              return <ProductCard key={index} product={item} />;
-            })}
-          </div>
+      <div className="c-shoppage">
+        <CategoryCard
+          getCategory={(value: string) => {
+            setCatId(value);
+          }}
+          items={categories}
+        />
+        <div className="c-productgrid">
+          {products.map((item, index) => {
+            return <ProductCard key={index} product={item} />;
+          })}
         </div>
       </div>
     </>
