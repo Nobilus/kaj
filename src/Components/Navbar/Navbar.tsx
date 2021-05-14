@@ -23,7 +23,7 @@ export default function Navbar({ items }: INavbar) {
           <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
           <ul className="c-nav__list">
             {items?.items.map(({ object_slug, title, id, children }) => {
-              if (children) {
+              if (children && title !== "Praktisch") {
                 return (
                   <DropdownButton
                     slug={object_slug}
@@ -59,7 +59,7 @@ export default function Navbar({ items }: INavbar) {
           </Link>
           <ul className="c-nav__list">
             {items?.items.map(({ object_slug, title, id, children }) => {
-              if (children) {
+              if (children && title !== "Praktisch") {
                 return (
                   <DropdownButton
                     slug={object_slug}

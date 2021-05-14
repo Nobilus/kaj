@@ -11,13 +11,15 @@ import Winkelwagen from "Pages/Winkelwagen";
 import Checkout from "Pages/Checkout";
 import Shop from "Pages/Shop";
 import EventPage from "Pages/EventPage";
+import Praktisch from "Pages/Praktisch";
 
 interface ILocalPage {
   title: string;
   slug: string;
+  id?: any;
 }
 
-function Page({ title, slug }: ILocalPage) {
+function Page({ title, slug, id }: ILocalPage) {
   const [page, setPage] = useState<IPage>();
 
   useEffect(() => {
@@ -40,7 +42,8 @@ function Page({ title, slug }: ILocalPage) {
       slug !== "shop" &&
       slug !== "winkelwagen" &&
       slug !== "afrekenen" &&
-      slug !== "evenement"
+      slug !== "evenement" &&
+      slug !== "praktisch"
     ) {
       fetchPage();
     }
@@ -58,6 +61,8 @@ function Page({ title, slug }: ILocalPage) {
 
     case "evenement":
       return <EventPage />;
+    case "praktisch":
+      return <Praktisch id={id} title={title} />;
 
     default:
       return (

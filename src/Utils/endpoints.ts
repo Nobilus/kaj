@@ -6,6 +6,7 @@ export default {
   postbyid: "wp/v2/posts/",
   allposts: "wp/v2/posts",
   pagebyslug: "wp/v2/pages/",
+  pagebyparent: "wp/v2/pages",
   getproducts: "wc/v3/products/",
   productbyid: "wc/v3/products/",
   getevents: "tribe/events/v1/events",

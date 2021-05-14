@@ -31,7 +31,7 @@ export default function Burger({ items }: IBurger) {
             />
           </span>
           {items?.items.map(({ object_slug, title, id, parent, children }) => {
-            if (children) {
+            if (children && title !== "Praktisch") {
               return (
                 <DropdownButton
                   slug={object_slug}

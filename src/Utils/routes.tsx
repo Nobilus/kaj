@@ -13,6 +13,7 @@ import BlogPost from "Pages/BlogPost";
 import Nieuws from "Pages/Nieuws";
 import Afdelingen from "Pages/Afdelingen";
 import ProductPage from "Pages/Product";
+import PraktischPage from "Pages/Praktisch/PraktischPage";
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
@@ -64,7 +65,7 @@ export function Routes() {
         {!loading &&
           menuItems &&
           menuItems.items.map(
-            ({ id, title, object_slug: slug, children }, index) => {
+            ({ id, title, object_slug: slug, children, object_id }, index) => {
               switch (title) {
                 case "Home":
                   return (
@@ -120,6 +121,29 @@ export function Routes() {
                         key={`${index}-${id}`}
                         path={`/${slug}/:postid`}
                         component={BlogPost}
+                      />
+                    </>
+                  );
+                case "Praktisch":
+                  console.log("praktisch slug: ", slug);
+                  console.log("praktisch title: ", title);
+                  console.log("praktisch id: ", id);
+
+                  return (
+                    <>
+                      <Route
+                        exact
+                        key={id}
+                        path={"/" + slug}
+                        component={() => (
+                          <Page title={title} slug={slug} id={object_id} />
+                        )}
+                      />
+                      <Route
+                        exact
+                        key={`${index}-${id}`}
+                        path={`/${slug}/:pagetitle`}
+                        component={PraktischPage}
                       />
                     </>
                   );

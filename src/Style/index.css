@@ -1327,6 +1327,33 @@ li > input[type="radio"]:checked + label + svg.c-cancel {
   cursor: pointer;
 }
 
+.c-praktisch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 2rem 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  row-gap: 1rem;
+}
+
+.c-praktisch-card-holder {
+  text-decoration: none;
+}
+.c-praktisch-card {
+  border-radius: 32px;
+  height: 144px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.c-praktisch-card__title {
+  color: white;
+}
+
 @media (min-width: 992px) {
   .c-blogpost__head {
     border-top-left-radius: 20px;
