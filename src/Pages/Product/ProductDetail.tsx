@@ -78,7 +78,7 @@ function ProductDetail({ product }: IProductDetails) {
         />
         <div>
           <h2>{product.name}</h2>
-          <p>{parse(product.price_html)}</p>
+          <p style={{ marginBottom: 16 }}>{parse(product.price_html)}</p>
 
           <div className="c-productcontrol-column">
             <div className="c-productcontrols">
@@ -101,9 +101,11 @@ function ProductDetail({ product }: IProductDetails) {
         </div>
       </div>
       <div className="c-productdetail__desc">
-        <b>
-          <p>Beschrijving</p>
-        </b>
+        {product.short_description && (
+          <b>
+            <p>Beschrijving</p>
+          </b>
+        )}
         {product.short_description && parse(product.short_description)}
       </div>
     </div>
