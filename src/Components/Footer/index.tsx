@@ -15,7 +15,8 @@ function Footer() {
       <h4 className="c-footer-title">KAJ VZW</h4>
       <div className="c-footer-row">
         <div className="c-footer-row__column">
-          <p className="c-footer-row__item">Britsierlaan 5, 1030 Schaarbeek</p>
+          <p className="c-footer-row__item">Britsierlaan 5</p>
+          <p className="c-footer-row__item">1030 Schaarbeek</p>
           <p className="c-footer-row__item">
             Tel: <a href="tel:022465300">02/246.53.00</a>
           </p>
@@ -48,14 +49,22 @@ function Footer() {
       </div>
       <div className="c-attribution-container">
         <p className="c-attribution">
-          Created by{" "}
-          <a href="https://nobilus.be" target="_blank">
+          Developed by{" "}
+          <a
+            className="c-attribution-link"
+            href="https://nobilus.be"
+            target="_blank"
+          >
             Nobilus
           </a>
         </p>
         <p className="c-attribution">
           Designed by{" "}
-          <a href="https://henrivanoost.be/" target="_blank">
+          <a
+            className="c-attribution-link"
+            href="https://creabiz.be/"
+            target="_blank"
+          >
             Creabiz
           </a>
         </p>

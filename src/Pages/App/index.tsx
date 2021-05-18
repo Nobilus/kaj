@@ -9,6 +9,7 @@ import overons from "Images/Png/MenuCard/over_ons_icon.png";
 
 // In de kijker icon
 import kijker from "Images/Png/in_de_kijker_icon.png";
+import calendar from "Images/Svg/calendar.svg";
 
 import Button from "Components/Button";
 import Blogpostcard from "Components/Blogpostcard";
@@ -109,7 +110,7 @@ function App() {
       </div>
       {events && events.length >= 1 ? (
         <>
-          <PageDivider src={kijker} title={"Kalender"} />
+          <PageDivider src={calendar} title={"Kalender"} />
           <div className="c-calendar-grid">
             {events?.map((item, index) => (
               <CalendarEventCard key={`event-${index}`} event={item} />

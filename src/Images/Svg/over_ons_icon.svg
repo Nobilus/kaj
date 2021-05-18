@@ -1,8 +1,9 @@
-<svg id="Over_ons" data-name="Over ons" xmlns="http://www.w3.org/2000/svg" width="92" height="68" viewBox="0 0 92 68">
+<svg id="Over_ons" data-name="Over ons"
+  xmlns="http://www.w3.org/2000/svg" width="92" height="68" viewBox="0 0 92 68">
   <defs>
     <style>
       .cls-1 {
-        fill: #e76f51;
+        fill: #fff;
       }
     </style>
   </defs>

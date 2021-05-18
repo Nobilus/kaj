@@ -67,7 +67,7 @@ function Page({ title, slug, id }: ILocalPage) {
     default:
       return (
         <>
-          <PageDivider src={OnsTeamIcon} alt={""} title={title} />
+          <PageDivider title={title} />
           <div className="c-page">
             {page && page?._embedded["wp:featuredmedia"] && (
               <img

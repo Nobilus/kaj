@@ -139,6 +139,17 @@ code {
 .c-attribution {
   font-size: 0.75rem;
 }
+
+.c-attribution-link {
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+
+.c-footer-row__item a {
+  text-decoration: none;
+  color: var(--global-text-color);
+}
+
 .c-attribution-container {
   width: 100%;
   display: flex;

@@ -4,6 +4,7 @@ import { axiosI } from "Utils/Types/axiosInstance";
 import { IUser } from "Utils/Types/userType";
 
 import OnsTeamIcon from "Images/Png/ons_team_icon.png";
+import PageDivider from "Components/PageDivider";
 
 interface ITeamMember {
   first_name: string;
@@ -56,12 +57,7 @@ export default function OnsTeam() {
 
   return (
     <>
-      <div className="c-homepage-divider">
-        <div className="c-kijker">
-          <img src={OnsTeamIcon} alt="Ons Team" className="c-kijker__icon" />
-        </div>
-        <h4>Ons Team</h4>
-      </div>
+      <PageDivider title={"Ons Team"} />
       <div className="c-usercard__grid">
         {loading === false &&
           users.map((user, index) => {
