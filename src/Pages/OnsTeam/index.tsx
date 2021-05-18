@@ -23,7 +23,7 @@ export default function OnsTeam() {
     const fetchUsers = async () => {
       setLoading(true);
       await axiosI
-        .get<IUser[]>("/wp/v2/users?exclude=4,1&context=edit")
+        .get<IUser[]>("/wp/v2/users?exclude=1,2,3&context=edit")
         .then(({ data }) => {
           const tempUsers: ITeamMember[] = [];
           data.forEach(
