@@ -185,11 +185,6 @@ code {
   margin: 0 -1rem -2rem;
   width: 100%;
   width: calc(100% + 2rem);
-  background-image: linear-gradient(
-      rgba(59, 55, 53, 0.5),
-      rgba(59, 55, 53, 0.5)
-    ),
-    url("Images/Headers/header_desk.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

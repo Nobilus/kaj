@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenuCard from "Components/MenuCard";
+import parse from "html-react-parser";
 
 // Menucard icons
 import shop from "Images/Png/MenuCard/shop_icon_small.png";
@@ -24,8 +25,11 @@ import PageDivider from "Components/PageDivider";
 import { EventElement, Event } from "Utils/Types/events";
 
 import CalendarEventCard from "Components/CalendarEventCard";
+import { IPage } from "Utils/Types/page";
+import { AxiosRequestConfig } from "axios";
 
 function App() {
+  const [page, setPage] = useState<IPage>();
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
   const [events, setEvents] = useState<EventElement[]>();
   const history = useHistory();
@@ -41,6 +45,23 @@ function App() {
           console.log(error);
         });
     };
+    const fetchPage = async () => {
+      const axiosconf: AxiosRequestConfig = {
+        params: {
+          slug: "home",
+          _embed: true,
+        },
+      };
+      axiosI
+        .get<Array<IPage>>(endpoints.pagebyslug, axiosconf)
+        .then(({ data }) => {
+          console.log(data[0]);
+
+          setPage(data[0]);
+        })
+        .catch(() => {});
+    };
+
     const fetchEvents = async () => {
       axiosI
         .get<Event>(endpoints.getevents)
@@ -53,6 +74,7 @@ function App() {
     };
     fetchPosts();
     fetchEvents();
+    fetchPage();
   }, []);
 
   return (
@@ -62,11 +84,16 @@ function App() {
           className="c-header__homepage"
           role="img"
           aria-label="Image Description"
+          //@ts-ignore
+          style={{
+            backgroundImage: `linear-gradient(rgba(59, 55, 53, 0.5),rgba(59, 55, 53, 0.5)),url(${
+              //@ts-ignore
+              page ? page._embedded["wp:featuredmedia"][0].link : ""
+            });`,
+          }}
         >
           <div className="c-header__moto">
-            <h1>ZIEN</h1>
-            <h1>OORDELEN</h1>
-            <h1>HANDELEN</h1>
+            {page && parse(page.content.rendered)}
           </div>
         </section>
       </>
