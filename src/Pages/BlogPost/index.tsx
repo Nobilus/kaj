@@ -29,15 +29,26 @@ function BlogPost({ match }) {
   }, [postid]);
 
   if (data) {
-    console.log(match.path.split("/"));
     return (
       <>
         <div className={"c-blogpost-container"}>
-          <div className="c-blogpost__image-container">
+          <div className={"c-blogpost__image-container"}>
             <img
-              className={"c-blogpost__head"}
-              src={data._embedded["wp:featuredmedia"][0].source_url}
-              alt={data._embedded["wp:featuredmedia"][0].alt_text}
+              className={
+                data.tags.includes(22)
+                  ? "c-blogpost__head"
+                  : "c-blogpost__head-new"
+              }
+              src={
+                data._embedded["wp:featuredmedia"]
+                  ? data._embedded["wp:featuredmedia"][0].source_url
+                  : ""
+              }
+              alt={
+                data._embedded["wp:featuredmedia"]
+                  ? data._embedded["wp:featuredmedia"][0].source_url
+                  : ""
+              }
             />
           </div>
           <div className="c-blogpost__info">

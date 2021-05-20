@@ -47,17 +47,6 @@ function Praktisch({ id, title }: ILocalPage) {
               }
             />
           ))}
-          {pages?.map(({ title, _embedded, slug }) => (
-            <PraktischCard
-              slug={slug}
-              title={title.rendered}
-              image={
-                _embedded["wp:featuredmedia"]
-                  ? _embedded["wp:featuredmedia"][0].source_url
-                  : ""
-              }
-            />
-          ))}
         </div>
       </div>
     </>

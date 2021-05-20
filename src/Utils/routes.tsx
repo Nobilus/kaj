@@ -125,10 +125,6 @@ export function Routes() {
                     </>
                   );
                 case "Praktisch":
-                  console.log("praktisch slug: ", slug);
-                  console.log("praktisch title: ", title);
-                  console.log("praktisch id: ", id);
-
                   return (
                     <>
                       <Route

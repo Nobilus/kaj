@@ -7,7 +7,7 @@ import twitter from "Images/Png/socials/twitter.png";
 
 // sponsors
 import dvv from "Images/Png/sponsors/logo-dvv.png";
-import vlaanderen from "Images/Png/sponsors/vlaanderen-logo.png";
+import vlaanderen from "Images/Png/Vlaanderen_verbeelding_werkt.png";
 
 function Footer() {
   return (
@@ -46,6 +46,12 @@ function Footer() {
             />
           </a>
         </div>
+      </div>
+      <div
+        className="c-footer-row"
+        style={{ justifyContent: "center", marginBottom: 16 }}
+      >
+        <img style={{ height: 48 }} src={vlaanderen} alt="vlaanderen" />
       </div>
       <div className="c-attribution-container">
         <p className="c-attribution">

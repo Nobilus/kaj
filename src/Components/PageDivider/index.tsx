@@ -36,8 +36,6 @@ const icons: { [key: string]: string } = {
 };
 
 const capFirstLetter = (title: string) => {
-  console.log(title.slice(1).toLowerCase());
-
   return title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
 };
 
@@ -47,7 +45,6 @@ function PageDivider({ src, title, alt = title }: IDivider) {
 
   useEffect(() => {
     setParentPath(pathname.split("/")[1]);
-    console.log(parentPath);
   }, [pathname]);
 
   return (

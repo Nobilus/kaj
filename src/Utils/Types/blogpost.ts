@@ -22,6 +22,7 @@ export interface IBlogpost {
   excerpt: {
     rendered: string;
   };
+  tags: Array<number>;
 
   _embedded: {
     author: Array<IAuthor>;

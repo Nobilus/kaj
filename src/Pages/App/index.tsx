@@ -55,8 +55,6 @@ function App() {
       axiosI
         .get<Array<IPage>>(endpoints.pagebyslug, axiosconf)
         .then(({ data }) => {
-          console.log(data[0]);
-
           setPage(data[0]);
         })
         .catch(() => {});
@@ -84,13 +82,6 @@ function App() {
           className="c-header__homepage"
           role="img"
           aria-label="Image Description"
-          //@ts-ignore
-          style={{
-            backgroundImage: `linear-gradient(rgba(59, 55, 53, 0.5),rgba(59, 55, 53, 0.5)),url(${
-              //@ts-ignore
-              page ? page._embedded["wp:featuredmedia"][0].link : ""
-            });`,
-          }}
         >
           <div className="c-header__moto">
             {page && parse(page.content.rendered)}

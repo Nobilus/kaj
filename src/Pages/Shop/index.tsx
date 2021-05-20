@@ -17,6 +17,7 @@ function Shop({ title }: IShop) {
   const [products, setProducts] = useState<Array<IProduct>>([]);
   const [categories, setCategories] = useState<Object>({});
   const [catId, setCatId] = useState<string | null>(null);
+  const [comingsoon, setComingsoon] = useState(false);
 
   useEffect(() => {
     const fetchProducts = () => {
@@ -34,6 +35,7 @@ function Shop({ title }: IShop) {
           }
         })
         .catch((error) => {
+          setComingsoon(true);
           console.log("cant fetch products", error);
         });
     };
@@ -44,19 +46,23 @@ function Shop({ title }: IShop) {
     <>
       <PageDivider title={title} />
 
-      <div className="c-shoppage">
-        <CategoryCard
-          getCategory={(value: string | null) => {
-            setCatId(value);
-          }}
-          items={categories}
-        />
-        <div className="c-productgrid">
-          {products.map((item, index) => {
-            return <ProductCard key={index} product={item} />;
-          })}
+      {products.length > 0 && !comingsoon ? (
+        <div className="c-shoppage">
+          <CategoryCard
+            getCategory={(value: string | null) => {
+              setCatId(value);
+            }}
+            items={categories}
+          />
+          <div className="c-productgrid">
+            {products.map((item, index) => {
+              return <ProductCard key={index} product={item} />;
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <h2 style={{ textAlign: "center" }}>Coming soon!</h2>
+      )}
     </>
   );
 }
