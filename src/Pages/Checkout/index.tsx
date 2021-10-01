@@ -23,9 +23,9 @@ function Checkout() {
   const [token, setToken] = useState<string | null>(null);
 
   // emailjs
-  const userID = "user_E9OXdiZpf3CgW2U9OEAFF";
-  const serviceId = "service_ms5722r";
-  const templateId = "template_f63ogz8";
+  const userID = "user_NDjTrdvKtAcEmBriwlpgB";
+  const serviceId = "service_8u4oixd";
+  const templateId = "template_rpl3wt9";
 
   const templateParams = {
     voornaam: "",
@@ -41,7 +41,6 @@ function Checkout() {
 
   const onChange = (token: string | null) => {
     setToken(token);
-    console.log(token);
   };
 
   const CreateTableFromBasket = () => {
@@ -105,8 +104,6 @@ function Checkout() {
     if (token) {
       Object.keys(templateParams).forEach((key: any) => {
         if (key !== "bestelling") {
-          console.log(key);
-          console.log(e.target[key]);
           //@ts-ignore
           templateParams[key] = e.target.elements[key].value;
         } else {
