@@ -18,6 +18,10 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
 
   const [show, setShow] = useState(false);
 
+  function toggleOpen() {
+    setShow(!show);
+  }
+
   if (width && width >= 992) {
     return (
       <div className="c-categorycard">
@@ -56,7 +60,7 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
     );
   } else {
     return (
-      <div className="c-categorycard">
+      <div className="c-categorycard" onClick={toggleOpen}>
         <div className="c-categorycard__control-row">
           <h4 className="c-categorycard__title">Categorieën</h4>
           {show ? (
@@ -64,15 +68,15 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
               //   className={"c-mobile-nav__icon"}
               color={colors.textColor}
               icon={faCaretUp}
-              onClick={() => setShow(false)}
+              // onClick={() => setShow(false)}
             />
           ) : (
             <FontAwesomeIcon
               color={colors.textColor}
               icon={faCaretDown}
-              onClick={() => {
-                setShow(true);
-              }}
+              // onClick={() => {
+              //   setShow(true);
+              // }}
             />
           )}
         </div>

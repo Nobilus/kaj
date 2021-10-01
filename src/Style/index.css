@@ -191,11 +191,11 @@ code {
   height: 50vh;
   border-radius: 0px 0px 100px 100px;
   color: #3b3735;
-      background-image: linear-gradient(
-        rgba(59, 55, 53, 0.5),
-        rgba(59, 55, 53, 0.5)
-      ),
-      url("http://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png");
+  background-image: linear-gradient(
+      rgba(59, 55, 53, 0.5),
+      rgba(59, 55, 53, 0.5)
+    ),
+    url("http://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png");
 }
 
 .c-nav__list {
@@ -446,7 +446,7 @@ code {
   object-fit: contain;
 }
 
-.c-blogpost__head-new{
+.c-blogpost__head-new {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   width: 100%;
@@ -874,6 +874,7 @@ bdi {
   width: 7rem;
   max-height: 140px;
   object-fit: contain;
+  margin: auto;
 }
 
 .c-productcard > h3 {
@@ -892,6 +893,9 @@ bdi {
   /* margin-right: -9px; */
   background-color: var(--global-background-color-dark);
   margin-bottom: 1rem;
+}
+
+.c-category__open {
 }
 
 .c-categorycard > ul {
@@ -1298,7 +1302,7 @@ section.c-afdeling-section p {
   .c-header__homepage {
     margin: 0 -3rem -2rem;
     width: calc(100% + (3rem * 2));
-      background-image: linear-gradient(
+    background-image: linear-gradient(
         rgba(59, 55, 53, 0.5),
         rgba(59, 55, 53, 0.5)
       ),

@@ -17,13 +17,13 @@ function Shop({ title }: IShop) {
   const [products, setProducts] = useState<Array<IProduct>>([]);
   const [categories, setCategories] = useState<Object>({});
   const [catId, setCatId] = useState<string | null>(null);
-  const [comingsoon, setComingsoon] = useState(false);
 
   useEffect(() => {
     const fetchProducts = () => {
       const axiosConf: AxiosRequestConfig = {
         params: {
           category: catId,
+          per_page: 30,
         },
       };
       axiosI
@@ -35,7 +35,6 @@ function Shop({ title }: IShop) {
           }
         })
         .catch((error) => {
-          setComingsoon(true);
           console.log("cant fetch products", error);
         });
     };
@@ -46,7 +45,7 @@ function Shop({ title }: IShop) {
     <>
       <PageDivider title={title} />
 
-      {products.length > 0 && !comingsoon ? (
+      {products.length > 0 && (
         <div className="c-shoppage">
           <CategoryCard
             getCategory={(value: string | null) => {
@@ -60,8 +59,6 @@ function Shop({ title }: IShop) {
             })}
           </div>
         </div>
-      ) : (
-        <h2 style={{ textAlign: "center" }}>Coming soon!</h2>
       )}
     </>
   );

@@ -10,7 +10,13 @@ interface IProductCard {
 function ProductCard({ product }: IProductCard) {
   return (
     <Link to={`/shop/${product.id}`} className="c-productcard">
-      <img src={product.images[0].src} alt={`${product.slug}-image`} />
+      <img
+        src={
+          product.images[0]?.src ??
+          "http://wordpress.kaj.be/wp-content/uploads/woocommerce-placeholder.png"
+        }
+        alt={`${product.slug}-image`}
+      />
       <h3>{product.name}</h3>
       {parse(product.price_html)}
     </Link>
