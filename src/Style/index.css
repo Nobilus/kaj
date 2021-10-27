@@ -191,11 +191,11 @@ code {
   height: 50vh;
   border-radius: 0px 0px 100px 100px;
   color: #3b3735;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
       rgba(59, 55, 53, 0.5),
       rgba(59, 55, 53, 0.5)
     ),
-    url("http://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png");
+    url("https://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png"); */
 }
 
 .c-nav__list {
@@ -1302,11 +1302,11 @@ section.c-afdeling-section p {
   .c-header__homepage {
     margin: 0 -3rem -2rem;
     width: calc(100% + (3rem * 2));
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
         rgba(59, 55, 53, 0.5),
         rgba(59, 55, 53, 0.5)
       ),
-      url("http://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png");
+      url("https://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png"); */
   }
 
   .c-post__row {
@@ -1342,11 +1342,11 @@ section.c-afdeling-section p {
     grid-template-rows: 1fr;
   }
   .c-header__homepage {
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
         rgba(59, 55, 53, 0.5),
         rgba(59, 55, 53, 0.5)
       ),
-      url("http://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png");
+      url("https://wordpress.kaj.be/wp-content/uploads/2021/05/header_desk.png"); */
   }
 
   .c-page,

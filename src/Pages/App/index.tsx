@@ -32,6 +32,7 @@ function App() {
   const [page, setPage] = useState<IPage>();
   const [blogposts, setBlogposts] = useState<IBlogpost[]>();
   const [events, setEvents] = useState<EventElement[]>();
+  const [bgImage, setBgImage] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -75,6 +76,17 @@ function App() {
     fetchPage();
   }, []);
 
+  useEffect(() => {
+    // @ts-ignore
+    if (page?._embedded["wp:featuredmedia"][0].source_url) {
+      // @ts-ignore
+      setBgImage(
+        `linear-gradient(rgba(59,55,53,.5),rgba(59,55,53,.5)),url(${page._embedded["wp:featuredmedia"][0].source_url})`
+      );
+    }
+    return () => {};
+  }, [page]);
+
   return (
     <>
       <>
@@ -82,6 +94,9 @@ function App() {
           className="c-header__homepage"
           role="img"
           aria-label="Image Description"
+          style={{
+            backgroundImage: bgImage,
+          }}
         >
           <div className="c-header__moto">
             {page && parse(page.content.rendered)}
