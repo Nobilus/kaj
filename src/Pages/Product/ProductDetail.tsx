@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Image, IProduct } from "Utils/Types/product";
+import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
-import shop from "../../Images/Png/shop_icon_white.png";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+import shop from "../../Images/Png/shop_icon_white.png";
+import { Image, IProduct } from "Utils/Types/product";
 import { addItem } from "Actions";
 
 interface IProductDetails {
@@ -68,14 +71,20 @@ function ProductDetail({ product }: IProductDetails) {
     history.push("/winkelwagen");
   };
 
+  useEffect(() => {
+    console.log(product.images);
+  }, [product.images]);
+
   return (
     <div className="c-productdetail-container">
       <div className="c-productdetail-inforow">
-        <img
-          className="c-product__img"
-          src={product.images[0].src}
-          alt={`${product.name} afbeelding`}
-        />
+        <Zoom>
+          <img
+            className="c-product__img"
+            src={product.images[0].src}
+            alt={`${product.name} afbeelding`}
+          />
+        </Zoom>
         <div className="c-product__details">
           <h2 style={{ marginBottom: 8 }}>{product.name}</h2>
           {product.description && (
