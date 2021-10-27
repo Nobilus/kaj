@@ -42,6 +42,7 @@ function BasketButton({ onClick }: IBasketButton) {
 function ProductDetail({ product }: IProductDetails) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [secondaryImages, setSecondaryImages] = useState<Array<string>>([]);
 
   const [amount, setAmount] = useState(1);
   const _increase = (
@@ -72,26 +73,53 @@ function ProductDetail({ product }: IProductDetails) {
   };
 
   useEffect(() => {
-    console.log(product.images);
-  }, [product.images]);
+    if (product.images.length > 0) {
+      const images = product.images;
+      console.log(images.length);
+      console.log(images);
+      images.map((img) => console.log(images));
+      const spliced = images.splice(1, images.length).map((img) => img.src);
+      console.log("spliced:", spliced);
+
+      setSecondaryImages(spliced);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(secondaryImages);
+  }, [secondaryImages]);
 
   return (
     <div className="c-productdetail-container">
       <div className="c-productdetail-inforow">
-        <Zoom>
-          <img
-            className="c-product__img"
-            src={product.images[0].src}
-            alt={`${product.name} afbeelding`}
-          />
-        </Zoom>
+        <div>
+          <div className="c-product__primary-img-row">
+            <Zoom>
+              <img
+                className="c-product__img"
+                src={product.images[0].src}
+                alt={`${product.name} afbeelding`}
+              />
+            </Zoom>
+          </div>
+          <div className="c-product__secundary-img-row">
+            {secondaryImages.map((img, key) => (
+              <Zoom key={key}>
+                <img
+                  className="c-product__img c-product__img-secondary "
+                  src={img}
+                />
+              </Zoom>
+            ))}
+          </div>
+        </div>
         <div className="c-product__details">
           <h2 style={{ marginBottom: 8 }}>{product.name}</h2>
           {product.description && (
             <p className="c-product__desc">{parse(product.description)}</p>
           )}
           <p style={{ marginBottom: 16, marginTop: 16 }}>
-            {parse(product.price_html)}
+            <b>{parse(product.price_html)}</b>
           </p>
 
           <div className="c-productcontrol-column">
