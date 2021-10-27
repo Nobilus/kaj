@@ -716,6 +716,7 @@ p.c-blogpostcard__publishdate {
   margin: 0;
   margin-bottom: 8px;
   font-size: 1rem;
+  text-align: center;
 }
 
 .c-usercard__subtext {
@@ -1528,6 +1529,7 @@ li > input[type="radio"]:checked + label + svg.c-cancel {
 }
 .c-praktisch-card__title {
   color: white;
+  text-align: center;
 }
 
 @media (min-width: 992px) {
