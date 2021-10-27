@@ -43,6 +43,7 @@ function ProductDetail({ product }: IProductDetails) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [secondaryImages, setSecondaryImages] = useState<Array<string>>([]);
+  const [sizes, setSizes] = useState<Array<string>>([]);
 
   const [amount, setAmount] = useState(1);
   const _increase = (
@@ -75,15 +76,22 @@ function ProductDetail({ product }: IProductDetails) {
   useEffect(() => {
     if (product.images.length > 0) {
       const images = product.images;
-      console.log(images.length);
-      console.log(images);
       images.map((img) => console.log(images));
       const spliced = images.splice(1, images.length).map((img) => img.src);
-      console.log("spliced:", spliced);
-
       setSecondaryImages(spliced);
     }
   }, []);
+
+  useEffect(() => {
+    console.log({ product });
+    if (
+      product.attributes.length > 0 &&
+      product.attributes[0].name === "size" &&
+      product.attributes[0].options
+    ) {
+      setSizes(product.attributes[0].options);
+    }
+  }, [product]);
 
   useEffect(() => {
     console.log(secondaryImages);
@@ -123,6 +131,19 @@ function ProductDetail({ product }: IProductDetails) {
           </p>
 
           <div className="c-productcontrol-column">
+            {sizes.length > 0 && (
+              <div className="c-productcontrols">
+                <select className="c-input" name="size" id="size">
+                  <option value="">{"-- maat"}</option>
+                  {sizes.map((size, key) => (
+                    <option key={key} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <div className="c-productcontrols">
               <Button onClick={_decrease} type={"-"} />
               <input
@@ -138,6 +159,7 @@ function ProductDetail({ product }: IProductDetails) {
               />
               <Button onClick={_increase} type={"+"} />
             </div>
+
             <BasketButton onClick={_order} />
           </div>
         </div>

@@ -996,6 +996,7 @@ ul > li > .c-nav__link {
   justify-content: space-between;
   max-width: 100%;
   width: 100%;
+  flex-wrap: wrap;
 }
 /* .c-product__img-grid {
   display: grid;
@@ -1092,6 +1093,16 @@ ul > li > .c-nav__link {
 
 .c-eventcard__datecontainer {
   text-align: center;
+}
+
+.c-input {
+  border: 1px solid var(--global-dark);
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  outline: none;
+  padding: 0 0.5rem;
+  background-color: #fff;
 }
 
 .c-eventcard__day,
@@ -1398,12 +1409,6 @@ section.c-afdeling-section p {
     max-width: 75%;
     margin: auto;
     margin-top: 2rem;
-  }
-
-  .c-productdetail-container {
-    max-width: 50%;
-    /* margin: auto; */
-    margin: 2rem auto;
   }
 
   .c-page > img {
@@ -1720,6 +1725,11 @@ li > input[type="radio"]:checked + label + svg.c-cancel {
     height: calc(90vh - (176px + 96px + 16px));
     max-height: calc(90vh - (176px + 96px));
     margin-bottom: 0;
+  }
+  .c-productdetail-container {
+    max-width: 50%;
+    /* margin: auto; */
+    margin: 2rem auto;
   }
 }
 @media (min-width: 1200px) {
