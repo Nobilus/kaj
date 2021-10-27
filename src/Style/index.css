@@ -966,7 +966,6 @@ ul > li > .c-nav__link {
 }
 
 .c-product__details {
-  max-width: 50%;
   display: flex;
   /* align-items: center; */
   justify-content: center;
@@ -976,6 +975,7 @@ ul > li > .c-nav__link {
 .c-product__img {
   /* max-width: 50%;
   margin: auto; */
+  align-content: center;
 }
 
 .c-product__desc {
@@ -1181,6 +1181,7 @@ ul > li > .c-nav__link {
   display: flex;
   width: 100%;
   flex-direction: column;
+  align-items: center;
 }
 
 .c-form {
@@ -1425,6 +1426,10 @@ section.c-afdeling-section p {
 
   .c-page > div:nth-child(even) {
     align-self: flex-end;
+  }
+
+  .c-product__details {
+    max-width: 50%;
   }
 }
 
