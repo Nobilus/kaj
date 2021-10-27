@@ -76,9 +76,14 @@ function ProductDetail({ product }: IProductDetails) {
           src={product.images[0].src}
           alt={`${product.name} afbeelding`}
         />
-        <div>
-          <h2>{product.name}</h2>
-          <p style={{ marginBottom: 16 }}>{parse(product.price_html)}</p>
+        <div className="c-product__details">
+          <h2 style={{ marginBottom: 8 }}>{product.name}</h2>
+          {product.description && (
+            <p className="c-product__desc">{parse(product.description)}</p>
+          )}
+          <p style={{ marginBottom: 16, marginTop: 16 }}>
+            {parse(product.price_html)}
+          </p>
 
           <div className="c-productcontrol-column">
             <div className="c-productcontrols">
@@ -100,14 +105,7 @@ function ProductDetail({ product }: IProductDetails) {
           </div>
         </div>
       </div>
-      <div className="c-productdetail__desc">
-        {product.short_description && (
-          <b>
-            <p>Beschrijving</p>
-          </b>
-        )}
-        {product.short_description && parse(product.short_description)}
-      </div>
+      <div className="c-productdetail__desc"></div>
     </div>
   );
 }

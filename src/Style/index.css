@@ -965,6 +965,23 @@ ul > li > .c-nav__link {
   margin: 0 0.5rem;
 }
 
+.c-product__details {
+  max-width: 50%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.c-product__img {
+  max-width: 50%;
+  margin: auto;
+}
+
+.c-product__desc {
+  /* max-width: 50%; */
+}
+
 .c-product__button:active {
   opacity: 0.7;
 }
