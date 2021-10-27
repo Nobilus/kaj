@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import "Style/index.css";
-import "Style/index.css";
+import "./Style/index.css";
 import reportWebVitals from "./reportWebVitals";
-import { Routes } from "Utils/routes";
+import { Routes } from "./Utils/routes";
 import { BrowserRouter as Router } from "react-router-dom";
-import ScrollToTop from "Components/ScrollToTop";
+import ScrollToTop from "./Components/ScrollToTop";
 import { compose, createStore } from "redux";
 import { Provider } from "react-redux";
-import allReducers from "Reducers";
-import { loadState, saveState } from "Utils/fp/state";
+import allReducers from "./Reducers";
+import { loadState, saveState } from "./Utils/fp/state";
 
 declare global {
   interface Window {

@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import { IPage } from "Utils/Types/page";
 import PageDivider from "Components/PageDivider";
 
-import OnsTeamIcon from "Images/Png/ons_team_icon.png";
+import OnsTeamIcon from "../../Images/Png/ons_team_icon.png";
 import Winkelwagen from "Pages/Winkelwagen";
 import Checkout from "Pages/Checkout";
 import Shop from "Pages/Shop";

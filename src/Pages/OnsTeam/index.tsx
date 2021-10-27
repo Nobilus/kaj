@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { axiosI } from "Utils/Types/axiosInstance";
 import { IUser } from "Utils/Types/userType";
 
-import OnsTeamIcon from "Images/Png/ons_team_icon.png";
+import OnsTeamIcon from "../../Images/Png/ons_team_icon.png";
 import PageDivider from "Components/PageDivider";
 
 interface ITeamMember {

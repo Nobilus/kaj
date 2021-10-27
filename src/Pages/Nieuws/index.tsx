@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // In de kijker icon
-import kijker from "Images/Png/in_de_kijker_icon.png";
+import kijker from "../../Images/Png/in_de_kijker_icon.png";
 import Blogpostcard from "Components/Blogpostcard";
 import { IBlogpost } from "Utils/Types/blogpost";
 import { axiosI } from "Utils/Types/axiosInstance";
