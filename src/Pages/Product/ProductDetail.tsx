@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Image, IProduct } from "Utils/Types/product";
+import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
-import shop from "../../Images/Png/shop_icon_white.png";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+import shop from "../../Images/Png/shop_icon_white.png";
+import { Image, IProduct } from "Utils/Types/product";
 import { addItem } from "Actions";
 
 interface IProductDetails {
@@ -39,6 +42,8 @@ function BasketButton({ onClick }: IBasketButton) {
 function ProductDetail({ product }: IProductDetails) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [secondaryImages, setSecondaryImages] = useState<Array<string>>([]);
+  const [sizes, setSizes] = useState<Array<string>>([]);
 
   const [amount, setAmount] = useState(1);
   const _increase = (
@@ -68,19 +73,77 @@ function ProductDetail({ product }: IProductDetails) {
     history.push("/winkelwagen");
   };
 
+  useEffect(() => {
+    if (product.images.length > 0) {
+      const images = product.images;
+      images.map((img) => console.log(images));
+      const spliced = images.splice(1, images.length).map((img) => img.src);
+      setSecondaryImages(spliced);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log({ product });
+    if (
+      product.attributes.length > 0 &&
+      product.attributes[0].name === "size" &&
+      product.attributes[0].options
+    ) {
+      setSizes(product.attributes[0].options);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    console.log(secondaryImages);
+  }, [secondaryImages]);
+
   return (
     <div className="c-productdetail-container">
       <div className="c-productdetail-inforow">
-        <img
-          className="c-product__img"
-          src={product.images[0].src}
-          alt={`${product.name} afbeelding`}
-        />
         <div>
-          <h2>{product.name}</h2>
-          <p style={{ marginBottom: 16 }}>{parse(product.price_html)}</p>
+          <div className="c-product__primary-img-row">
+            <Zoom>
+              <img
+                className="c-product__img"
+                src={product.images[0].src}
+                alt={`${product.name} afbeelding`}
+              />
+            </Zoom>
+          </div>
+          <div className="c-product__secundary-img-row">
+            {secondaryImages.map((img, key) => (
+              <Zoom key={key}>
+                <img
+                  className="c-product__img c-product__img-secondary "
+                  src={img}
+                />
+              </Zoom>
+            ))}
+          </div>
+        </div>
+        <div className="c-product__details">
+          <h2 style={{ marginBottom: 8 }}>{product.name}</h2>
+          {product.description && (
+            <p className="c-product__desc">{parse(product.description)}</p>
+          )}
+          <p style={{ marginBottom: 16, marginTop: 16 }}>
+            <b>{parse(product.price_html)}</b>
+          </p>
 
           <div className="c-productcontrol-column">
+            {sizes.length > 0 && (
+              <div className="c-productcontrols">
+                <select className="c-input" name="size" id="size">
+                  <option value="">{"-- maat"}</option>
+                  {sizes.map((size, key) => (
+                    <option key={key} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <div className="c-productcontrols">
               <Button onClick={_decrease} type={"-"} />
               <input
@@ -96,18 +159,12 @@ function ProductDetail({ product }: IProductDetails) {
               />
               <Button onClick={_increase} type={"+"} />
             </div>
+
             <BasketButton onClick={_order} />
           </div>
         </div>
       </div>
-      <div className="c-productdetail__desc">
-        {product.short_description && (
-          <b>
-            <p>Beschrijving</p>
-          </b>
-        )}
-        {product.short_description && parse(product.short_description)}
-      </div>
+      <div className="c-productdetail__desc"></div>
     </div>
   );
 }
