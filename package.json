@@ -31,6 +31,7 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "typescript": "^4.0.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -64,6 +65,7 @@
     "@types/react-pdf": "^5.0.7",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
+    "@types/uuid": "^8.3.1",
     "file-loader": "^6.1.1"
   }
 }

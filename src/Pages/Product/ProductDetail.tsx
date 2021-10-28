@@ -44,8 +44,12 @@ function ProductDetail({ product }: IProductDetails) {
   const dispatch = useDispatch();
   const [secondaryImages, setSecondaryImages] = useState<Array<string>>([]);
   const [sizes, setSizes] = useState<Array<string>>([]);
+  const [types, setTypes] = useState<Array<string>>([]);
 
   const [amount, setAmount] = useState(1);
+  const [size, setSize] = useState<string>();
+  const [type, setType] = useState<string>();
+
   const _increase = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -66,9 +70,32 @@ function ProductDetail({ product }: IProductDetails) {
     }
   };
 
+  const _setsize = (event: any) => {
+    if (event.target.value) {
+      setSize(event.target.value);
+    } else {
+      setSize(undefined);
+    }
+  };
+
+  const _settype = (event: any) => {
+    if (event.target.value) {
+      setType(event.target.value);
+    } else {
+      setType(undefined);
+    }
+  };
+
   const _order = () => {
     dispatch(
-      addItem(product.name, amount, product.price, product.images[0].src)
+      addItem(
+        product.name,
+        amount,
+        product.price,
+        product.images[0].src,
+        size,
+        type
+      )
     );
     history.push("/winkelwagen");
   };
@@ -84,12 +111,20 @@ function ProductDetail({ product }: IProductDetails) {
 
   useEffect(() => {
     console.log({ product });
-    if (
-      product.attributes.length > 0 &&
-      product.attributes[0].name === "size" &&
-      product.attributes[0].options
-    ) {
-      setSizes(product.attributes[0].options);
+    if (product.attributes.length > 0) {
+      if (
+        product.attributes[0].name === "size" &&
+        product.attributes[0].options
+      ) {
+        setSizes(product.attributes[0].options);
+      }
+      if (
+        product.attributes.length > 1 &&
+        product.attributes[1].name === "type" &&
+        product.attributes[1].options
+      ) {
+        setTypes(product.attributes[1].options);
+      }
     }
   }, [product]);
 
@@ -133,9 +168,31 @@ function ProductDetail({ product }: IProductDetails) {
           <div className="c-productcontrol-column">
             {sizes.length > 0 && (
               <div className="c-productcontrols">
-                <select className="c-input" name="size" id="size">
+                <select
+                  className="c-input"
+                  name="size"
+                  id="size"
+                  onChange={_setsize}
+                >
                   <option value="">{"-- maat"}</option>
                   {sizes.map((size, key) => (
+                    <option key={key} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            {types.length > 0 && (
+              <div className="c-productcontrols">
+                <select
+                  className="c-input"
+                  name="size"
+                  id="size"
+                  onChange={_settype}
+                >
+                  <option value="">{"-- type"}</option>
+                  {types.map((size, key) => (
                     <option key={key} value={size}>
                       {size}
                     </option>

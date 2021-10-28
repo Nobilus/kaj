@@ -1274,6 +1274,7 @@ textarea {
   align-self: flex-start;
   width: 10rem;
   height: 3rem;
+  cursor: pointer;
   /* max-width: 25%; */
 }
 

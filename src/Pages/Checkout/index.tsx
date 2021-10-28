@@ -37,6 +37,7 @@ function Checkout() {
     stad: "",
     opmerkingen: "geen",
     bestelling: "",
+    afhaaling: false,
   };
 
   const onChange = (token: string | null) => {
@@ -62,6 +63,8 @@ function Checkout() {
             <th style={{ ...border }}>Artikel</th>
             <th style={{ ...border }}>Aantal</th>
             <th style={{ ...border }}>Eenheidsprijs</th>
+            <th style={{ ...border }}>Type</th>
+            <th style={{ ...border }}>Maat</th>
           </tr>
         </thead>
         <tbody>
@@ -69,13 +72,19 @@ function Checkout() {
             total += basket[key].amount * basket[key].price;
             return (
               <tr key={index}>
-                <td style={border}>{key}</td>
+                <td style={border}>{basket[key].name}</td>
                 <td style={border}>{basket[key].amount}</td>
                 <td style={border}>
                   €
                   {Number(basket[key].price).toLocaleString("be-NL", {
                     minimumFractionDigits: 2,
                   })}
+                </td>
+                <td style={border}>
+                  {basket[key].size ? basket[key].size : "/"}
+                </td>
+                <td style={border}>
+                  {basket[key].size ? basket[key].size : "/"}
                 </td>
               </tr>
             );
@@ -193,8 +202,20 @@ function Checkout() {
             id="opmerkingen"
             cols={30}
             rows={10}
-            placeholder="bv. maten van t-shirts"
+            placeholder="bv. Opschrift"
           />
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="afhaaling"
+              id="afhaaling"
+              onChange={() =>
+                (templateParams.afhaaling = !templateParams.afhaaling)
+              }
+            />{" "}
+            <label htmlFor="afhaaling">Afhalen?</label>
+          </div>
           <br />
           <ReCAPTCHA sitekey={siteKey} onChange={onChange} />
           <br />
