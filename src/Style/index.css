@@ -148,6 +148,10 @@ code {
     monospace;
 }
 
+.c-address > address {
+  display: block;
+}
+
 .c-attribution {
   font-size: 0.75rem;
 }
