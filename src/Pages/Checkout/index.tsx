@@ -84,7 +84,7 @@ function Checkout() {
                   {basket[key].size ? basket[key].size : "/"}
                 </td>
                 <td style={border}>
-                  {basket[key].size ? basket[key].size : "/"}
+                  {basket[key].size ? basket[key].type : "/"}
                 </td>
               </tr>
             );
