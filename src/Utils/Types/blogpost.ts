@@ -27,6 +27,6 @@ export interface IBlogpost {
   _embedded: {
     author: Array<IAuthor>;
     "wp:term": Array<ITerm>;
-    "wp:featuredmedia": Array<IFeaturedMedia>;
+    "wp:featuredmedia"?: Array<IFeaturedMedia>;
   };
 }

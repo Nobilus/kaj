@@ -519,6 +519,12 @@ p.c-blogpost__author {
   font-size: 1rem;
   font-family: atten-medium;
   margin-bottom: 1.5rem;
+  max-width: 100%;
+  white-space: pre-wrap; /* CSS3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 .c-blogpost__body > blockquote {
@@ -578,6 +584,14 @@ p.c-blogpostcard__publishdate,
 div.c-blogpostcard__excerpt {
   display: none;
   font-family: atten-regular;
+}
+
+div.c-blogpostcard__excerpt {
+  white-space: pre-wrap; /* CSS3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 p.c-blogpostcard__author,

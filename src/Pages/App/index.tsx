@@ -120,12 +120,18 @@ function App() {
       <PageDivider src={kijker} title={"In de kijker"} />
       <div className="c-kijker-posts">
         {blogposts?.map((post, index) => {
+          const image =
+            post._embedded["wp:featuredmedia"] &&
+            post._embedded["wp:featuredmedia"][0]
+              ? post._embedded["wp:featuredmedia"][0].source_url
+              : undefined;
           return (
             <Blogpostcard
               id={post.id}
               key={index}
               slug={post.slug}
-              img={post._embedded["wp:featuredmedia"][0].source_url}
+              // img={post._embedded["wp:featuredmedia"]?[0].source_url}
+              img={image}
               title={post.title.rendered}
               author={post._embedded.author[0].name}
               published={post.date}
