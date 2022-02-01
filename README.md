@@ -47,4 +47,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 <!--START_SECTION:components-->
 # Components
+## Menu_card_row
+<p>
+	<img src="showcase/screenshots/Menu_card_row.png"/>
+</p>
+
 <!--END_SECTION:components-->
