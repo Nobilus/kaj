@@ -1,0 +1,13 @@
+name: Project video
+on:
+  push:
+    branches:
+      - master
+jobs:
+  create-video:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: Research Project Action
+        uses: Jonas-D-M/Research-Project@0aaa6e9b5ac46e5fe872f013e5edfc34a532fc2a
