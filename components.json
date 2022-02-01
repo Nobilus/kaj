@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Menu_card_row",
+    "page": "home",
+    "selector": "c-menu-card__row"
+  }
+]
