@@ -32,12 +32,21 @@ function Blogpostcard({
         </p>
       </div>
       <div className="c-blogpostcard__row">
-        <div className="c-blogpostcard__c1">
+        <div
+          className="c-blogpostcard__c1"
+          style={!img ? { width: "100%" } : {}}
+        >
           <div className="c-blogpostcard__excerpt">{parse(excerpt)}</div>
         </div>
-        <div className="c-blogpostcard__c2">
-          <img className="c-blogpostcard__img" src={img} alt={title + "-img"} />
-        </div>
+        {img && (
+          <div className="c-blogpostcard__c2">
+            <img
+              className="c-blogpostcard__img"
+              src={img}
+              alt={title + "-img"}
+            />
+          </div>
+        )}
       </div>
       <Link className="c-readmore" to={`/nieuws/${id}`}>
         Lees meer

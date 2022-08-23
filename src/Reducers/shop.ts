@@ -1,13 +1,19 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const shopReducer = (state = {}, action: any) => {
   switch (action.type) {
     case "ADD_ITEM":
-      const key = action.payload.name;
+      const key = uuidv4();
+      const name = action.payload.name;
       const price = action.payload.price;
       const amount = action.payload.amount;
       const img = action.payload.img;
+      const size = action.payload?.size;
+      const type = action.payload?.type;
+
       return {
         ...state,
-        [key]: { price, img, amount },
+        [key]: { name, price, img, amount, size, type },
       };
 
     case "REMOVE_ITEM":

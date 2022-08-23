@@ -2,11 +2,15 @@ export const addItem = (
   name: string,
   amount: number,
   price: string,
-  img: string
+  img: string,
+  size?: string,
+  type?: string,
 ) => {
+  console.log("adding item in action: ");
+
   return {
     type: "ADD_ITEM",
-    payload: { name, amount, price, img },
+    payload: { name, amount, price, img, size, type },
   };
 };
 

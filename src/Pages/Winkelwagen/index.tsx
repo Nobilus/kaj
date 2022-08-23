@@ -9,20 +9,42 @@ import { deleteItem } from "Actions";
 
 interface IProductRow {
   img: string;
+  id: string;
   title: string;
   size?: string;
   amount: number;
   price: number;
+  type?: string;
 }
 
-const ProductRow = ({ img, title, amount, price }: IProductRow) => {
+const ProductRow = ({
+  img,
+  title,
+  amount,
+  price,
+  size,
+  type,
+  id,
+}: IProductRow) => {
   const dispatch = useDispatch();
+  const [productTitle, setProductTitle] = useState(title);
+  useEffect(() => {
+    if (size || type) {
+      if (size && type) {
+        setProductTitle(`${title} (${type} ${size})`);
+      } else if (size) {
+        setProductTitle(`${title} (${size})`);
+      } else if (type) {
+        setProductTitle(`${title} (${type})`);
+      }
+    }
+  }, []);
 
   return (
     <>
       <div className="c-basket">
         <div className="c-basket-desc">
-          <p className="c-basket-title">{title}</p>
+          <p className="c-basket-title">{`${productTitle}`}</p>
         </div>
 
         <p className="c-basket-price">{amount}x</p>
@@ -36,7 +58,7 @@ const ProductRow = ({ img, title, amount, price }: IProductRow) => {
           className="c-basket-cancel"
           icon={faTimes}
           onClick={() => {
-            dispatch(deleteItem(title));
+            dispatch(deleteItem(id));
           }}
         />
       </div>
@@ -48,7 +70,7 @@ function Winkelwagen() {
   const history = useHistory();
   const basket = useSelector((state: any) => state.shop);
   const [totalPrice, setTotalPrice] = useState(0);
-  const shippingCosts = 7;
+  const shippingCosts = 0;
 
   useEffect(() => {
     const computeTotalPrice = () => {
@@ -89,37 +111,40 @@ function Winkelwagen() {
         {basket &&
           Object.keys(basket).map((key: any, index: any) => (
             <ProductRow
+              id={key}
               img={basket[key].img}
-              title={key}
+              title={basket[key].name}
               amount={basket[key].amount}
               price={basket[key].price}
+              size={basket[key].size}
+              type={basket[key].type}
             />
           ))}
         <hr className="c-divider" />
         <div>
           <div className="c-winkel-row align-end">
             <div className="c-winkel-items">
-              <p>Totaal artikelen</p>
+              {/* <p>Totaal artikelen</p>
               <p>Verzendkosten</p>
-              <br />
+              <br /> */}
               <b>
                 <p>Totaal</p>
               </b>
             </div>
             <div className="c-winkel-items">
-              <p>
+              {/* <p>
                 €
                 {totalPrice.toLocaleString("be-NL", {
                   minimumFractionDigits: 2,
                 })}
-              </p>
-              <p>
+              </p> */}
+              {/* <p>
                 €
                 {shippingCosts.toLocaleString("be-NL", {
                   minimumFractionDigits: 2,
                 })}
               </p>
-              <br />
+              <br /> */}
               <b>
                 <p>
                   €
