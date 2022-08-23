@@ -134,11 +134,11 @@ function Checkout() {
           <br className="br-tag" />
           <input className="c-form__input" type="email" name="email" id="email" placeholder="E-mail" />
           <br className="br-tag" />
-          <input className="c-form__input c-form__input--margin" type="text" name="straatnaam" id="straatnaam" placeholder="Straatnaam" />
-          <input className="c-form__input c-form__input--margin" type="number" name="huisnummer" id="huisnummer" placeholder="Nr." />
+          <input className="c-form__input" type="text" name="straatnaam" id="straatnaam" placeholder="Straatnaam" />
+          <input className="c-form__input" type="number" name="huisnummer" id="huisnummer" placeholder="Nr." />
 
-          <input className="c-form__input c-form__input--margin" type="text" name="stad" id="stad" placeholder="Stad" />
-          <input className="c-form__input c-form__input--margin" type="number" name="postcode" id="postcode" placeholder="Postcode" />
+          <input className="c-form__input" type="text" name="stad" id="stad" placeholder="Stad" />
+          <input className="c-form__input" type="number" name="postcode" id="postcode" placeholder="Postcode" />
           <br className="br-tag" />
 
           <textarea className="c-form__input" name="opmerkingen" id="opmerkingen" cols={30} rows={10} placeholder="bv. Opschrift" />
