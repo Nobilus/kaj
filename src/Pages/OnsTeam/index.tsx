@@ -1,10 +1,10 @@
-import Usercard from "Components/Usercard";
-import React, { useEffect, useState } from "react";
-import { axiosI } from "Utils/Types/axiosInstance";
-import { IUser } from "Utils/Types/userType";
+import Usercard from 'Components/Usercard';
+import React, { useEffect, useState } from 'react';
+import { axiosI } from 'Utils/Types/axiosInstance';
+import { IUser } from 'Utils/Types/userType';
 
-import OnsTeamIcon from "Images/Png/ons_team_icon.png";
-import PageDivider from "Components/PageDivider";
+import OnsTeamIcon from 'Images/Png/ons_team_icon.png';
+import PageDivider from 'Components/PageDivider';
 
 interface ITeamMember {
   first_name: string;
@@ -23,7 +23,7 @@ export default function OnsTeam() {
     const fetchUsers = async () => {
       setLoading(true);
       await axiosI
-        .get<IUser[]>("/wp/v2/users?exclude=1,2,3&context=edit")
+        .get<IUser[]>('/wp/v2/users?exclude=1,2,3&context=edit&per_page=50')
         .then(({ data }) => {
           const tempUsers: ITeamMember[] = [];
           data.forEach(
@@ -57,8 +57,8 @@ export default function OnsTeam() {
 
   return (
     <>
-      <PageDivider title={"Ons Team"} />
-      <div className="c-usercard__grid">
+      <PageDivider title={'Ons Team'} />
+      <div className='c-usercard__grid'>
         {loading === false &&
           users.map((user, index) => {
             return (
