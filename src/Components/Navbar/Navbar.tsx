@@ -1,12 +1,12 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { MenuI } from "Utils/Types/menuItems";
-import Logo from "Images/Png/logo.png";
-import { useLocation } from "react-router-dom";
-import useWindowSize from "Utils/Hooks/useWindowSize";
-import Burger from "Components/HamburgerMenu";
-import DropdownButton from "Components/DropdownButton";
-import parse from "html-react-parser";
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { MenuI } from 'Utils/Types/menuItems';
+import Logo from 'Images/Png/logo.png';
+import { useLocation } from 'react-router-dom';
+import useWindowSize from 'Utils/Hooks/useWindowSize';
+import Burger from 'Components/HamburgerMenu';
+import DropdownButton from 'Components/DropdownButton';
+import parse from 'html-react-parser';
 
 interface INavbar {
   items?: MenuI;
@@ -14,35 +14,36 @@ interface INavbar {
 
 export default function Navbar({ items }: INavbar) {
   const location = useLocation();
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
 
   if (width && width >= 992) {
-    if (location.pathname === "/home") {
+    if (location.pathname === '/home') {
       return (
-        <nav className="c-app__nav" style={{ position: "absolute" }}>
-          <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
-          <ul className="c-nav__list">
+        <nav className='c-app__nav' style={{ position: 'absolute' }}>
+          <img className='c-nav__logo' src={Logo} alt='KAJ Logo' />
+          <ul className='c-nav__list'>
             {items?.items.map(({ object_slug, title, id, children }) => {
-              if (children && title !== "Praktisch") {
+              if (children && title !== 'Praktisch') {
                 return (
                   <DropdownButton
+                    key={id}
                     slug={object_slug}
                     title={title}
                     items={children}
-                    color={"white"}
-                    backgroundColor={"none"}
+                    color={'white'}
+                    backgroundColor={'none'}
                   />
                 );
               }
               return (
                 // <li className="c-nav__item" key={id}>
                 <NavLink
-                  activeClassName="active"
-                  style={{ color: "white", opacity: 0.5 }}
+                  key={id}
+                  activeClassName='active'
+                  style={{ color: 'white', opacity: 0.5 }}
                   activeStyle={{ opacity: 1 }}
-                  className="c-nav__item"
-                  to={`/${object_slug}`}
-                >
+                  className='c-nav__item'
+                  to={`/${object_slug}`}>
                   {parse(title)}
                 </NavLink>
                 // </li>
@@ -53,15 +54,16 @@ export default function Navbar({ items }: INavbar) {
       );
     } else {
       return (
-        <nav className="c-app__nav backgroundcolor">
-          <Link to="/home">
-            <img className="c-nav__logo" src={Logo} alt="KAJ Logo" />
+        <nav className='c-app__nav backgroundcolor'>
+          <Link to='/home'>
+            <img className='c-nav__logo' src={Logo} alt='KAJ Logo' />
           </Link>
-          <ul className="c-nav__list">
+          <ul className='c-nav__list'>
             {items?.items.map(({ object_slug, title, id, children }) => {
-              if (children && title !== "Praktisch") {
+              if (children && title !== 'Praktisch') {
                 return (
                   <DropdownButton
+                    key={id}
                     slug={object_slug}
                     title={title}
                     items={children}
@@ -71,10 +73,10 @@ export default function Navbar({ items }: INavbar) {
               return (
                 // <li className="c-nav__item" key={id}>
                 <NavLink
-                  activeClassName="active"
-                  className="c-nav__item"
-                  to={`/${object_slug}`}
-                >
+                  key={id}
+                  activeClassName='active'
+                  className='c-nav__item'
+                  to={`/${object_slug}`}>
                   {parse(title)}
                 </NavLink>
                 // </li>
