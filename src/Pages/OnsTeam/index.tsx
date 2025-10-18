@@ -1,10 +1,10 @@
-import Usercard from "Components/Usercard";
-import React, { useEffect, useState } from "react";
-import { axiosI } from "Utils/Types/axiosInstance";
-import { IUser } from "Utils/Types/userType";
+import Usercard from 'Components/Usercard';
+import React, { useEffect, useState } from 'react';
+import { axiosI } from 'Utils/Types/axiosInstance';
+import { IUser } from 'Utils/Types/userType';
 
-import OnsTeamIcon from "Images/Png/ons_team_icon.png";
-import PageDivider from "Components/PageDivider";
+import OnsTeamIcon from 'Images/Png/ons_team_icon.png';
+import PageDivider from 'Components/PageDivider';
 
 interface ITeamMember {
   first_name: string;
@@ -23,25 +23,25 @@ export default function OnsTeam() {
     const fetchUsers = async () => {
       setLoading(true);
       await axiosI
-        .get<IUser[]>("/wp/v2/users?exclude=1,2,3&context=edit")
+        .get<IUser[]>('/wp/v2/users?exclude=1,2,3')
         .then(({ data }) => {
-          const tempUsers: ITeamMember[] = [];
-          data.forEach(
+          console.log({ data });
+          const tempUsers = data.map(
             ({
               first_name,
               last_name,
               email,
               acf: { functie, telefoonnummer },
-              simple_local_avatar: { full },
+              simple_local_avatar,
             }) => {
-              tempUsers.push({
+              return {
                 first_name,
                 last_name,
                 email,
                 functie,
                 telefoonnummer,
-                full,
-              });
+                full: simple_local_avatar?.full || '',
+              };
             }
           );
           setUsers(tempUsers);
@@ -57,8 +57,8 @@ export default function OnsTeam() {
 
   return (
     <>
-      <PageDivider title={"Ons Team"} />
-      <div className="c-usercard__grid">
+      <PageDivider title={'Ons Team'} />
+      <div className='c-usercard__grid'>
         {loading === false &&
           users.map((user, index) => {
             return (
