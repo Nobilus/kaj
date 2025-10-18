@@ -1,11 +1,11 @@
-import Button from "Components/Button";
-import PageDivider from "Components/PageDivider";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { deleteItem } from "Actions";
+// Button import removed (unused)
+import PageDivider from 'Components/PageDivider';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { deleteItem } from 'Actions';
 
 interface IProductRow {
   img: string;
@@ -38,24 +38,24 @@ const ProductRow = ({
         setProductTitle(`${title} (${type})`);
       }
     }
-  }, []);
+  }, [size, type, title]);
 
   return (
     <>
-      <div className="c-basket">
-        <div className="c-basket-desc">
-          <p className="c-basket-title">{`${productTitle}`}</p>
+      <div className='c-basket'>
+        <div className='c-basket-desc'>
+          <p className='c-basket-title'>{`${productTitle}`}</p>
         </div>
 
-        <p className="c-basket-price">{amount}x</p>
-        <p className="c-basket-price">
+        <p className='c-basket-price'>{amount}x</p>
+        <p className='c-basket-price'>
           €
-          {Number(price).toLocaleString("be-NL", {
+          {Number(price).toLocaleString('be-NL', {
             minimumFractionDigits: 2,
           })}
         </p>
         <FontAwesomeIcon
-          className="c-basket-cancel"
+          className='c-basket-cancel'
           icon={faTimes}
           onClick={() => {
             dispatch(deleteItem(id));
@@ -84,33 +84,32 @@ function Winkelwagen() {
     if (Object.keys(basket).length >= 1) {
       computeTotalPrice();
     } else {
-      history.push("/shop");
+      history.push('/shop');
     }
-  }, [basket]);
+  }, [basket, history]);
 
   return (
     <>
-      <PageDivider title={"Winkelwagen"} />
-      <div className="c-page">
-        <div className="c-winkel-row">
+      <PageDivider title={'Winkelwagen'} />
+      <div className='c-page'>
+        <div className='c-winkel-row'>
           <button
-            className="o-button-reset c-button-continue-shopping"
-            onClick={() => history.push("/shop")}
-          >
+            className='o-button-reset c-button-continue-shopping'
+            onClick={() => history.push('/shop')}>
             Verder winkelen
           </button>
           <button
-            className="o-button-reset c-button-to-checkout"
-            onClick={() => history.push("/afrekenen")}
-          >
+            className='o-button-reset c-button-to-checkout'
+            onClick={() => history.push('/afrekenen')}>
             Afrekenen
           </button>
         </div>
-        <hr className="c-divider" />
+        <hr className='c-divider' />
 
         {basket &&
           Object.keys(basket).map((key: any, index: any) => (
             <ProductRow
+              key={key}
               id={key}
               img={basket[key].img}
               title={basket[key].name}
@@ -120,10 +119,10 @@ function Winkelwagen() {
               type={basket[key].type}
             />
           ))}
-        <hr className="c-divider" />
+        <hr className='c-divider' />
         <div>
-          <div className="c-winkel-row align-end">
-            <div className="c-winkel-items">
+          <div className='c-winkel-row align-end'>
+            <div className='c-winkel-items'>
               {/* <p>Totaal artikelen</p>
               <p>Verzendkosten</p>
               <br /> */}
@@ -131,7 +130,7 @@ function Winkelwagen() {
                 <p>Totaal</p>
               </b>
             </div>
-            <div className="c-winkel-items">
+            <div className='c-winkel-items'>
               {/* <p>
                 €
                 {totalPrice.toLocaleString("be-NL", {
@@ -148,7 +147,7 @@ function Winkelwagen() {
               <b>
                 <p>
                   €
-                  {(totalPrice + shippingCosts).toLocaleString("be-NL", {
+                  {(totalPrice + shippingCosts).toLocaleString('be-NL', {
                     minimumFractionDigits: 2,
                   })}
                 </p>

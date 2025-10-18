@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface IBreadcrumbs {
   match: {
@@ -21,7 +21,7 @@ function Breadcrumbs({ match, title, id }: IBreadcrumbs) {
 
   useEffect(() => {
     const _getCrumbs = (url: string) => {
-      const crumbs = url.split("/");
+      const crumbs = url.split('/');
       crumbs.shift();
 
       const index = crumbs.indexOf(id);
@@ -36,7 +36,7 @@ function Breadcrumbs({ match, title, id }: IBreadcrumbs) {
 
   return (
     <>
-      <span className="c-breadcrumbs">
+      <span className='c-breadcrumbs'>
         <p>
           {crumbs.map((item, index) => {
             if (index + 1 === crumbs.length) {
@@ -44,10 +44,9 @@ function Breadcrumbs({ match, title, id }: IBreadcrumbs) {
             } else {
               return (
                 <Link
-                  key={index}
-                  className="c-breadcrumbs__link"
-                  to={`/${item}`}
-                >{`${capitalizeFirstLetter(item)} > `}</Link>
+                  key={item}
+                  className='c-breadcrumbs__link'
+                  to={`/${item}`}>{`${capitalizeFirstLetter(item)} > `}</Link>
               );
             }
           })}

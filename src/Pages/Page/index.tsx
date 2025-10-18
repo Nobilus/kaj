@@ -1,17 +1,17 @@
-import { AxiosRequestConfig } from "axios";
-import { useEffect, useState } from "react";
-import endpoints from "Utils/endpoints";
-import { axiosI } from "Utils/Types/axiosInstance";
-import parse from "html-react-parser";
-import { IPage } from "Utils/Types/page";
-import PageDivider from "Components/PageDivider";
+import { AxiosRequestConfig } from 'axios';
+import { useEffect, useState } from 'react';
+import endpoints from 'Utils/endpoints';
+import { axiosI } from 'Utils/Types/axiosInstance';
+import parse from 'html-react-parser';
+import { IPage } from 'Utils/Types/page';
+import PageDivider from 'Components/PageDivider';
 
-import OnsTeamIcon from "Images/Png/ons_team_icon.png";
-import Winkelwagen from "Pages/Winkelwagen";
-import Checkout from "Pages/Checkout";
-import Shop from "Pages/Shop";
-import EventPage from "Pages/EventPage";
-import Praktisch from "Pages/Praktisch";
+// OnsTeamIcon removed (unused)
+import Winkelwagen from 'Pages/Winkelwagen';
+import Checkout from 'Pages/Checkout';
+import Shop from 'Pages/Shop';
+import EventPage from 'Pages/EventPage';
+import Praktisch from 'Pages/Praktisch';
 
 interface ILocalPage {
   title: string;
@@ -39,40 +39,40 @@ function Page({ title, slug, id }: ILocalPage) {
     };
 
     if (
-      slug !== "shop" &&
-      slug !== "winkelwagen" &&
-      slug !== "afrekenen" &&
-      slug !== "evenement" &&
-      slug !== "praktisch"
+      slug !== 'shop' &&
+      slug !== 'winkelwagen' &&
+      slug !== 'afrekenen' &&
+      slug !== 'evenement' &&
+      slug !== 'praktisch'
     ) {
       fetchPage();
     }
-  }, []);
+  }, [slug]);
 
   switch (slug) {
-    case "shop":
+    case 'shop':
       return <Shop title={title} />;
 
-    case "winkelwagen":
+    case 'winkelwagen':
       return <Winkelwagen />;
 
-    case "afrekenen":
+    case 'afrekenen':
       return <Checkout />;
 
-    case "evenement":
+    case 'evenement':
       return <EventPage />;
-    case "praktisch":
+    case 'praktisch':
       return <Praktisch id={id} title={title} />;
 
     default:
       return (
         <>
           <PageDivider title={title} />
-          <div className="c-page">
-            {page && page?._embedded["wp:featuredmedia"] && (
+          <div className='c-page'>
+            {page && page?._embedded['wp:featuredmedia'] && (
               <img
-                src={page._embedded["wp:featuredmedia"][0].source_url}
-                alt={page._embedded["wp:featuredmedia"][0].alt_text}
+                src={page._embedded['wp:featuredmedia'][0].source_url}
+                alt={page._embedded['wp:featuredmedia'][0].alt_text}
               />
             )}
             {page && parse(page.content.rendered)}

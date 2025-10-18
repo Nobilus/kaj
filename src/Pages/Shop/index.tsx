@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { AxiosRequestConfig } from "axios";
-import CategoryCard from "Components/CategoryCard";
-import PageDivider from "Components/PageDivider";
-import ProductCard from "Components/ProductCard";
-import endpoints from "Utils/endpoints";
-import { categoriesFromProducts } from "Utils/fp/categoriesFromProducts";
-import { axiosI } from "Utils/Types/axiosInstance";
-import { IProduct } from "Utils/Types/product";
+import { AxiosRequestConfig } from 'axios';
+import CategoryCard from 'Components/CategoryCard';
+import PageDivider from 'Components/PageDivider';
+import ProductCard from 'Components/ProductCard';
+import endpoints from 'Utils/endpoints';
+import { categoriesFromProducts } from 'Utils/fp/categoriesFromProducts';
+import { axiosI } from 'Utils/Types/axiosInstance';
+import { IProduct } from 'Utils/Types/product';
 
 interface IShop {
   title: string;
@@ -35,27 +35,32 @@ function Shop({ title }: IShop) {
           }
         })
         .catch((error) => {
-          console.log("cant fetch products", error);
+          console.log('cant fetch products', error);
         });
     };
     fetchProducts();
-  }, [catId]);
+  }, [catId, categories]);
 
   return (
     <>
       <PageDivider title={title} />
 
       {products.length > 0 && (
-        <div className="c-shoppage">
+        <div className='c-shoppage'>
           <CategoryCard
             getCategory={(value: string | null) => {
               setCatId(value);
             }}
             items={categories}
           />
-          <div className="c-productgrid">
+          <div className='c-productgrid'>
             {products.map((item, index) => {
-              return <ProductCard key={index} product={item} />;
+              return (
+                <ProductCard
+                  key={item.id || `${item.slug || index}`}
+                  product={item}
+                />
+              );
             })}
           </div>
         </div>

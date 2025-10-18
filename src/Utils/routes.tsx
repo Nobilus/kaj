@@ -152,10 +152,10 @@ export function Routes() {
                         render={({ match: { url } }) =>
                           children.map((item, index) => (
                             <Route
-                              key={`${item.id}-${index}`}
+                              key={item.id || `${item.object_slug}-${index}`}
                               path={`${url}/${item.object_slug}`}>
                               <Page
-                                key={`${item.id}-${index}`}
+                                key={item.id || `${item.object_slug}-${index}`}
                                 title={item.title}
                                 slug={item.object_slug}
                               />

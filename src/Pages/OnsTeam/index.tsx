@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { axiosI } from 'Utils/Types/axiosInstance';
 import { IUser } from 'Utils/Types/userType';
 
-import OnsTeamIcon from 'Images/Png/ons_team_icon.png';
 import PageDivider from 'Components/PageDivider';
 
 interface ITeamMember {
@@ -61,9 +60,11 @@ export default function OnsTeam() {
       <div className='c-usercard__grid'>
         {loading === false &&
           users.map((user, index) => {
+            const key =
+              user.email || `${user.first_name}-${user.last_name}-${index}`;
             return (
               <Usercard
-                key={index}
+                key={key}
                 img={user.full}
                 firstname={user.first_name}
                 lastname={user.last_name}

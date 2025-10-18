@@ -2,11 +2,11 @@ import {
   faCaretDown,
   faCaretUp,
   faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { colors } from "Utils/colors";
-import useWindowSize from "Utils/Hooks/useWindowSize";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import { colors } from 'Utils/colors';
+import useWindowSize from 'Utils/Hooks/useWindowSize';
 
 interface ICategoryCard {
   items: any;
@@ -24,28 +24,28 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
 
   if (width && width >= 992) {
     return (
-      <div className="c-categorycard">
-        <div className="c-categorycard__control-row">
-          <h4 className="c-categorycard__title">Categorieën</h4>
+      <div className='c-categorycard'>
+        <div className='c-categorycard__control-row'>
+          <h4 className='c-categorycard__title'>Categorieën</h4>
         </div>
         <ul>
           {Object.keys(items).map((item, index) => (
-            <li key={index}>
+            <li key={`${item}-${index}`}>
               <input
-                className={"o-hide-accessible"}
-                type="radio"
-                name="category"
+                className={'o-hide-accessible'}
+                type='radio'
+                name='category'
                 id={`${item}-id`}
                 value={items[item]}
                 onChange={(e) => {
                   getCategory(e.target.value);
                 }}
               />
-              <label className="category" htmlFor={`${item}-id`}>
+              <label className='category' htmlFor={`${item}-id`}>
                 {item}
               </label>
               <FontAwesomeIcon
-                className="c-cancel"
+                className='c-cancel'
                 icon={faTimes}
                 onClick={(e) => {
                   //@ts-ignore
@@ -60,9 +60,9 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
     );
   } else {
     return (
-      <div className="c-categorycard" onClick={toggleOpen}>
-        <div className="c-categorycard__control-row">
-          <h4 className="c-categorycard__title">Categorieën</h4>
+      <div className='c-categorycard' onClick={toggleOpen}>
+        <div className='c-categorycard__control-row'>
+          <h4 className='c-categorycard__title'>Categorieën</h4>
           {show ? (
             <FontAwesomeIcon
               //   className={"c-mobile-nav__icon"}
@@ -80,13 +80,13 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
             />
           )}
         </div>
-        <ul style={{ display: show ? "block" : "none" }}>
+        <ul style={{ display: show ? 'block' : 'none' }}>
           {Object.keys(items).map((item, index) => (
             <li key={index}>
               <input
-                className={"o-hide-accessible"}
-                type="radio"
-                name="category"
+                className={'o-hide-accessible'}
+                type='radio'
+                name='category'
                 id={`${item}-id`}
                 value={items[item]}
                 onChange={(e) => {
@@ -95,7 +95,7 @@ function CategoryCard({ items, getCategory }: ICategoryCard) {
               />
               <label htmlFor={`${item}-id`}>{item}</label>
               <FontAwesomeIcon
-                className="c-cancel"
+                className='c-cancel'
                 icon={faTimes}
                 onClick={(e) => {
                   //@ts-ignore
