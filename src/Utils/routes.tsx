@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Navbar from "Components/Navbar/Navbar";
-import { Switch, Route, Redirect } from "react-router-dom";
-import App from "../Pages/App";
-import OnsTeam from "Pages/OnsTeam";
-import { axiosI } from "./Types/axiosInstance";
-import { MenuI } from "./Types/menuItems";
-import Page from "Pages/Page";
-import Footer from "Components/Footer";
-import endpoints from "./endpoints";
-import BlogPost from "Pages/BlogPost";
-import Nieuws from "Pages/Nieuws";
-import Afdelingen from "Pages/Afdelingen";
-import ProductPage from "Pages/Product";
-import PraktischPage from "Pages/Praktisch/PraktischPage";
+import Navbar from 'Components/Navbar/Navbar';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import App from '../Pages/App';
+import OnsTeam from 'Pages/OnsTeam';
+import { axiosI } from './Types/axiosInstance';
+import { MenuI } from './Types/menuItems';
+import Page from 'Pages/Page';
+import Footer from 'Components/Footer';
+import endpoints from './endpoints';
+import BlogPost from 'Pages/BlogPost';
+import Nieuws from 'Pages/Nieuws';
+import Afdelingen from 'Pages/Afdelingen';
+import ProductPage from 'Pages/Product';
+import PraktischPage from 'Pages/Praktisch/PraktischPage';
 
 export function Routes() {
   const [loading, setLoading] = useState(true);
@@ -61,41 +61,41 @@ export function Routes() {
   return (
     <>
       <Navbar items={menuItems} />
-      <div className="c-app">
+      <div className='c-app'>
         {!loading &&
           menuItems &&
           menuItems.items.map(
             ({ id, title, object_slug: slug, children, object_id }, index) => {
               switch (title) {
-                case "Home":
+                case 'Home':
                   return (
-                    <Route key={id} exact path={"/" + slug} component={App} />
+                    <Route key={id} exact path={'/' + slug} component={App} />
                   );
 
-                case "Ons team":
+                case 'Ons team':
                   return (
                     <Route
                       key={id}
                       exact
-                      path={"/" + slug}
+                      path={'/' + slug}
                       component={OnsTeam}
                     />
                   );
 
-                case "Afdelingen":
+                case 'Afdelingen':
                   return (
                     <Route
                       key={id}
                       exact
-                      path={"/" + slug}
+                      path={'/' + slug}
                       component={Afdelingen}
                     />
                   );
 
-                case "Shop":
+                case 'Shop':
                   return (
                     <>
-                      <Route exact key={id} path={"/" + slug}>
+                      <Route exact key={id} path={'/' + slug}>
                         <Page key={`${id}-${id}`} title={title} slug={slug} />
                       </Route>
                       <Route
@@ -107,13 +107,13 @@ export function Routes() {
                     </>
                   );
 
-                case "Nieuws":
+                case 'Nieuws':
                   return (
                     <>
                       <Route
                         exact
                         key={id}
-                        path={"/" + slug}
+                        path={'/' + slug}
                         component={Nieuws}
                       />
                       <Route
@@ -124,13 +124,13 @@ export function Routes() {
                       />
                     </>
                   );
-                case "Praktisch":
+                case 'Praktisch':
                   return (
                     <>
                       <Route
                         exact
                         key={id}
-                        path={"/" + slug}
+                        path={'/' + slug}
                         component={() => (
                           <Page title={title} slug={slug} id={object_id} />
                         )}
@@ -154,8 +154,7 @@ export function Routes() {
                           children.map((item, index) => (
                             <Route
                               key={`${item.id}-${index}`}
-                              path={`${url}/${item.object_slug}`}
-                            >
+                              path={`${url}/${item.object_slug}`}>
                               <Page
                                 key={`${item.id}-${index}`}
                                 title={item.title}
@@ -176,17 +175,17 @@ export function Routes() {
               }
             }
           )}
-        <Route exact path="/">
-          <Redirect to="/home" />
+        <Route exact path='/'>
+          <Redirect to='/home' />
         </Route>
-        <Route exact path="/evenementen/:eventid">
-          <Page title={"Evenement"} slug={"evenement"} />
+        <Route exact path='/evenementen/:eventid'>
+          <Page title={'Evenement'} slug={'evenement'} />
         </Route>
-        <Route exact path="/winkelwagen">
-          <Page title={"Winkelwagen"} slug={"winkelwagen"} />
+        <Route exact path='/winkelwagen'>
+          <Page title={'Winkelwagen'} slug={'winkelwagen'} />
         </Route>
-        <Route exact path="/afrekenen">
-          <Page title={"Afrekenen"} slug={"afrekenen"} />
+        <Route exact path='/afrekenen'>
+          <Page title={'Afrekenen'} slug={'afrekenen'} />
         </Route>
       </div>
       <Footer />
