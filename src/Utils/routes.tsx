@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Navbar from 'Components/Navbar/Navbar';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import App from '../Pages/App';
 import OnsTeam from 'Pages/OnsTeam';
 import { axiosI } from './Types/axiosInstance';
@@ -19,7 +19,10 @@ export function Routes() {
   const [loading, setLoading] = useState(true);
   const [menuItems, setMenuItems] = useState<MenuI>();
 
-  const [categories, setCategories] = useState<Array<any>>([]);
+  const [
+    ,/*categories*/
+    /*setCategories*/
+  ] = useState<Array<any>>([]);
 
   useEffect(() => {
     const fetchRoutes = async () => {
@@ -36,11 +39,7 @@ export function Routes() {
     const fetchCategories = async () => {
       await axiosI
         .get(endpoints.categories)
-        .then(({ data }) => {
-          //@ts-ignore
-          data.forEach(({ name, slug }) => {
-            setCategories([...categories, { name, slug }]);
-          });
+        .then(() => {
           setLoading(false);
         })
         .catch((error) => {
@@ -94,7 +93,7 @@ export function Routes() {
 
                 case 'Shop':
                   return (
-                    <>
+                    <React.Fragment key={id}>
                       <Route exact key={id} path={'/' + slug}>
                         <Page key={`${id}-${id}`} title={title} slug={slug} />
                       </Route>
@@ -104,12 +103,12 @@ export function Routes() {
                         path={`/${slug}/:itemid`}
                         component={ProductPage}
                       />
-                    </>
+                    </React.Fragment>
                   );
 
                 case 'Nieuws':
                   return (
-                    <>
+                    <React.Fragment key={id}>
                       <Route
                         exact
                         key={id}
@@ -122,11 +121,11 @@ export function Routes() {
                         path={`/${slug}/:postid`}
                         component={BlogPost}
                       />
-                    </>
+                    </React.Fragment>
                   );
                 case 'Praktisch':
                   return (
-                    <>
+                    <React.Fragment key={id}>
                       <Route
                         exact
                         key={id}
@@ -141,7 +140,7 @@ export function Routes() {
                         path={`/${slug}/:pagetitle`}
                         component={PraktischPage}
                       />
-                    </>
+                    </React.Fragment>
                   );
 
                 default:
