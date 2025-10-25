@@ -69,10 +69,10 @@ interface Links {
   about: About[];
   author: Author[];
   replies: Reply[];
-  "version-history": VersionHistory[];
-  "predecessor-version": PredecessorVersion[];
-  "wp:attachment": WpAttachment[];
-  "wp:featuredmedia"?: FeaturedMedia[];
+  'version-history': VersionHistory[];
+  'predecessor-version': PredecessorVersion[];
+  'wp:attachment': WpAttachment[];
+  'wp:featuredmedia'?: FeaturedMedia[];
   curies: Cury[];
 }
 
@@ -82,7 +82,7 @@ interface EmbeddedFeaturedMedia {
 }
 
 interface Embedded {
-  "wp:featuredmedia"?: EmbeddedFeaturedMedia[];
+  'wp:featuredmedia'?: EmbeddedFeaturedMedia[];
 }
 
 export interface IPage {
@@ -107,7 +107,9 @@ export interface IPage {
   ping_status: string;
   template: string;
   meta: any[];
-  acf: any[];
+  acf: {
+    page_icon: string | null;
+  };
   yoast_head: string;
   _links: Links;
   _embedded: Embedded;

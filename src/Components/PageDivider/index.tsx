@@ -45,12 +45,12 @@ function PageDivider({ src, title, alt = title }: IDivider) {
 
   // Prefer an explicit `src` prop, then a mapped icon for the current parent path,
   // otherwise fall back to a sensible default icon so the image never breaks.
-  const icon = src || icons[parentPath] || kijkerIcon;
+  const icon = src || icons[parentPath];
 
   return (
     <div className='c-homepage-divider'>
       <div className='c-kijker'>
-        <img className='c-kijker__icon' src={icon} alt={alt} />
+        {icon && <img className='c-kijker__icon' src={icon} alt={alt} />}
       </div>
       <h4>{capFirstLetter(title)}</h4>
     </div>

@@ -21,7 +21,7 @@ interface ILocalPage {
 
 function Page({ title, slug, id }: ILocalPage) {
   const [page, setPage] = useState<IPage>();
-
+  console.log(page);
   useEffect(() => {
     const fetchPage = async () => {
       const axiosconf: AxiosRequestConfig = {
@@ -67,7 +67,7 @@ function Page({ title, slug, id }: ILocalPage) {
     default:
       return (
         <>
-          <PageDivider title={title} />
+          <PageDivider src={page?.acf?.page_icon || undefined} title={title} />
           <div className='c-page'>
             {page && page?._embedded['wp:featuredmedia'] && (
               <img
