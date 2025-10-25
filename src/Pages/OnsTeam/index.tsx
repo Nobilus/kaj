@@ -6,8 +6,7 @@ import { IUser } from 'Utils/Types/userType';
 import PageDivider from 'Components/PageDivider';
 
 interface ITeamMember {
-  first_name: string;
-  last_name: string;
+  name: string;
   email: string;
   functie: string;
   telefoonnummer: string;
@@ -27,15 +26,13 @@ export default function OnsTeam() {
           console.log({ data });
           const tempUsers = data.map(
             ({
-              first_name,
-              last_name,
+              name,
               email,
               acf: { functie, telefoonnummer },
               simple_local_avatar,
             }) => {
               return {
-                first_name,
-                last_name,
+                name,
                 email,
                 functie,
                 telefoonnummer,
@@ -60,14 +57,12 @@ export default function OnsTeam() {
       <div className='c-usercard__grid'>
         {loading === false &&
           users.map((user, index) => {
-            const key =
-              user.email || `${user.first_name}-${user.last_name}-${index}`;
+            const key = user.email || `${user.name}-${index}`;
             return (
               <Usercard
                 key={key}
                 img={user.full}
-                firstname={user.first_name}
-                lastname={user.last_name}
+                name={user.name}
                 description={user.functie}
                 email={user.email}
                 phonenumber={user.telefoonnummer}
