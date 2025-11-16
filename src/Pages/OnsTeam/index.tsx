@@ -21,19 +21,18 @@ export default function OnsTeam() {
     const fetchUsers = async () => {
       setLoading(true);
       await axiosI
-        .get<IUser[]>('/wp/v2/users?exclude=1,2,3')
+        .get<IUser[]>('/wp/v2/users?exclude=1,2,3&per_page=100')
         .then(({ data }) => {
           console.log({ data });
           const tempUsers = data.map(
             ({
               name,
-              email,
-              acf: { functie, telefoonnummer },
+              acf: { functie, telefoonnummer, public_email = '' },
               simple_local_avatar,
             }) => {
               return {
                 name,
-                email,
+                email: public_email,
                 functie,
                 telefoonnummer,
                 full: simple_local_avatar?.full || '',

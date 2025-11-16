@@ -171,6 +171,7 @@ export interface SimpleLocalAvatar {
 export interface Acf {
   functie: string;
   telefoonnummer: string;
+  public_email?: string;
 }
 
 export interface WoocommerceMeta {
